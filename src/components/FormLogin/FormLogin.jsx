@@ -7,11 +7,10 @@ const FormLogin = () => {
     console.log("hola");
   }
     return ( 
-        <Form className='border border-2 form-login p-5 rounded-5 w-75' onSubmit={submitForm}>
+    <Form className='border border-2 form-login p-5 rounded-5 w-75' onSubmit={submitForm}>
       <Form.Group className="mt-4 mb-5" controlId="formBasicEmail">
         <Form.Control type="email" className="bg-transparent text-center p-2" placeholder="USUARIO" required minLength={10} maxLength={40} />
       </Form.Group>
-
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Control type="password" className="bg-transparent text-center p-2" placeholder="CONTRASEÑA" required minLength={6} maxLength={20}/>
         <Form.Text className="text-muted">
@@ -19,9 +18,14 @@ const FormLogin = () => {
         </Form.Text>
       </Form.Group>
       <div className="list-unstyled d-flex justify-content-between flex-wrap">
+      <div className='d-flex flex-column'>
+      <Form.Text className="text-muted d-flex justify-content-end pb-1  ">
+          Aun no tienes cuenta?
+        </Form.Text>
       <Button variant="transparent" className='border'>
-        Registrarse
+        Registrate
       </Button>
+      </div>
       <Button variant="success" type="submit">
         Iniciar sesion
       </Button>
