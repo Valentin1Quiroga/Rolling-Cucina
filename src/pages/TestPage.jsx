@@ -1,7 +1,11 @@
+import Header from "../components/Header/Header";
+
+
+
 const TestPage = () => {
     return ( 
 
-        <h1>soy Pulido</h1>
+     <Header/>
      );
 
 }

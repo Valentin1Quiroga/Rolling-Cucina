@@ -1,0 +1,18 @@
+#headerimage{
+    background-image: url(../../assets/img/logoHeader.jpg);
+    background-size: cover;
+    background-repeat: no-repeat; 
+    /* width: 100vw; */
+    /* height: 40vh; */
+}
+
+#header-section{
+background: rgb(205,207,193);
+background: radial-gradient(circle, rgba(205,207,193,1) 50%, rgba(180,185,151,1) 100%);
+margin: 0;
+}
+
+h1{
+    font-family: 'Handlee', sans-serif;
+    align-items: center;
+}
