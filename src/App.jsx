@@ -1,12 +1,13 @@
-import TestPage from "./pages/TestPage"
-import { useState } from 'react'
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import TestValentin from "./pages/TestValentin"
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-  <TestPage/>
+  <Router>
+    <Routes>
+      <Route path='/*' element={<TestValentin/>} />
+    </Routes>
+  </Router>
   )
 }
 
