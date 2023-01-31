@@ -1,7 +1,11 @@
+import CardGroup from "../components/CardGroup/CardGroup";
+
 const TestPage2 = () => {
     return ( 
-        <h1>Hola soy el fan de dior</h1>
-     );
+
+    <CardGroup/>
+    
+    );
 }
- 
+
 export default TestPage2;
