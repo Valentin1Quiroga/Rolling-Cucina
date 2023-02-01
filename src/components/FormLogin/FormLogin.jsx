@@ -1,10 +1,33 @@
+import { useState } from 'react';
+import { Modal } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import FormRegistro from '../FormRegistro/FormRegistro';
 import "./FormLogin.css"
 const FormLogin = () => {
+  const [modalShow, setModalShow] = useState(false);
   const submitForm=(e)=>{
     e.preventDefault();
     console.log("hola");
+  }
+  function MyVerticallyCenteredModal(props) 
+  {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>
+            REGISTRATE
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <FormRegistro></FormRegistro>
+        </Modal.Body>
+      </Modal>
+    );
   }
     return ( 
     <Form className='border border-2 form-login p-5 rounded-5 w-75' onSubmit={submitForm}>
@@ -22,9 +45,13 @@ const FormLogin = () => {
       <Form.Text className="text-muted d-flex justify-content-end pb-1  ">
           Aun no tienes cuenta?
         </Form.Text>
-      <Button variant="transparent" className='border'>
+      <Button variant="transparent" className='border' onClick={() => setModalShow(true)}>
         Registrate
       </Button>
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
       </div>
       <Button variant="success" type="submit">
         Iniciar sesion
