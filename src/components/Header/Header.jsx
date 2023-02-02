@@ -5,12 +5,12 @@ import banner from '../../assets/img/foto4.jpg'
 const Header = () => {
     return (
         <> 
-<div id="headerimage" className="container-fluid px-0"> 
+<div id="headerimage" className="container-fluid px-0 pt-5"> 
 <img src={banner} alt="" className="img-fluid vw-100"/> 
 
 </div>
 
-<Container id='header-section' className="d-flex d-lg-block p-2 justify-content-center align-items-center" fluid>
+<Container id='header-section' className="d-flex d-lg-block py-2 justify-content-center align-items-center" fluid>
 <Row >
     <Col xs={12} md={5} className='info-restaurante'>
     <p className='d-flex justify-content-center align-items-center py-2 fst-italic '>

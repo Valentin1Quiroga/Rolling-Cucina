@@ -44,7 +44,6 @@ const CardGroup = () => {
 
   return (
     <>
-      <h1>Este es el CardGroup</h1>
       <Container>
         <Row>
           {nombres.map((persona, index) => (
