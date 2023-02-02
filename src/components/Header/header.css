@@ -1,17 +1,7 @@
-/* #headerimage{
-  background-image: url(../../assets/img/logoHeader.jpg);
-    background-size: contain;
-    background-repeat: no-repeat; 
-    width: 100vw;
-    height: 40vh; 
-} */
-
 #header-section{
-/* background: rgb(205,207,193);
-background: radial-gradient(circle, rgba(205,207,193,1) 50%, rgba(180,185,151,1) 100%); */
 background-image: url(../../assets/img/pared.jpg);
 background-size: cover;
-margin: 0;
+
 
 }
 
@@ -30,7 +20,4 @@ h1{
         display: none;
     }
 } 
-/* #headerimage{ */
-    /* height: 40vh; */
-/* } */
 
