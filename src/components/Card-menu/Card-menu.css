@@ -35,6 +35,13 @@
     color: #1aae9f;
     display: inline;
 }
+@media screen and (max-width:350px){
+    #boton-ver-menu{
+
+        display: none;
+    }
+
+}
 
 #contenedor-img{
     width: 30%;

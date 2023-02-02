@@ -5,7 +5,7 @@ import banner from '../../assets/img/foto4.jpg'
 const Header = () => {
     return (
         <> 
-<div id="headerimage" className="container-fluid px-0"> 
+<div id="headerimage" className="container-fluid px-0 pt-5"> 
 <img src={banner} alt="" className="img-fluid vw-100"/> 
 
 </div>
