@@ -10,7 +10,7 @@ const Header = () => {
 
 </div>
 
-<Container id='header-section' className="d-flex d-lg-block p-2 justify-content-center align-items-center" fluid>
+<Container id='header-section' className="d-flex d-lg-block py-2 justify-content-center align-items-center" fluid>
 <Row >
     <Col xs={12} md={5} className='info-restaurante'>
     <p className='d-flex justify-content-center align-items-center py-2 fst-italic '>
