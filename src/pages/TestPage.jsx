@@ -1,7 +1,11 @@
+import Header from "../components/Header/Header";
+
+
+
 const TestPage = () => {
     return ( 
 
-        <h1>Hola Mundo!</h1>
+     <Header/>
      );
 
 }
