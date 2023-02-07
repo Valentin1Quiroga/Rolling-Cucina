@@ -1,0 +1,62 @@
+
+#tarjeta-menu{
+    display: flex;
+    flex-direction: row;  
+    justify-content: center;
+    align-items: center;
+}
+
+#tarjeta-menu{
+    background-color: #bcc1cb4f;
+    margin: 10px;
+}
+
+#titulo-menu{
+    color: #1aae9f;
+    font-size: 25px;
+    font-weight: bold;
+    display: inline;
+}
+
+#precio-menu{
+    color: #1aae9f;
+    font-size: 20px;
+    font-weight: bold;
+    display: inline;
+}
+
+#boton-agregar-menu{
+    background-color: #1aae9f;
+    display: inline;
+}
+
+#boton-ver-menu{
+    background-color: rgba(255, 255, 255, 0);
+    color: #1aae9f;
+    display: inline;
+}
+@media screen and (max-width:350px){
+    #boton-ver-menu{
+
+        display: none;
+    }
+
+}
+
+#contenedor-img{
+    width: 30%;
+}
+
+#cuerpo-menu{
+    width: 70%;
+}
+
+#encabezado-menu{
+    display: flex;
+    justify-content: space-between;
+}
+
+#pie-menu{
+    display: flex;
+    justify-content: space-between;
+}
