@@ -7,10 +7,10 @@ const Login = () => {
     return (
         <Container fluid>
         <Row className="loginpage">
-        <Col md={6} className="centered-object logo-login">
+        <Col lg={6} className="centered-object logo-login">
          <img src={logo} alt="" className="img-fluid img-form" />
         </Col>
-        <Col md={6}  className="centered-object">
+        <Col lg={6}  className="centered-object">
             <FormLogin/>          
         </Col>
       </Row>      
