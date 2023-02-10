@@ -4,9 +4,13 @@
     margin-right: var(--bs-navbar-brand-margin-end);
     font-family: italia, sans-serif;
     font-size: var(--bs-navbar-brand-font-size);
-    color: var(--bs-navbar-brand-color);
+    color: white;
     text-decoration: none;
     white-space: nowrap;
+}
+
+.navbar-brand:hover{
+    color: coral;
 }
 
 
@@ -19,3 +23,109 @@
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
 }
+
+.navbar-toggler{
+    border: none !important
+    
+}
+
+.navbar-toggler:focus{
+    box-shadow: none !important
+}
+
+
+.icon-menu{
+    display: flex;
+    justify-content: end;
+    position: relative;
+    width: 38px;
+    height: 38px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    cursor: pointer;
+  }
+  
+  .icon-menu-line{
+    display: flex;
+    justify-content: end;
+    position: absolute;
+    height: 0px;
+    border: solid 2.5px;
+    transition: 0.4s cubic-bezier(0.5, 0.05, 0.25, 2.75);
+    border-radius: 2px;
+    margin: auto;
+    top: 15%;
+    bottom: 15%;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    
+  }
+  
+  .icon-menu-a{
+    color: green;
+    bottom: auto;
+  }
+  
+  .icon-menu-b{
+
+    color: white;
+  }
+  .icon-menu-c{
+    color: red;
+    top: auto;
+  }
+  
+  /* .icon-menu:hover .icon-menu-a{
+    top: 10%;
+  }
+  
+  .icon-menu:hover .icon-menu-c{
+    bottom: 10%;
+  }
+  
+  .icon-menu:hover .icon-menu-b{
+    left: 20%;
+    right: 20%;
+    transition: 0.4s cubic-bezier(0.5, 0.05, 0.25, 3.75);
+  } */
+  
+  .icon-menu.active .icon-menu-a{
+    top: calc(50% - 3px);
+    bottom: calc(50% - 3px);
+    transform: rotate(45deg);
+  }
+  
+  .icon-menu.active .icon-menu-b{
+    left: calc(50% - 3px);
+    right: calc(50% - 3px);
+    transition: 0.1s ease;
+  }
+  
+  .icon-menu.active .icon-menu-c{
+    top: calc(50% - 3px);
+    bottom: calc(50% - 3px);
+    transform: rotate(-45deg);
+  }
+  
+  /* .icon-menu.active:hover .icon-menu-a{
+    top: calc(50% - 3px);
+    bottom: calc(50% - 3px);
+    transform: rotate(50deg);
+  } */
+  
+  .icon-menu.active .icon-menu-b{
+    left: calc(50% - 3px);
+    right: calc(50% - 3px);
+    transition: 0.1s ease;
+  }
+  
+  /* .icon-menu.active:hover .icon-menu-c{
+    top: calc(50% - 3px);
+    bottom: calc(50% - 3px);
+    transform: rotate(-50deg);
+  }
+   */
