@@ -45,7 +45,8 @@ const CardGroup = () => {
   return (
     <>
       <Container>
-        <Row>
+        <Row id="ensaladas">
+         
           {nombres.map((persona, index) => (
               <Col lg={6} id="contenedor-menu">
 
@@ -56,10 +57,14 @@ const CardGroup = () => {
                 imagen={persona.imagen}
                 precio={persona.precio}
               />
+             
               </Col>
               ))}
           
         
+        </Row>
+        <Row id="pastas">
+          <h2>soy pastas</h2>
         </Row>
       </Container>
     </>

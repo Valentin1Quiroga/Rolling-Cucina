@@ -1,0 +1,29 @@
+.food-menu{
+   
+    position: fixed;
+    top:55px;
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    background-color: #ccd5ae;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    
+}
+
+.food-categories-items{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+
+.food-categories-items a{
+    margin: 15px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    
+}
