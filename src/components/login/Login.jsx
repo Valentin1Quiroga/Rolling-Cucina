@@ -11,10 +11,12 @@ const Login = () => {
          <img src={logo} alt="" className="img-fluid img-form" />
         </Col>
         <Col lg={6}  className="centered-object">
-            <FormLogin/>          
+            <FormLogin/> 
+            <i className="fa-sharp fa-solid fa-fork"></i>         
         </Col>
       </Row>      
     </Container>
+    
      );
 }
  
