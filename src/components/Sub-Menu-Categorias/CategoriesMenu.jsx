@@ -6,27 +6,27 @@ import ScrollspyNav from "react-scrollspy-nav";
 function CategoriesMenu() {
   return (
 
-    <div className="food-menu">
+    <div className="food-menu container-fluid">
     <ScrollspyNav
         scrollTargetIds={["pizzas", "pastas", "ensaladas", "otros","bebidas","postres"]}
         offset={100}
         activeNavClass="is-active"
-        scrollDuration="3000"
+        scrollDuration="1"
         headerBackground="true"
     >
-        <div className="food-categories-items w-100 h-100 container-fluid">
+        <div className="food-categories-items w-100 h-100 ">
     
-          <a href="#pizzas"> <i className="fas fa-pizza-slice"></i>Pizzas</a>
+          <a href="#pizzas"> <i className="fas fa-pizza-slice viejolobo"></i>Pizzas</a>
         
-          <a href="#pastas"> <i className="fas fa-bacon"></i> Pastas</a>
+          <a href="#pastas"> <i className="fas fa-bacon viejolobo"></i> Pastas</a>
           
-          <a href="#ensaladas"> <i className="fas fa-leaf"></i>Ensaladas</a>
+         <a href="#ensaladas"> <i className="fas fa-leaf viejolobo"></i>Ensaladas</a> 
 
-          <a href="#otros"> <i className="fas fa-utensils"></i> Otros</a>
+          <a href="#otros"> <i className="fas fa-utensils viejolobo"></i> Otros</a>
 
-          <a href="#bebidas"><i className="fas fa-glass-martini-alt"></i>Bebidas</a>
+          <a href="#bebidas"><i className="fas fa-glass-martini-alt viejolobo"></i>Bebidas</a>
        
-          <a href="#postres"> <i className="fas fa-ice-cream"></i>Postres </a>
+          <a href="#postres"> <i className="fas fa-ice-cream viejolobo"></i>Postres </a>
        
        
    </div>

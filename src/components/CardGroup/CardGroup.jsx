@@ -44,7 +44,7 @@ const CardGroup = () => {
 
   return (
     <>
-      <Container>
+      <Container className="bg-white">
         <Row id="ensaladas">
          
           {nombres.map((persona, index) => (
