@@ -3,6 +3,7 @@ import './login.css'
 import { Col, Container, Row } from "react-bootstrap";
 import logo from "../../assets/logo-cucina-rolling-footer.png";
 import FormRegistro from "../FormRegistro/FormRegistro";
+import Spinner from "../Spinner/Spinner";
 const Login = () => {
     return (
         <Container fluid>
@@ -12,7 +13,7 @@ const Login = () => {
         </Col>
         <Col lg={6}  className="centered-object">
             <FormLogin/> 
-            <i className="fa-sharp fa-solid fa-fork"></i>         
+            <i className="fa-sharp fa-solid fa-fork"></i>      
         </Col>
       </Row>      
     </Container>

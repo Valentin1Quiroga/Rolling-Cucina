@@ -1,13 +1,14 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import "./FormLogin.css";
 import { SlLogin } from "react-icons/sl";
+import "./FormLogin.css";
 import GeneralModal from "../GeneralModal/GeneralModal";
 import FormRegistro from "../FormRegistro/FormRegistro";
+
+
 const FormLogin = () => {
   const submitForm = (e) => {
     e.preventDefault();
-    console.log("hola");
   };
 
   return (
@@ -22,7 +23,7 @@ const FormLogin = () => {
           className="bg-transparent text-center p-2"
           placeholder="USUARIO"
           required
-          minLength={10}
+          minLength={5}
           maxLength={40}
         />
       </Form.Group>
@@ -47,7 +48,7 @@ const FormLogin = () => {
             buttonText="Registrate"
             variant="transparent"
             modalTitle="Crea tu cuenta"
-            modalBody={<FormRegistro />}
+            modalBody={<FormRegistro/>}
           />
         </div>
         <Button variant="success" type="submit">
