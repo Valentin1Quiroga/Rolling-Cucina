@@ -11,7 +11,7 @@ function App() {
   return (
   <Router>
     <Routes>
-      <Route path='/*' element={<TestValentin/>} />
+      <Route path='/*' element={<TestPage2/>} />
       <Route path='/home' element={<Home/>} />
     </Routes>
     <ToastContainer/>
