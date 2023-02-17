@@ -1,0 +1,16 @@
+.footerbeta img{
+    height: 100px;
+    width: 100px;
+}
+
+.footerbeta{
+    height: 50vh;
+    width: 100vw;
+    
+}
+.copyright{
+    justify-content: center;
+}
+.footerbeta{
+    background-color: darkgrey;
+}
