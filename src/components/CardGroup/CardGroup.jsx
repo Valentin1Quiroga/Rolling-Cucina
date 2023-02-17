@@ -1,60 +1,68 @@
 import CardMarcos from "../Card-menu/Card-menu";
 import "./CardGroup.css";
 import { Container, Row, Col } from "react-bootstrap";
+import useGet from "../../hooks/useGet";
+import Spinner from "../Spinner/Spinner";
 
 const CardGroup = () => {
-  const nombres = [
-    {
-      name: "Fugazzeta",
-      ingredientes: "mayonesa, moztaza, sal",
-      imagen:"../src/assets/menu/1.png",
-      precio: 720,
-    },
-    {
-      name: "Napolitana",
-      ingredientes: "huevos, morrones, sal",
-      imagen:"../src/assets/menu/2.png",
-      precio: 800,
-    },
-    {
-      name: "Atrevida",
-      ingredientes: "cebollas, aceitunas, ajo",
-      imagen:"../src/assets/menu/3.png",
-      precio: 1000,
-    },
-    {
-      name: "Fugazzeta",
-      ingredientes: "mayonesa, moztaza, sal",
-      imagen:"../src/assets/menu/4.png",
-      precio: 720,
-    },
-    {
-      name: "Napolitana",
-      ingredientes: "huevos, morrones, sal",
-      imagen:"../src/assets/menu/5.png",
-      precio: 800,
-    },
-    {
-      name: "Atrevida",
-      ingredientes: "cebollas, aceitunas, ajo",
-      imagen:"../src/assets/menu/6.png",
-      precio: 1000,
-    }
-  ];
-
+  // const menus = [
+  //   {
+  //     name: "Fugazzeta",
+  //     description: "mayonesa, moztaza, sal",
+  //     image:"../src/assets/menu/1.png",
+  //     price: 720,
+  //   },
+  //   {
+  //     name: "Napolitana",
+  //     description: "huevos, morrones, sal",
+  //     image:"../src/assets/menu/2.png",
+  //     price: 800,
+  //   },
+  //   {
+  //     name: "Atrevida",
+  //     description: "cebollas, aceitunas, ajo",
+  //     image:"../src/assets/menu/3.png",
+  //     price: 1000,
+  //   },
+  //   {
+  //     name: "Fugazzeta",
+  //     description: "mayonesa, moztaza, sal",
+  //     image:"../src/assets/menu/4.png",
+  //     price: 720,
+  //   },
+  //   {
+  //     name: "Napolitana",
+  //     description: "huevos, morrones, sal",
+  //     image:"../src/assets/menu/5.png",
+  //     price: 800,
+  //   },
+  //   {
+  //     name: "Atrevida",
+  //     description: "cebollas, aceitunas, ajo",
+  //     image:"../src/assets/menu/6.png",
+  //     price: 1000,
+  //   }
+  // ];
+  const [ menus, loading,getmenus]=useGet("/menu","menus")
+  console.log(menus);
   return (
     <>
       <Container className="bg-white">
+        
         <Row>
-          {nombres.map((persona, index) => (
+          {
+            loading?
+            <Spinner></Spinner>
+            :
+          menus.map((menu, index) => (
               <Col lg={6} id="contenedor-menu">
 
               <CardMarcos
                 key={index}
-                title={persona.name}
-                ingredientes={persona.ingredientes}
-                imagen={persona.imagen}
-                precio={persona.precio}
+                title={menu.name}
+                description={menu.description}
+                image={menu.image}
+                price={menu.price}
               />
               </Col>
               ))}

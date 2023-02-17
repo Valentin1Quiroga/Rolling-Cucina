@@ -3,23 +3,23 @@ import "./BtnVerProducto.css"
 
 
 
-const BtnVerProducto = ({title, ingredientes, imagen, precio}) => {
+const BtnVerProducto = ({title, description, image, price}) => {
     return (
         <>
             <div className="bg-success">
-                <img className='img-fluid' src={imagen} />
+                <img className='img-fluid' src={image} />
             </div>
-            <div id="titulo-precio">
+            <div id="titulo-price">
                 <div>
                     <h2>{title}</h2>
                 </div>
                 <div>
-                    <h2>{precio}</h2>
+                    <h2>{price}</h2>
                 </div>
             </div>
 
             <div>
-                <h4>{ingredientes}</h4>
+                <h4>{description}</h4>
             </div>
 
             <div id="cantidad-producto">
