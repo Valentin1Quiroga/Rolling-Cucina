@@ -1,0 +1,11 @@
+#titulo-precio{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#cantidad-producto{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
