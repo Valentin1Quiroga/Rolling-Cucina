@@ -4,3 +4,8 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
+
+body{
+    background-image: url("src/assets/img/posiblefondohome.jpg");
+    background-size: cover;
+}

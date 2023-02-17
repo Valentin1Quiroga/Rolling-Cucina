@@ -3,7 +3,7 @@ import TestLuis from "./pages/TestLuis"
 import TestPage from "./pages/TestPage"
 import TestValentin from "./pages/TestValentin"
 import TestPage2 from "./pages/TestPage2"
-import footer from './components/footer/footer'
+import Home from "./pages/Home"
 
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
   <Router>
     <Routes>
       <Route path='/*' element={<TestLuis/>} />
+      <Route path='/home' element={<Home/>} />
     </Routes>
   </Router>
   )
