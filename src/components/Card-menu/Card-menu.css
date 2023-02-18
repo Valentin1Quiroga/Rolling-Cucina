@@ -9,6 +9,7 @@
 #tarjeta-menu{
     background-color: #bcc1cb4f;
     margin: 10px;
+    cursor: pointer;
 }
 
 #titulo-menu{

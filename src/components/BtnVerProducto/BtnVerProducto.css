@@ -9,3 +9,8 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+.img-modal{
+    width: 400px;
+    height: 400px;
+}
