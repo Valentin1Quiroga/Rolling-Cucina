@@ -1,16 +1,16 @@
 .footerbeta img{
-    height: 100px;
-    width: 100px;
+    height: 160px;
+    width: 180px;
 }
 
-.footerbeta{
-    height: 50vh;
+/* .footerbeta{
+    height: 20vh;
     width: 100vw;
     
-}
+} */
 .copyright{
     justify-content: center;
 }
-.footerbeta{
+/* .footerbeta, .bg-footer{
     background-color: darkgrey;
-}
+} */
