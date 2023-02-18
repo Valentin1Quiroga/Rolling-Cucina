@@ -1,7 +1,7 @@
-import { cloneElement, useState } from "react";
+import {  cloneElement, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
-const GeneralModal = ({buttonText, modalTitle, modalBody, variant}) => {
+const GeneralModal = ({boton,buttonText,children, modalTitle, modalBody, variant}) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -9,9 +9,15 @@ const GeneralModal = ({buttonText, modalTitle, modalBody, variant}) => {
 
   return (
     <>
+    {
+      boton?
       <Button variant={variant}  onClick={handleShow} className="border">
         {buttonText}
-      </Button>
+      </Button>:
+      <div onClick={handleShow}>
+        {children}
+      </div>
+      }
 
       <Modal 
       show={show} 

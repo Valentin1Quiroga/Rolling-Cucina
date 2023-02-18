@@ -6,28 +6,28 @@ import "./BtnVerProducto.css"
 const BtnVerProducto = ({title, description, image, price}) => {
     return (
         <>
-            <div className="bg-success">
+            <div className="container-fluid centered-object">
                 <img className='img-fluid' src={image} />
             </div>
             <div id="titulo-price">
                 <div>
-                    <h2>{title}</h2>
+                    <h4>{title}</h4>
                 </div>
                 <div>
-                    <h2>{price}</h2>
+                    <h5>{price}</h5>
                 </div>
             </div>
 
             <div>
-                <h4>{description}</h4>
+                <h6>{description}</h6>
             </div>
 
             <div id="cantidad-producto">
                 <div>
-                    <h5>Cantidad</h5>
+                    <h6>Cantidad</h6>
                 </div>
                 <div>
-                    <h5>Botones</h5>
+                    <h6>Botones</h6>
                 </div>
             </div>
 
@@ -36,7 +36,7 @@ const BtnVerProducto = ({title, description, image, price}) => {
                     <Form.Control
                         as="textarea"
                         placeholder="Deja tus notas aquí"
-                        style={{ height: '100px' }}
+                        // style={{ height: '100px' }}
                     />
                 </FloatingLabel>
             </div>
