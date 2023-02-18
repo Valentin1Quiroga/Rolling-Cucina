@@ -27,7 +27,7 @@ const FormRegistro = ({ handleClose, getUsers }) => {
       toast.done("Usuario creado");
       console.log("user created");
     } catch (error) {
-      console.log(error.message);
+      console.log({error});
       toast.error("Error al enviar los datos. Intente nuevamente más tarde.");
     }
   };

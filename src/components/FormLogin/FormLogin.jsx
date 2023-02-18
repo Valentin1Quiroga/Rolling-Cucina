@@ -45,6 +45,7 @@ const FormLogin = () => {
             Aun no tienes cuenta?
           </Form.Text>
           <GeneralModal
+            boton={true}
             buttonText="Registrate"
             variant="transparent"
             modalTitle="Crea tu cuenta"
