@@ -72,7 +72,6 @@ const CardGroup = () => {
         
         </Row>
         <Row id="pastas">
-          <h2>soy pastas</h2>
         </Row>
       </Container>
     </>

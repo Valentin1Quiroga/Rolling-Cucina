@@ -7,20 +7,20 @@ const BtnVerProducto = ({title, description, image, price}) => {
     return (
         <>
             <div className="container-fluid centered-object">
-                <img className='img-fluid' src={image} />
+                <img className='img-fluid img-modal' src={image} />
             </div>
             <div id="titulo-price">
                 <div>
                     <h4>{title}</h4>
                 </div>
                 <div>
-                    <h5>{price}</h5>
+                    <h5>${price}</h5>
                 </div>
             </div>
 
-            <div>
+            {/* <div>
                 <h6>{description}</h6>
-            </div>
+            </div> */}
 
             <div id="cantidad-producto">
                 <div>
