@@ -7,28 +7,31 @@
 }
 
 #tarjeta-menu{
-    background-color: #bcc1cb4f;
+    background-color:#41464b;
     margin: 10px;
     cursor: pointer;
 }
 
 #titulo-menu{
-    color: #1aae9f;
+    color: #FFF;
+    font-family: italia, sans-serif;
     font-size: 25px;
-    font-weight: bold;
     display: inline;
 }
 
-#precio-menu{
-    color: #1aae9f;
+#price-menu{
+    font-family:italia, sans-serif; 
+    color: #FFF;
     font-size: 20px;
-    font-weight: bold;
     display: inline;
 }
 
 #boton-agregar-menu{
-    background-color: #1aae9f;
+    color: red;
+    background-color: #FFF;
     display: inline;
+    font-family: italia, sans-serif; 
+    border: none;
 }
 
 #boton-ver-menu{
@@ -60,4 +63,8 @@
 #pie-menu{
     display: flex;
     justify-content: space-between;
+}
+
+.description-style{
+    font-family: italia, sans-serif;
 }

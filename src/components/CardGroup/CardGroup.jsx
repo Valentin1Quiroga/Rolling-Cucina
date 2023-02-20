@@ -45,6 +45,7 @@ const CardGroup = () => {
   // ];
   const [ menus, loading,getmenus]=useGet("/menu","menus")
   console.log(menus);
+  if (menus.category==="pasta"){}
   return (
     <>
       <Container className="bg-white">
@@ -55,7 +56,7 @@ const CardGroup = () => {
             <Spinner></Spinner>
             :
           menus.map((menu, index) => (
-              <Col lg={6} id="contenedor-menu">
+              <Col lg={6} className="contenedor-menu">
 
               <CardMarcos
                 key={index}
@@ -64,10 +65,13 @@ const CardGroup = () => {
                 image={menu.image}
                 price={menu.price}
               />
+             
               </Col>
               ))}
           
         
+        </Row>
+        <Row id="pastas">
         </Row>
       </Container>
     </>
