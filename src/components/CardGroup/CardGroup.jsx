@@ -44,22 +44,20 @@ const CardGroup = () => {
   //   }
   // ];
   const [ menus, loading,getmenus]=useGet("/menu","menus")
-  console.log(menus);
   if (menus.category==="pasta"){}
   return (
     <>
       <Container className="bg-white">
         
-        <Row>
+        <Row id="pizzas">
           {
             loading?
             <Spinner></Spinner>
             :
           menus.map((menu, index) => (
-              <Col lg={6} className="contenedor-menu">
+              <Col lg={6} className="contenedor-menu" key={index}>
 
               <CardMarcos
-                key={index}
                 title={menu.name}
                 description={menu.description}
                 image={menu.image}
@@ -72,6 +70,104 @@ const CardGroup = () => {
         
         </Row>
         <Row id="pastas">
+          {
+            loading?
+            <Spinner></Spinner>
+            :
+          menus.map((menu, index) => (
+              <Col lg={6} className="contenedor-menu" key={index}>
+
+              <CardMarcos
+                title={menu.name}
+                description={menu.description}
+                image={menu.image}
+                price={menu.price}
+              />
+             
+              </Col>
+              ))}
+          
+        
+        </Row>
+        <Row id="ensaladas">
+          {
+            loading?
+            <Spinner></Spinner>
+            :
+          menus.map((menu, index) => (
+              <Col lg={6} className="contenedor-menu" key={index}>
+
+              <CardMarcos
+                title={menu.name}
+                description={menu.description}
+                image={menu.image}
+                price={menu.price}
+              />
+             
+              </Col>
+              ))}
+          
+        
+        </Row>
+        <Row id="otros">
+          {
+            loading?
+            <Spinner></Spinner>
+            :
+          menus.map((menu, index) => (
+              <Col lg={6} className="contenedor-menu" key={index}>
+
+              <CardMarcos
+                title={menu.name}
+                description={menu.description}
+                image={menu.image}
+                price={menu.price}
+              />
+             
+              </Col>
+              ))}
+          
+        
+        </Row>
+        <Row id="bebidas">
+          {
+            loading?
+            <Spinner></Spinner>
+            :
+          menus.map((menu, index) => (
+              <Col lg={6} className="contenedor-menu" key={index}>
+
+              <CardMarcos
+                title={menu.name}
+                description={menu.description}
+                image={menu.image}
+                price={menu.price}
+              />
+             
+              </Col>
+              ))}
+          
+        
+        </Row>
+        <Row id="postres">
+          {
+            loading?
+            <Spinner></Spinner>
+            :
+          menus.map((menu, index) => (
+              <Col lg={6} className="contenedor-menu" key={index}>
+
+              <CardMarcos
+                title={menu.name}
+                description={menu.description}
+                image={menu.image}
+                price={menu.price}
+              />
+             
+              </Col>
+              ))}
+          
+        
         </Row>
       </Container>
     </>
