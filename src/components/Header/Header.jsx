@@ -13,7 +13,7 @@ const Header = () => {
 <Container id='header-section' className="d-flex d-lg-block py-2 justify-content-center align-items-center" fluid>
 <Row >
     <Col xs={12} md={5} className='info-restaurante'>
-    <p className='d-flex justify-content-center align-items-center py-2 fst-italic '>
+    <p className='d-flex justify-content-center align-items-center py-2 fst-italic otra-letra'>
     Teléfono: 381 4314545 - Dirección: José Colombres 399 SMT
     <br />
     Horario de Atención: Mañana: de 11 a 15hs.
