@@ -14,15 +14,15 @@
 
 #titulo-menu{
     color: #FFF;
-    font-family: italia, sans-serif;
-    font-size: 25px;
+    
+    font-size: 1.5em;
     display: inline;
 }
 
 #price-menu{
-    font-family:italia, sans-serif; 
+   
     color: #FFF;
-    font-size: 20px;
+    font-size: 1.5em;
     display: inline;
 }
 
@@ -30,7 +30,7 @@
     color: red;
     background-color: #FFF;
     display: inline;
-    font-family: italia, sans-serif; 
+    
     border: none;
 }
 
@@ -57,7 +57,8 @@
 
 #encabezado-menu{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    border-bottom: solid 0.3px white;
 }
 
 #pie-menu{
@@ -66,5 +67,5 @@
 }
 
 .description-style{
-    font-family: italia, sans-serif;
+    font-size: 100%;
 }
