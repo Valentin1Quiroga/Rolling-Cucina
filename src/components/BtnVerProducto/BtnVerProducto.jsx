@@ -42,7 +42,7 @@ const BtnVerProducto = ({title, description, image, price}) => {
             </div>
             <br />
             <div className="container text-center">
-            <Button>Agregar</Button>
+            <Button className="bg-dark text-white border-0">Agregar</Button>
             </div>
         </>
     );

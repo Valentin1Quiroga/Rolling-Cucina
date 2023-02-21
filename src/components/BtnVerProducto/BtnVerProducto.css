@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    font-family: italia, sans-serif !important;
 }
 
 #cantidad-producto{
@@ -14,3 +15,16 @@
     width: 300px !important; 
     height: 300px !important;
 }
+
+.modal-header{
+    background-color:#4e4f50;
+    color: white;
+
+}
+
+.modal-body{
+    
+    background: rgb(117,247,124);
+    background: linear-gradient(90deg, rgba(117,247,124,1) 0%, rgba(212,244,214,1) 36%, rgba(249,240,240,1) 64%, rgba(255,137,135,1) 100%);
+}
+

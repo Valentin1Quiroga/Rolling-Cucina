@@ -16,6 +16,7 @@
     display: flex;
   align-items: center;
   justify-content: center;
+  font-family: italia, sans-serif;;
 
 }
 
@@ -24,7 +25,7 @@
     margin: 15px;
     text-decoration: none;
     color: #fff;
-    font-weight: bold; 
+    font-family: italia, sans-serif;;
     
     
 }
