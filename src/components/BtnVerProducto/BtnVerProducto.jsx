@@ -1,20 +1,40 @@
+import { useContext, useState } from "react";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
+import { AgregarContext } from "../../context/AgregarContext";
 import "./BtnVerProducto.css"
 
 
 
+
 const BtnVerProducto = ({title, description, image, price}) => {
+const {cantidad,  aumentarCantidad, restarCantidad} = useContext(AgregarContext)
+// const [cantidad, setCantidad] = useState(1);
+
+// function aumentarCantidad() {
+//     setCantidad(cantidad + 1);
+//   }
+  
+// function restarCantidad() {
+//     if(cantidad==1){
+//         return
+//     }else{
+//         setCantidad(cantidad - 1);
+
+//     }
+//   }
+
+
     return (
         <>
             <div className="container-fluid centered-object">
-                <img className='img-fluid img-modal' src={image} />
+                <img className='img-fluid img-modal rounded' src={image} />
             </div>
             <div id="titulo-price">
                 <div>
                     <h4>{title}</h4>
                 </div>
                 <div>
-                    <h5>${price}</h5>
+                    <h5>${price*cantidad}</h5>
                 </div>
             </div>
 
@@ -24,10 +44,12 @@ const BtnVerProducto = ({title, description, image, price}) => {
 
             <div id="cantidad-producto">
                 <div>
-                    <h6>Cantidad</h6>
+                    <h6>Cantidad: <span className="text-danger fs-3">{cantidad}</span></h6>
                 </div>
-                <div>
-                    <h6>Botones</h6>
+                <div >
+                {cantidad>1 &&<Button variant="danger" onClick={restarCantidad}>-</Button>}
+                   <Button className="successes m-1 border-success" onClick={aumentarCantidad}>+</Button>
+
                 </div>
             </div>
 
