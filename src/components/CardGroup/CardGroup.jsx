@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import useGet from "../../hooks/useGet";
 import Spinner from "../Spinner/Spinner";
 
-const CardGroup = () => {
+const CardGroup = ({results}) => {
   // const menus = [
   //   {
   //     name: "Fugazzeta",
@@ -48,13 +48,26 @@ const CardGroup = () => {
   if (menus.category==="pasta"){}
   return (
     <>
-      <Container className="bg-white">
+      <Container className="bg-white mb-2">
         
         <Row>
           {
             loading?
             <Spinner></Spinner>
             :
+            results.length!==0?
+    <div className="d-flex flex-wrap">
+      {
+        results.map((result,index)=> <Col lg={6} className="contenedor-menu"><CardMarcos
+        key={index}
+        title={result.name}
+        description={result.description}
+        image={result.image}
+        price={result.price}
+      /></Col>)
+      }
+    </div> 
+    :
           menus.map((menu, index) => (
               <Col lg={6} className="contenedor-menu">
 

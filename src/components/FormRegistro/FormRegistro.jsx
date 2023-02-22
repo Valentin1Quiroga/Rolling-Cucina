@@ -38,7 +38,7 @@ function enviarMail () {
     try {
       await axios.post("/users", values);
       // getUsers();
-      toast.done("Usuario creado");
+      toast.success("Usuario creado");
       console.log("user created");
       enviarMail()
     } catch (error) {
