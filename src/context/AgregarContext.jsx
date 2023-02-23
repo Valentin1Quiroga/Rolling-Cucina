@@ -4,9 +4,7 @@ export const AgregarContext = createContext();
 
 const AgregarProvider = ({children}) => {
 const [cantidad, setCantidad] = useState(1);
-// const [pedido,setPedido]=useState([
-// [{name:card.name,cantidad:cantidad,notas:"la quiero sin mayonesa"},{name:lasagna,cantidad:1,notas:""}]
-// ])
+const [pedido,setPedido]=useState({name:"",cantidad:"",notas:""})
 
 
 function aumentarCantidad() {
@@ -27,6 +25,8 @@ function restarCantidad() {
 return(
     <AgregarContext.Provider value={{
         cantidad,
+        pedido,
+        setPedido,
         aumentarCantidad,
         restarCantidad
     }}>

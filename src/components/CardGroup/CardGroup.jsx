@@ -3,11 +3,16 @@ import "./CardGroup.css";
 import { Container, Row, Col } from "react-bootstrap";
 import useGet from "../../hooks/useGet";
 import Spinner from "../Spinner/Spinner";
+import { useContext } from "react";
+import { AgregarContext } from "../../context/AgregarContext";
 
 const CardGroup = () => {
   const [ menus, loading,getmenus]=useGet("/menu","menus")
+  const {pedido, setPedido} = useContext(AgregarContext)
   console.log(menus);
   if (menus.category==="pasta"){}
+  // const test = ()=>{setPedido({...pedido,name:"hola"})
+  // console.log(pedido);}
   return (
     <>
       <Container className="bg-white">
@@ -17,11 +22,11 @@ const CardGroup = () => {
             loading?
             <Spinner></Spinner>
             :
-          menus.map((menu, index) => (
-              <Col lg={6} className="contenedor-menu"  onClick={()=>console.log(menu.name)}>
-
+          menus.map((menu) => (
+              <Col lg={6} className="contenedor-menu"  onClick={()=>{setPedido({...pedido,name:menu.name})}}>
+                
               <CardMarcos
-                key={index}
+                key={menu._id}
                 title={menu.name}
                 description={menu.description}
                 image={menu.image}

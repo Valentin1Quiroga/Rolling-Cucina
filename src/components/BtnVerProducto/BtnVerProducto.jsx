@@ -7,7 +7,7 @@ import "./BtnVerProducto.css"
 
 
 const BtnVerProducto = ({title, description, image, price}) => {
-const {cantidad,  aumentarCantidad, restarCantidad} = useContext(AgregarContext)
+const {cantidad,pedido,  aumentarCantidad, restarCantidad} = useContext(AgregarContext)
 // const [cantidad, setCantidad] = useState(1);
 
 // function aumentarCantidad() {
@@ -22,7 +22,7 @@ const {cantidad,  aumentarCantidad, restarCantidad} = useContext(AgregarContext)
 
 //     }
 //   }
-
+console.log(pedido);
 
     return (
         <>
