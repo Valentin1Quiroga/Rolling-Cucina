@@ -7,15 +7,18 @@ import Home from "./pages/Home"
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from "./routes/PrivateRoute"
+import AgregarProvider from "./context/AgregarContext"
 
 
 function App() {
   return (
   <Router>
+    <AgregarProvider>
     <Routes>
       <Route path='/*' element={<TestValentin/>} />
       <Route path='/home' element={<PrivateRoute><Home/></PrivateRoute>} />
     </Routes>
+    </AgregarProvider>
     <ToastContainer/>
   </Router>
   )
