@@ -1,21 +1,25 @@
-import { Children, useState } from 'react';
+import { Children, useContext, useState } from 'react';
 import { Alert, Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
+import { AgregarContext } from '../../context/AgregarContext';
 import BtnVerProducto from '../BtnVerProducto/BtnVerProducto';
 import FormLogin from '../FormLogin/FormLogin';
 import GeneralModal from '../GeneralModal/GeneralModal';
 import "./Card-menu.css"
 
 const CardMarcos = ({title, description, image, price}) => {
+
+    const {cantidad,  aumentarCantidad, restarCantidad} = useContext(AgregarContext)
     
   const handleBotonClick = (e) => {
     e.stopPropagation(); // Detiene la propagación del evento
     console.log("Función del botón");
+    aumentarCantidad()
   };
     return ( 
-       
+
             <GeneralModal
-                    
+                    onClick={()=>console.log(title)}
                             bodyDiv={Children}
                             buttonText="Ver"
                             variant="primary"
@@ -40,7 +44,11 @@ const CardMarcos = ({title, description, image, price}) => {
 
                         <div id='pie-menu'>
                             <h5 id='price-menu'>${price}</h5>
-                            <Button id='boton-agregar-menu' onClick={handleBotonClick}>Agregar</Button>
+                           {cantidad>1?<div>
+
+                           <Button variant="danger" onClick={restarCantidad}>-</Button>
+                           
+                            <Button id='boton-agregar-menu' onClick={handleBotonClick}>Agregar</Button> </div>: <Button id='boton-agregar-menu' onClick={handleBotonClick}>Agregar</Button>}
                         </div>
                         
                     </Card.Body>
