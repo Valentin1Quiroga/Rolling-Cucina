@@ -10,7 +10,9 @@
     flex-direction: row;
     justify-content: space-between;
 }
-
+.successes{
+    background:#47B763 !important;
+}
 .img-modal{
     width: 300px !important; 
     height: 300px !important;
