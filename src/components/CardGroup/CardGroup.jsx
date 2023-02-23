@@ -15,13 +15,26 @@ const CardGroup = () => {
   // console.log(pedido);}
   return (
     <>
-      <Container className="bg-white">
+      <Container className="bg-white mb-2">
         
         <Row>
           {
             loading?
             <Spinner></Spinner>
             :
+            results.length!==0?
+    <div className="d-flex flex-wrap">
+      {
+        results.map((result,index)=> <Col lg={6} className="contenedor-menu"><CardMarcos
+        key={index}
+        title={result.name}
+        description={result.description}
+        image={result.image}
+        price={result.price}
+      /></Col>)
+      }
+    </div> 
+    :
           menus.map((menu) => (
               <Col lg={6} className="contenedor-menu"  onClick={()=>{setPedido({...pedido,name:menu.name})}}>
                 

@@ -14,7 +14,7 @@ function App() {
   <Router>
     <AgregarProvider>
     <Routes>
-      <Route path='/*' element={<TestValentin/>} />
+      <Route path='/*' element={<TestPage/>} />
       <Route path='/home' element={<Home/>} />
     </Routes>
     </AgregarProvider>
