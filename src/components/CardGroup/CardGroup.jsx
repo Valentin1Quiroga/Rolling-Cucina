@@ -11,8 +11,6 @@ const CardGroup = () => {
   const {pedido, setPedido} = useContext(AgregarContext)
   console.log(menus);
   if (menus.category==="pasta"){}
-  // const test = ()=>{setPedido({...pedido,name:"hola"})
-  // console.log(pedido);}
   return (
     <>
       <Container className="bg-white mb-2">
