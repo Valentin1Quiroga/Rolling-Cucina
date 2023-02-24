@@ -17,7 +17,7 @@ const FormLogin = () => {
     email:"",
     password:""
   })
-  const [backErrors, setBackErrors]= useState([])
+  const [backErrors, setBackErrors]= useState("")
   const handleChange = (e) =>{
     setValues({
       ...values,
@@ -29,8 +29,11 @@ const FormLogin = () => {
       e.preventDefault();
       const {data} = await axios.post("/users/login", values);
       localStorage.setItem("token",data.token)
-      navigate("/home");      
+      toast.success(`Benvenuto ${data.user.name}`);      
+      navigate("/home")
     } catch (error) {
+      console.log(error.response.data.message);
+      setBackErrors(error.response.data.message)
       toast.error("Ups! Error al iniciar sesion. Intenta de nuevo en unos minutos")
     }
   };
@@ -119,7 +122,7 @@ const FormLogin = () => {
       </div>
       {
         backErrors&&(
-          <Alert variant="danger"> {backErrors.error}</Alert>
+          <Alert variant="danger"> {backErrors}</Alert>
         )
       }
     </Form>

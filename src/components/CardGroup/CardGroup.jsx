@@ -5,8 +5,9 @@ import useGet from "../../hooks/useGet";
 import Spinner from "../Spinner/Spinner";
 import { useContext } from "react";
 import { AgregarContext } from "../../context/AgregarContext";
+import Categorias from "./categorias/Categorias";
 
-const CardGroup = (results) => {
+const CardGroup = ({results}) => {
   const [ menus, loading,getmenus]=useGet("/menu","menus")
 
   const {pedido, setPedido} = useContext(AgregarContext)
@@ -16,7 +17,7 @@ const CardGroup = (results) => {
     <>
       <Container className="bg-white mb-2">
         
-        <Row id="pizzas">
+        <Row >
           {
             loading?
             <Spinner></Spinner>
@@ -24,8 +25,8 @@ const CardGroup = (results) => {
             results.length!==0?
             <div className="d-flex flex-wrap">
               {
-                results.map((result,index)=> <Col lg={6} className="contenedor-menu"><CardMarcos
-                key={index}
+                results.map((result)=> <Col lg={6} className="contenedor-menu"><CardMarcos
+                key={result._id}
                 title={result.name}
                 description={result.description}
                 image={result.image}
@@ -34,21 +35,8 @@ const CardGroup = (results) => {
               }
             </div> 
             : 
-          menus.map((menu) => (
-              <Col lg={6} className="contenedor-menu"  onClick={()=>{setPedido({...pedido,name:menu.name})}}>
-                
-              <CardMarcos
-                key={menu._id}
-
-                title={menu.name}
-                description={menu.description}
-                image={menu.image}
-                price={menu.price}
-               
-              />
-             
-              </Col>
-              ))}
+              <Categorias/>
+              }
           
         
         </Row>

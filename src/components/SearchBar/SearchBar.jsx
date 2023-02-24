@@ -21,7 +21,7 @@ const SearchBar = ({setResults, search, setSearch, isSearching, setIsSearching})
       console.log(buscado);
       if(buscado.length==0){
         setBuscadont(true);
-        toast.info('no tenemos ese plato', {
+        toast.info(" MAMMA MIA! il plato no esta en nuestra carta", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -49,7 +49,7 @@ const SearchBar = ({setResults, search, setSearch, isSearching, setIsSearching})
     <div className="buscador-container  bg-white mt-3">
     <form className="buscador search-bar d-flex">
       <input key='randomKey' placeholder="" type="text" maxLength={30} value={search} className='' required onChange={handleChange}/>
-      <button class="search-btn">
+      <button className="search-btn">
 		<span>Buscar</span>
 	</button>
       </form>
