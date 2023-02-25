@@ -25,7 +25,7 @@
     margin: 15px;
     text-decoration: none;
     color: #fff;
-    font-family: italia, sans-serif;;
+    padding: 5px;
     
     
 }
@@ -49,5 +49,5 @@
 }  
 
 .is-active{
-    border-bottom: solid 2px black;
+    border: solid 2px #008000;
 }
