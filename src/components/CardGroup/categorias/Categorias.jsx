@@ -9,12 +9,14 @@ import "./categorias.css";
 const Categorias = () => {
   const [ menus, loading,getmenus]=useGet("/menu","menus")
   const {pedido, setPedido} = useContext(AgregarContext)
+  const entradas = menus.filter(menu=>menu.category=="entrada")
   const pizzas = menus.filter(menu=>menu.category=="pizza")
   const pastas = menus.filter(menu=>menu.category=="pasta")
   const ensaladas = menus.filter(menu=>menu.category=="ensalada")
   const otros = menus.filter(menu=>menu.category=="otros")
   const bebidas = menus.filter(menu=>menu.category=="bebida")
   const postres = menus.filter(menu=>menu.category=="postre")
+  const otrosYEnsaladas= otros.concat(entradas)
 
     return ( <>
     <section id="pizzas" className="contenedor-menu">
@@ -69,8 +71,8 @@ const Categorias = () => {
               </Col>
               )}</section>
 <section id="otros" className="contenedor-menu">
-<Col xs={12} className="d-flex justify-content-center align-items-center border border-2 border-end-0 border-start-0 bg-titulo rounded"> <h2>OTROS</h2></Col>
-    {otros.map((otro) => 
+<Col xs={12} className="d-flex justify-content-center align-items-center border border-2 border-end-0 border-start-0 bg-titulo rounded"> <h2>ENTRADAS Y OTROS</h2></Col>
+    {otrosYEnsaladas.map((otro) => 
               <Col lg={6} className="contenedor-menu" key={otro._id}  onClick={()=>{setPedido({...pedido,name:otro.name})}}>
                 
               <CardMarcos
