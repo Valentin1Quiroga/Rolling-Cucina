@@ -1,0 +1,14 @@
+.contenedor-menu{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+   
+
+}
+.bg-titulo{
+background-color:green
+}
+h2{
+    color:azure;
+
+}

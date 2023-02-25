@@ -26,7 +26,7 @@ const CardMarcos = ({title, description, image, price}) => {
                             modalTitle={title}
                             modalBody = {<BtnVerProducto image={image} title={title} description={description} price={price}/>}
                             >
- <Card id="tarjeta-menu" className="text-white">
+ <Card id="tarjeta-menu" className="text-white ">
                 <div id='contenedor-img'>
                     <Card.Img className='img-fluid w-100' src={image} />
                 </div>
