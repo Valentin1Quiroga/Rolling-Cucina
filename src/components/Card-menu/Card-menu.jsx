@@ -38,7 +38,7 @@ const CardMarcos = ({title, description, image, price}) => {
                         </div>                       
                         
                         <Card.Text className="description-style">
-                            {description}
+                             {description}
                         </Card.Text>
                         <br />
 
