@@ -6,7 +6,7 @@ import Spinner from "../Spinner/Spinner";
 import { useContext } from "react";
 import { AgregarContext } from "../../context/AgregarContext";
 
-const CardGroup = () => {
+const CardGroup = ({results}) => {
   const [ menus, loading,getmenus]=useGet("/menu","menus")
   const {pedido, setPedido} = useContext(AgregarContext)
   console.log(menus);
