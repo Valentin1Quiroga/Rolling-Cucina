@@ -1,16 +1,16 @@
 import Footer from "../components/Footer/Footer";
-import Error404 from "../components/Error404/Error404";
+import Errorcontainer from "../components/Errorcontainer/Errorcontainer";
 import Navbar from "../components/Navbar/Nabvar"
 
 
-const Error40 = () => {
+const Error404 = () => {
     return ( 
         <>
         <Navbar/>
-        <Error404/>
+        <Errorcontainer/>
         <Footer/>
         </>
      );
 }
  
-export default Error40;
+export default Error404;
