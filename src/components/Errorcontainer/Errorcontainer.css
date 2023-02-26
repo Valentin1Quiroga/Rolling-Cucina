@@ -1,0 +1,16 @@
+
+.img-404{
+    width: 700px;
+    height: 700px;
+    padding: 40px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.Container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 30 px;
+    align-items: center;
+    justify-content: center;
+}

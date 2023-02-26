@@ -17,7 +17,7 @@ const Footer = () => {
               <li>Direccion: Jose Colombres 399-S.M.T</li>
               <li>
                 Horario de atencion:mañana 11 a 15 hs <br />
-                noche 20 a 00
+                noche 20 a 00 hs
               </li>
             </ul>
           </Col>
