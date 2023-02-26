@@ -8,15 +8,21 @@ import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import Error40 from "./pages/Error40"
 
+import PrivateRoute from "./routes/PrivateRoute"
+import AgregarProvider from "./context/AgregarContext"
 
 
 function App() {
   return (
   <Router>
+    <AgregarProvider>
     <Routes>
       <Route path='/*' element={<Error40/>} />
-      <Route path='/home' element={<Home/>} />
+      
+      
+    <Route path='/home' element={<PrivateRoute><Home/></PrivateRoute>} />
     </Routes>
+    </AgregarProvider>
     <ToastContainer/>
   </Router>
   )

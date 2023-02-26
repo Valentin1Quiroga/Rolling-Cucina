@@ -10,6 +10,8 @@
     background-color:#41464b;
     margin: 10px;
     cursor: pointer;
+    height: 90%;
+    
 }
 
 #titulo-menu{
@@ -34,7 +36,7 @@
     border: none;
 }
 
-#boton-ver-menu{
+/* #boton-ver-menu{
     background-color: rgba(255, 255, 255, 0);
     color: #1aae9f;
     display: inline;
@@ -43,9 +45,9 @@
     #boton-ver-menu{
 
         display: none;
-    }
+    } */
 
-}
+/* } */
 
 #contenedor-img{
     width: 30%;

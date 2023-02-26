@@ -3,7 +3,9 @@ import { Button, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "../../config/axios";
 import emailjs from '@emailjs/browser'
+import { useNavigate } from "react-router-dom";
 const FormRegistro = ({ handleClose, getUsers }) => {
+  const navigate=useNavigate()
   const [values, setValues] = useState({
     name: "",
     phone: "",
@@ -38,9 +40,12 @@ function enviarMail () {
     try {
       await axios.post("/users", values);
       // getUsers();
-      toast.done("Usuario creado");
+      toast.success("Usuario creado");
       console.log("user created");
-      enviarMail()
+      // enviarMail()
+      // const {data} = await axios.post("/users/login",{email:values.email,password:values.password});
+      // localStorage.setItem("token",data.token)
+      // navigate("/home"); 
     } catch (error) {
       console.log({error});
       toast.error("Error al enviar los datos. Intente nuevamente más tarde.");
