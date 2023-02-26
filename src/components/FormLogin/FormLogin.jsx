@@ -60,7 +60,7 @@ const FormLogin = () => {
         <ul className="list-unstyled d-flex justify-content-center mt-5">
           <li>
             <a
-              href="https://www.facebook.com/RollingCodeSchool"
+              href="https://www.facebook.com/profile.php?id=100090240022071"
               target="_blank"
               className="text-dark"
             >
@@ -69,7 +69,7 @@ const FormLogin = () => {
           </li>
           <li>
             <a
-              href="https://www.instagram.com/rollingcodeschool/"
+              href="https://www.instagram.com/rolling.cucina/"
               target="_blank"
               className="text-dark"
             >
@@ -78,7 +78,7 @@ const FormLogin = () => {
           </li>
           <li>
             <a
-              href="https://www.youtube.com/channel/UCqqU2Ztlv_QKGPXRW9LrR9w/featured"
+              href="https://twitter.com/CucinaRolling"
               target="_blank"
               className="text-dark"
             >

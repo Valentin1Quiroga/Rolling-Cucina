@@ -6,13 +6,15 @@ import TestPage2 from "./pages/TestPage2"
 import Home from "./pages/Home"
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
+import Error40 from "./pages/Error40"
+
 
 
 function App() {
   return (
   <Router>
     <Routes>
-      <Route path='/*' element={<TestValentin/>} />
+      <Route path='/*' element={<Error40/>} />
       <Route path='/home' element={<Home/>} />
     </Routes>
     <ToastContainer/>
