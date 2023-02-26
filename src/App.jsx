@@ -8,15 +8,18 @@ import Admin from "./pages/Admin"
 import AdminRoute from "./routes/AdminRoute"
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
+import TestJavier from "./pages/TestJavier"
+import Menus from "./pages/menus"
 
 
 function App() {
   return (
   <Router>
     <Routes>
-      <Route path='/*' element={<TestValentin/>} />
+      <Route path='/*' element={<TestJavier/>} />
       <Route path='/home' element={<Home/>} />
       <Route path='/admin' element={<Admin/>}/>
+      <Route path='/admin/menus' element={<Menus/>}/>
     </Routes>
     <ToastContainer/>
   </Router>
