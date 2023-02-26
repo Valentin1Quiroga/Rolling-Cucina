@@ -8,7 +8,6 @@ const useGet = (url, property)=>{
   const getData = async()=>{
     try {
       const {data} = await axios.get(url);
-      console.log({data});
       setState(data[property] || data);
       setLoading(false);
     } catch (error) {

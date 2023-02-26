@@ -1,11 +1,14 @@
 
-#contenedor-menu{
+.contenedor-menu{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+   
+
 }
 
-body{
+.fonduki{
     background-image: url("src/assets/img/posiblefondohome.jpg");
     background-size: cover;
 }
+

@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "../../config/axios";
-
+import emailjs from '@emailjs/browser'
+import { useNavigate } from "react-router-dom";
 const FormRegistro = ({ handleClose, getUsers }) => {
+  const navigate=useNavigate()
   const [values, setValues] = useState({
     name: "",
     phone: "",
@@ -11,6 +13,20 @@ const FormRegistro = ({ handleClose, getUsers }) => {
     password: "",
     admin: false,
   });
+  let templateParams = {
+    from_name: "Rolling Cucina",
+    user_name: `${values.name}`,
+    destinatario:`${values.email}`,
+    message:`Su registro fue exitoso. Para ingresar recorda que tu usuario es el e-mail con el cual te registraste: ${values.email}. Y tu contraseña es: ${values.password}`,
+};
+function enviarMail () {
+  emailjs.send('service_m4cujxp', 'template_62bpuap', templateParams,'6uvVSvTDTDtKYIJv4' )
+      .then(function(response) {
+         console.log('SUCCESS!', response.status, response.text);
+      }, function(error) {
+         console.log('FAILED...', error);
+      });
+}
 
   const handleChange = (e) => {
     setValues({
@@ -24,8 +40,12 @@ const FormRegistro = ({ handleClose, getUsers }) => {
     try {
       await axios.post("/users", values);
       // getUsers();
-      toast.done("Usuario creado");
+      toast.success("Usuario creado");
       console.log("user created");
+      // enviarMail()
+      // const {data} = await axios.post("/users/login",{email:values.email,password:values.password});
+      // localStorage.setItem("token",data.token)
+      // navigate("/home"); 
     } catch (error) {
       console.log({error});
       toast.error("Error al enviar los datos. Intente nuevamente más tarde.");

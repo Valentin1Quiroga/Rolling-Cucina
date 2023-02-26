@@ -1,0 +1,53 @@
+.food-menu{
+    
+    position: sticky;
+    top:56px;
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    background-color:#47B763;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    
+}
+
+.food-categories-items{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: italia, sans-serif;;
+
+}
+
+
+.food-categories-items a{
+    margin: 15px;
+    text-decoration: none;
+    color: #fff;
+    padding: 5px;
+    
+    
+}
+
+@media screen and (max-width:498px) {
+    .viejolobo{
+        display: none;
+
+    }
+    .food-menu{
+        overflow: auto;
+        white-space: nowrap;
+    }
+    .food-categories-items a{
+        margin: 5px;
+        display: inline-block;
+        text-align: center;
+    }
+
+
+}  
+
+.is-active{
+    border: solid 2px #008000;
+}

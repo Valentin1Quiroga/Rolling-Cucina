@@ -7,31 +7,36 @@
 }
 
 #tarjeta-menu{
-    background-color: #bcc1cb4f;
+    background-color:#41464b;
     margin: 10px;
     cursor: pointer;
+    height: 90%;
+    
 }
 
 #titulo-menu{
-    color: #1aae9f;
-    font-size: 25px;
-    font-weight: bold;
+    color: #FFF;
+    
+    font-size: 1.5em;
     display: inline;
 }
 
-#precio-menu{
-    color: #1aae9f;
-    font-size: 20px;
-    font-weight: bold;
+#price-menu{
+   
+    color: #FFF;
+    font-size: 1.5em;
     display: inline;
 }
 
 #boton-agregar-menu{
-    background-color: #1aae9f;
+    color: red;
+    background-color: #FFF;
     display: inline;
+    
+    border: none;
 }
 
-#boton-ver-menu{
+/* #boton-ver-menu{
     background-color: rgba(255, 255, 255, 0);
     color: #1aae9f;
     display: inline;
@@ -40,9 +45,9 @@
     #boton-ver-menu{
 
         display: none;
-    }
+    } */
 
-}
+/* } */
 
 #contenedor-img{
     width: 30%;
@@ -54,10 +59,15 @@
 
 #encabezado-menu{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    border-bottom: solid 0.3px white;
 }
 
 #pie-menu{
     display: flex;
     justify-content: space-between;
+}
+
+.description-style{
+    font-size: 100%;
 }
