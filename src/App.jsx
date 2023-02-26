@@ -17,7 +17,7 @@ function App() {
   <Router>
     <Routes>
       <Route path='/*' element={<TestJavier/>} />
-      <Route path='/home' element={<Home/>} />
+     
       <Route path='/admin' element={<Admin/>}/>
       <Route path='/admin/menus' element={<Menus/>}/>
     </Routes>
