@@ -25,12 +25,12 @@
   display: inline;
 }
 
-#boton-agregar-menu {
-  color: red;
-  background-color: #fff;
-  display: inline;
+.boton-agregar-menu {
+  color: red !important;
+  background-color: #fff !important;
+  display: inline !important;
 
-  border: none;
+  border: none !important;
 }
 
 /* #boton-ver-menu{

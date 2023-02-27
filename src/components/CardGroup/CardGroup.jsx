@@ -23,6 +23,7 @@ const CardGroup = ({ results }) => {
                 <Col lg={6} className="contenedor-menu">
                   <CardMarcos
                     key={result._id}
+                    idboton={result._id}
                     title={result.name}
                     description={result.description}
                     image={result.image}
