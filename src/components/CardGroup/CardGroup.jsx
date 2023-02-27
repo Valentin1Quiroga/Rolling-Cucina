@@ -4,14 +4,13 @@ import { Container, Row, Col } from "react-bootstrap";
 import useGet from "../../hooks/useGet";
 import Spinner from "../Spinner/Spinner";
 import { useContext } from "react";
-import { AgregarContext } from "../../context/AgregarContext";
+import { PedidosContext } from "../../context/PedidosContext";
 import Categorias from "./categorias/Categorias";
 
 const CardGroup = ({ results }) => {
   const [menus, loading, getmenus] = useGet("/menu", "menus");
 
-  const { pedido, setPedido } = useContext(AgregarContext);
-  console.log(results);
+  const { pedido, setPedido } = useContext(PedidosContext);
   return (
     <>
       <Container className="bg-white mb-2">
