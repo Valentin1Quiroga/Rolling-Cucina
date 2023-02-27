@@ -43,6 +43,7 @@ const Categorias = () => {
               description={pizza.description}
               image={pizza.image}
               price={pizza.price}
+              idboton={pizza._id}
             />
           </Col>
         ))}

@@ -7,13 +7,12 @@ import FormLogin from "../FormLogin/FormLogin";
 import GeneralModal from "../GeneralModal/GeneralModal";
 import "./Card-menu.css";
 
-const CardMarcos = ({ title, description, image, price }) => {
-  const { cantidad, aumentarCantidad, restarCantidad, setSinglePedido } =
+const CardMarcos = ({ idboton, title, description, image, price }) => {
+  const { cantidad, aumentarCantidad, restarCantidad, pedidos, setPedidos } =
     useContext(PedidosContext);
 
   const handleBotonClick = (e) => {
     e.stopPropagation(); // Detiene la propagación del evento
-    aumentarCantidad();
   };
   const handleCancel = (e) => {
     e.stopPropagation();
@@ -61,7 +60,11 @@ const CardMarcos = ({ title, description, image, price }) => {
                   </Button>
                 </div>
               ) : (
-                <Button id="boton-agregar-menu" onClick={handleBotonClick}>
+                <Button
+                  id={`${idboton}`}
+                  className="boton-agregar-menu"
+                  onClick={handleBotonClick}
+                >
                   Agregar
                 </Button>
               )}

@@ -13,6 +13,7 @@ const BtnVerProducto = ({ title, description, image, price }) => {
     aumentarCantidad,
     restarCantidad,
   } = useContext(PedidosContext);
+
   // const agregadoSimple = (title, price) => {
   //   setSinglePedido({
   //     name: title,
@@ -20,7 +21,7 @@ const BtnVerProducto = ({ title, description, image, price }) => {
   //     price: price,
   //     totalPrice: price * 1,
   //   });
-  //   // setPedidos([...pedidos, nuevaOrden]);
+  //   // setPedidos([...pedidos, singlePedido]);
   // };
   // console.log(singlePedido);
   return (
