@@ -1,6 +1,12 @@
 # ROLLING CUCINA
 
-Este proyecto es una página web para un restaurante italiano que permite a los usuarios hacer login, ver el menú, hacer pedidos y hacer seguimiento de los mismos. Además, cuenta con una sección de administración para el manejo de usuarios, pedidos y menús.
+¡Bienvenidos al proyecto del Restaurante Italiano! Este es un proyecto web desarrollado con el objetivo de ofrecer una experiencia gastronómica única y de calidad a través de una plataforma online.
+
+El proyecto cuenta con diferentes funcionalidades, incluyendo autenticación de usuarios, visualización del menú, realización de pedidos y seguimiento en tiempo real de los mismos. Además, cuenta con una sección de administración para el manejo de usuarios, pedidos y menús por parte del personal del restaurante.
+
+El proyecto está desarrollado utilizando tecnologías como HTML, CSS, JavaScript, Node.js, Express.js, MongoDB y Passport.js. También se han utilizado diferentes librerías y herramientas para lograr una experiencia de usuario intuitiva y atractiva.
+
+Estamos comprometidos en ofrecer una plataforma de calidad y fácil de usar para nuestros clientes, con el objetivo de mejorar la experiencia gastronómica en nuestro restaurante. Esperamos que disfrutes de nuestro proyecto y de nuestros deliciosos platos italianos. ¡Gracias por visitarnos!
 
 ## Características
 Autenticación de usuarios con un formulario de login
