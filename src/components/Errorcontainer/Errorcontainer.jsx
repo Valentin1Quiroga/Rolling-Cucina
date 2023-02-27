@@ -7,13 +7,13 @@ import "./Errorcontainer.css";
 const Errorcontainer = () => {
     return ( 
         <>
-        <Container className="Container">
-        <h1 className="mt-5">Error 404-Pagina no encontrada</h1>
+        <Container className="Container-error">
+        <h1 className="error-titulo">Error 404-Pagina no encontrada</h1>
         <img className="img-fluid img-404" src={img}/>
-        <h3 className="mt-1">Algo salio mal</h3>
+        <h3 className="mt-3">Algo salio mal</h3>
         <Link to="/Home" className="btn btn-primary">Volver al inicio</Link>
-        
         </Container>
+        <br /><br />
         </>
      );
 }

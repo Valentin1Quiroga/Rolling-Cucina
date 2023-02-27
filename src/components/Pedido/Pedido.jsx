@@ -45,8 +45,8 @@ let cantidad = 2;
                 <Col>Menu Seleccionado</Col>
                 <Col lg={2}>Cantidad {cantidad > 1 ?
                 <> 
-                    <Button className="mx-3" variant="success">+</Button>
-                    <Button className="mx-3" variant="danger">-</Button>
+                    <Button className="mx-1" variant="success">+</Button>
+                    <Button variant="danger">-</Button>
                     </> :
                     <Button className="mx-3" variant="success">+</Button>}
                 </Col>
@@ -54,7 +54,7 @@ let cantidad = 2;
                 <Col><Button className="mx-3" variant="danger">❌</Button></Col>
             </Row>
            
-            <Row>
+            <Row className="d-flex align-items-center">
                 <Col> 
                 <div>
                 <FloatingLabel controlId="floatingTextarea2" label="Notas">
@@ -64,17 +64,21 @@ let cantidad = 2;
                         // style={{ height: '100px' }}
                     />
                 </FloatingLabel>
-            </div></Col>
+                </div>
+                </Col>
                 <Col></Col>
                 <Col></Col>
-                <Col><h5>Supertotal:{superTotal}</h5></Col>
+                <Col><h5>Subtotal:{superTotal}</h5></Col>
                 <Col></Col>
             </Row>
 
             {/* <Button variant="success" onClick={handleConfirm}>Confirmar Pedido</Button>
             <Button className="mx-3" onClick={handleCancel} variant="danger">Cancelar Pedido</Button> */}
+            <div className="my-5 text-center">
+            <Button variant="success">Confirmar Pedido</Button>
+            <Button className="mx-3" variant="danger">Cancelar Pedido</Button>
+            </div>
 
-            
             </Container>
         </>
      );
