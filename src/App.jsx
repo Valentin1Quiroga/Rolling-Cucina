@@ -13,6 +13,9 @@ import Menus from "./pages/menus"
 import PrivateRoute from "./routes/PrivateRoute"
 import AgregarProvider from "./context/AgregarContext"
 
+import PrivateRoute from "./routes/PrivateRoute";
+import CrudPedidos from "./pages/CrudPedidos";
+import PedidosProvider from "./context/PedidosContext";
 
 function App() {
   return (
@@ -30,4 +33,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

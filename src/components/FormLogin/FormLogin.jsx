@@ -10,25 +10,27 @@ import axios from "../../config/axios";
 import { Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-
 const FormLogin = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [values, setValues] = useState({
-    email:"",
-    password:""
-  })
-  const [backErrors, setBackErrors]= useState("")
-  const handleChange = (e) =>{
+    email: "",
+    password: "",
+  });
+  const [backError, setBackError] = useState("");
+  const handleChange = (e) => {
     setValues({
       ...values,
-      [e.target.name]:e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
   const submitForm = async (e) => {
     try {
       e.preventDefault();
-      const {data} = await axios.post("/users/login", values);
-      localStorage.setItem("token",data.token)
+      const { data } = await axios.post("/users/login", values);
+      localStorage.setItem("token", data.token);
+      if (data.user.admin) {
+        localStorage.setItem("admin", true);
+      }
       toast.success(`Benvenuto ${data.user.name}`, {
         position: "top-center",
         autoClose: 3000,
@@ -38,12 +40,17 @@ const FormLogin = () => {
         draggable: true,
         progress: undefined,
         theme: "light",
-        });      
-      navigate("/home")
+      });
+      navigate("/home");
     } catch (error) {
       console.log(error.response.data.message);
-      setBackErrors(error.response.data.message)
-      toast.error("Ups! Error al iniciar sesion. Intenta de nuevo en unos minutos")
+      setBackError(error.response.data.message);
+      setTimeout(() => {
+        setBackError("");
+      }, 3000);
+      toast.error(
+        "Ups! Error al iniciar sesion. Intenta de nuevo en unos minutos"
+      );
     }
   };
 
@@ -53,11 +60,11 @@ const FormLogin = () => {
       onSubmit={submitForm}
     >
       <Form.Group className="mt-4 mb-5" controlId="formBasicEmail">
-      <Form.Label className="label-login text-muted">Usuario</Form.Label>
+        <Form.Label className="label-login text-muted">Usuario</Form.Label>
         <Form.Control
           value={values.email}
           onChange={handleChange}
-          name= "email"
+          name="email"
           type="email"
           className="bg-transparent text-center p-2"
           placeholder="USUARIO"
@@ -67,7 +74,7 @@ const FormLogin = () => {
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicPassword">
-      <Form.Label className="label-login text-muted">Contraseña</Form.Label>
+        <Form.Label className="label-login text-muted">Contraseña</Form.Label>
         <Form.Control
           value={values.password}
           onChange={handleChange}
@@ -91,7 +98,7 @@ const FormLogin = () => {
             buttonText="Registrate"
             variant="transparent"
             modalTitle="Crea tu cuenta"
-            modalBody={<FormRegistro/>}
+            modalBody={<FormRegistro />}
           />
         </div>
         <Button variant="success" type="submit">
@@ -102,7 +109,7 @@ const FormLogin = () => {
         <ul className="list-unstyled d-flex justify-content-center mt-5">
           <li>
             <a
-              href="https://www.facebook.com/RollingCodeSchool"
+              href="https://www.facebook.com/profile.php?id=100090240022071"
               target="_blank"
               className="text-dark"
             >
@@ -111,7 +118,7 @@ const FormLogin = () => {
           </li>
           <li>
             <a
-              href="https://www.instagram.com/rollingcodeschool/"
+              href="https://www.instagram.com/rolling.cucina/"
               target="_blank"
               className="text-dark"
             >
@@ -120,7 +127,7 @@ const FormLogin = () => {
           </li>
           <li>
             <a
-              href="https://www.youtube.com/channel/UCqqU2Ztlv_QKGPXRW9LrR9w/featured"
+              href="https://twitter.com/CucinaRolling"
               target="_blank"
               className="text-dark"
             >
@@ -129,11 +136,7 @@ const FormLogin = () => {
           </li>
         </ul>
       </div>
-      {
-        backErrors&&(
-          <Alert variant="danger"> {backErrors}</Alert>
-        )
-      }
+      {backError && <Alert variant="danger"> {backError}</Alert>}
     </Form>
   );
 };

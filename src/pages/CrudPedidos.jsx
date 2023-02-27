@@ -12,7 +12,7 @@ import { ERROR_MESSAGE } from "../constants";
 import useGet from "../hooks/useGet";
 import FormLogin from "../components/FormLogin/FormLogin";
 
-const Pedidos = () => {
+const CrudPedidos = () => {
   const [pedidos, loading, getPedidos] = useGet('/pedidos',"pedidos");
   const [selected,setSelected] =useState(undefined);
 const testPedidos = pedidos.map(pedido=>{return{
@@ -82,4 +82,4 @@ _id:pedido._id,
    );
 }
  
-export default Pedidos;
+export default CrudPedidos;

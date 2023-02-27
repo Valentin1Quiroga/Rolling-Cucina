@@ -1,5 +1,5 @@
 import Menus from "./menus";
-import Pedidos from "./Pedidos";
+import CrudPedidos from "./CrudPedidos";
 import Navbar from "../components/Navbar/Nabvar"
 import Footer from "../components/Footer/Footer"
 import { Container, Button, } from "react-bootstrap";
