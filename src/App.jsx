@@ -10,9 +10,7 @@ import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import TestJavier from "./pages/TestJavier"
 import Menus from "./pages/menus"
-import PrivateRoute from "./routes/PrivateRoute"
-import AgregarProvider from "./context/AgregarContext"
-
+import Error404 from "./pages/Error404";
 import PrivateRoute from "./routes/PrivateRoute";
 import CrudPedidos from "./pages/CrudPedidos";
 import PedidosProvider from "./context/PedidosContext";
@@ -20,15 +18,20 @@ import PedidosProvider from "./context/PedidosContext";
 function App() {
   return (
   <Router>
-    <AgregarProvider>
+    <PedidosProvider>
     <Routes>
-      <Route path='/*' element={<TestJavier/>} />
+      <Route path='/*' element={<Error404/>} />
+      <Route path='/home' element={<Home/>} />
+      <Route path='/login' element={<TestValentin/>} />
+      {/* <Route path='/pedidos' element={<Pedidos/>} /> */}
      
-      <Route path='/admin' element={<Admin/>}/>
-      <Route path='/admin/menus' element={<Menus/>}/>
+      <Route path='/admin' element={<PrivateRoute><TestJavier/></PrivateRoute> }/>
+      <Route path='/admin/pedidos' element={<PrivateRoute><CrudPedidos/></PrivateRoute> }/>
+      <Route path='/admin/usuarios' element={<PrivateRoute><Admin/></PrivateRoute> }/>
+      <Route path='/admin/menus' element={<PrivateRoute><Menus/></PrivateRoute> }/>
     </Routes>
-    </AgregarProvider>
-    <ToastContainer/>
+    </PedidosProvider>
+    <ToastContainer/> 
   </Router>
   )
 }

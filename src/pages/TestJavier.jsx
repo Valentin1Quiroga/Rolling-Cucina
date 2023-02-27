@@ -17,7 +17,7 @@ const TestJavier = () => {
       
 <div>
   {/* <Button variant="danger" className="mx-3">Usuarios</Button> */}
-  <Link to="/admin" className="btn btn-success mx-3">Usuarios</Link>
+  <Link to="/admin/usuarios" className="btn btn-success mx-3">Usuarios</Link>
   <Link to="/admin/menus" className="btn btn-light mx-3">Menús</Link> 
   <Link to="/admin/pedidos" className="btn btn-danger mx-3">Pedidos</Link>
   {/* <Button variant="danger" className="mx-3">Pedidos</Button> */}
