@@ -34,7 +34,7 @@ function sumaTotal(){
 //     setPedido([]);
 //     navigate("/home")
 // }
-
+let cantidad = 2;
     return ( 
         <>
             <h1>Pedidos</h1>
@@ -43,24 +43,17 @@ function sumaTotal(){
             <Row className="fila-pedido">
                 <Col>Imagen</Col>
                 <Col>Menu Seleccionado</Col>
-                <Col>Cantidad</Col>
+                <Col lg={2}>Cantidad {cantidad > 1 ?
+                <> 
+                    <Button className="mx-3" variant="success">+</Button>
+                    <Button className="mx-3" variant="danger">-</Button>
+                    </> :
+                    <Button className="mx-3" variant="success">+</Button>}
+                </Col>
                 <Col>Total</Col>
                 <Col><Button className="mx-3" variant="danger">❌</Button></Col>
             </Row>
-            <Row className="fila-pedido">
-                <Col>Imagen</Col>
-                <Col>Menu Seleccionado</Col>
-                <Col>Cantidad</Col>
-                <Col>Total</Col>
-                <Col><Button className="mx-3" variant="danger">❌</Button></Col>
-            </Row>
-            <Row className="fila-pedido">
-                <Col>Imagen</Col>
-                <Col>Menu Seleccionado</Col>
-                <Col>Cantidad</Col>
-                <Col>Total</Col>
-                <Col><Button className="mx-3" variant="danger">❌</Button></Col>
-            </Row>
+           
             <Row>
                 <Col> 
                 <div>
@@ -75,11 +68,12 @@ function sumaTotal(){
                 <Col></Col>
                 <Col></Col>
                 <Col><h5>Supertotal:{superTotal}</h5></Col>
-
+                <Col></Col>
             </Row>
 
-            <Button variant="success" onClick={handleConfirm}>Confirmar Pedido</Button>
-            <Button className="mx-3" onClick={handleCancel} variant="danger">Cancelar Pedido</Button>
+            {/* <Button variant="success" onClick={handleConfirm}>Confirmar Pedido</Button>
+            <Button className="mx-3" onClick={handleCancel} variant="danger">Cancelar Pedido</Button> */}
+
             
             </Container>
         </>
