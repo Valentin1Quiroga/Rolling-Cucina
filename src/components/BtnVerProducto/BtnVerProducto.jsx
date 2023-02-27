@@ -38,9 +38,9 @@ console.log(pedido);
                 </div>
             </div>
 
-            {/* <div>
+            <div>
                 <h6>{description}</h6>
-            </div> */}
+            </div>
 
             <div id="cantidad-producto">
                 <div>
@@ -53,15 +53,7 @@ console.log(pedido);
                 </div>
             </div>
 
-            <div>
-                <FloatingLabel controlId="floatingTextarea2" label="Notas">
-                    <Form.Control
-                        as="textarea"
-                        placeholder="Deja tus notas aquí"
-                        // style={{ height: '100px' }}
-                    />
-                </FloatingLabel>
-            </div>
+           
             <br />
             <div className="container text-center">
             <Button className="bg-dark text-white border-0">Agregar</Button>
