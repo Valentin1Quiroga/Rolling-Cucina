@@ -11,6 +11,7 @@ import axios from "../config/axios";
 import { ERROR_MESSAGE } from "../constants";
 import useGet from "../hooks/useGet";
 import FormLogin from "../components/FormLogin/FormLogin";
+import AddForm from "../components/AddForm/AddForm";
 
 const Admin = () => {
   const [users, loading, getUsers] = useGet('/users',"users");
@@ -24,7 +25,7 @@ const Admin = () => {
     }}) 
   const deleteUser = async()=>{
     try {
-      await axios.delete('/users/'+ selected);
+      await axios.delete('/users',selected);
       getUsers();
     } catch (error) {
       if(!selected){
@@ -45,7 +46,7 @@ const Admin = () => {
           buttonText='Añadir usuario'
           modalTitle={'Añadir usuario'}
           // modalBody={<AddUserForm getUsers={getUsers}/>}
-          modalBody={FormLogin}
+          modalBody={<AddForm/>}
           variant="success"
           />
           <GeneralModal
