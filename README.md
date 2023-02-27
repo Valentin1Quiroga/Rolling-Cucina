@@ -1,4 +1,4 @@
-                        ***ROLLING CUCINA****
+                     ROLLING CUCINA
 
 Este proyecto es una página web para un restaurante italiano que permite a los usuarios hacer login, ver el menú, hacer pedidos y hacer seguimiento de los mismos. Además, cuenta con una sección de administración para el manejo de usuarios, pedidos y menús.
 
