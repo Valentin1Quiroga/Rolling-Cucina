@@ -12,23 +12,23 @@ import { ERROR_MESSAGE } from "../constants";
 import useGet from "../hooks/useGet";
 import FormLogin from "../components/FormLogin/FormLogin";
 
-const Admin = () => {
-  const [users, loading, getUsers] = useGet('/users',"users");
+const CrudPedidos = () => {
+  const [pedidos, loading, getPedidos] = useGet('/pedidos',"pedidos");
   const [selected,setSelected] =useState(undefined);
-  const testUsuario = users.map(users=>{return{
-    _id:users._id,
-     name:users.name,
-     phone:users.phone,
-     email:users.email,
-     admin:users.admin,
-    }}) 
-  const deleteUser = async()=>{
+const testPedidos = pedidos.map(pedido=>{return{
+_id:pedido._id,
+ user:pedido.user,
+ menu:pedido.menu.name,
+ status:pedido.status,
+ 
+}}) 
+  const deletePedido = async()=>{
     try {
-      await axios.delete('/users/'+ selected);
-      getUsers();
+      await axios.delete('/menu'+ selected);
+      getPedidos();
     } catch (error) {
       if(!selected){
-        toast.error('Usuario no seleccionado')
+        toast.error('Menu no seleccionado')
       }else{
         toast.error(ERROR_MESSAGE)
       }
@@ -37,29 +37,29 @@ const Admin = () => {
   return ( 
     <>
     <Container>
-      <h1>Página de administración</h1>
+      <h1>Página de Pedidos</h1>
       <Row className="m-3">
         <Col className="d-flex justify-content-end">
           <GeneralModal
            boton = {true}
-          buttonText='Añadir usuario'
-          modalTitle={'Añadir usuario'}
+          buttonText='Añadir Pedido'
+          modalTitle={'Añadir Pedido'}
           // modalBody={<AddUserForm getUsers={getUsers}/>}
           modalBody={FormLogin}
           variant="success"
           />
           <GeneralModal
            boton = {true}
-          buttonText='Eliminar usuario'
-          modalTitle={'Eliminar usuario'}
+          buttonText='Eliminar Pedido'
+          modalTitle={'Eliminar Pedido'}
           
-          modalBody={<DeleteConfirmation deleteFunction={deleteUser}/>}
+          modalBody={<DeleteConfirmation deleteFunction={deletePedido}/>}
           variant="danger"
           />
           <GeneralModal
           boton = {true} 
-          buttonText='Editar usuario'
-          modalTitle={'Editar usuario'}
+          buttonText='Editar Pedido'
+          modalTitle={'Editar Pedido'}
           modalBody={FormLogin}
           // modalBody={<EditUserForm selected={selected} getUsers={getUsers}/>}
           variant="warning"
@@ -72,7 +72,7 @@ const Admin = () => {
           loading?
             <Spinner/>
           :
-            <GeneralTable headings={['id','Nombre','Teléfono','email','Admin']} items={testUsuario} setSelected={setSelected} selected={selected}></GeneralTable>
+            <GeneralTable headings={['id','nombre','menu','estado']} items={testPedidos} setSelected={setSelected} selected={selected}></GeneralTable>
           }
         </Col>
       </Row>
@@ -82,4 +82,4 @@ const Admin = () => {
    );
 }
  
-export default Admin;
+export default CrudPedidos;

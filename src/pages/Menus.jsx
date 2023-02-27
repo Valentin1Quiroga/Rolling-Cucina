@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Col, Container, Row, Spinner } from "react-bootstrap";
+import { Button, Col, Container, Navbar, Row, Spinner } from "react-bootstrap";
 
 import { toast, ToastContainer } from "react-toastify";
 
@@ -12,23 +12,25 @@ import { ERROR_MESSAGE } from "../constants";
 import useGet from "../hooks/useGet";
 import FormLogin from "../components/FormLogin/FormLogin";
 
-const Admin = () => {
-  const [users, loading, getUsers] = useGet('/users',"users");
+
+const Menus = () => {
+  const [menus, loading, getMenus] = useGet('/menu',"menus");
   const [selected,setSelected] =useState(undefined);
-  const testUsuario = users.map(users=>{return{
-    _id:users._id,
-     name:users.name,
-     phone:users.phone,
-     email:users.email,
-     admin:users.admin,
-    }}) 
-  const deleteUser = async()=>{
+const testMenu = menus.map(menu=>{return{
+_id:menu._id,
+ name:menu.name,
+ description:menu.description,
+ category:menu.category,
+ price:menu.price,
+ image:menu.image,
+}}) 
+  const deleteMenu = async()=>{
     try {
-      await axios.delete('/users/'+ selected);
-      getUsers();
+      await axios.delete('/menu'+ selected);
+      getMenus();
     } catch (error) {
       if(!selected){
-        toast.error('Usuario no seleccionado')
+        toast.error('Menu no seleccionado')
       }else{
         toast.error(ERROR_MESSAGE)
       }
@@ -37,29 +39,29 @@ const Admin = () => {
   return ( 
     <>
     <Container>
-      <h1>Página de administración</h1>
+      <h1>Página de Menús</h1>
       <Row className="m-3">
         <Col className="d-flex justify-content-end">
           <GeneralModal
            boton = {true}
-          buttonText='Añadir usuario'
-          modalTitle={'Añadir usuario'}
+          buttonText='Añadir menú'
+          modalTitle={'Añadir menú'}
           // modalBody={<AddUserForm getUsers={getUsers}/>}
           modalBody={FormLogin}
           variant="success"
           />
           <GeneralModal
            boton = {true}
-          buttonText='Eliminar usuario'
-          modalTitle={'Eliminar usuario'}
+          buttonText='Eliminar menú'
+          modalTitle={'Eliminar menú'}
           
-          modalBody={<DeleteConfirmation deleteFunction={deleteUser}/>}
+          modalBody={<DeleteConfirmation deleteFunction={deleteMenu}/>}
           variant="danger"
           />
           <GeneralModal
           boton = {true} 
-          buttonText='Editar usuario'
-          modalTitle={'Editar usuario'}
+          buttonText='Editar menú'
+          modalTitle={'Editar menú'}
           modalBody={FormLogin}
           // modalBody={<EditUserForm selected={selected} getUsers={getUsers}/>}
           variant="warning"
@@ -72,7 +74,7 @@ const Admin = () => {
           loading?
             <Spinner/>
           :
-            <GeneralTable headings={['id','Nombre','Teléfono','email','Admin']} items={testUsuario} setSelected={setSelected} selected={selected}></GeneralTable>
+            <GeneralTable headings={['id','nombre','descripción','categoria','precio','imagen']} items={testMenu} setSelected={setSelected} selected={selected}></GeneralTable>
           }
         </Col>
       </Row>
@@ -82,4 +84,4 @@ const Admin = () => {
    );
 }
  
-export default Admin;
+export default Menus;
