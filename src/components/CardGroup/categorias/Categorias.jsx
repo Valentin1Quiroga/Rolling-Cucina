@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Col } from "react-bootstrap";
-import { AgregarContext } from "../../../context/AgregarContext";
+import { PedidosContext } from "../../../context/PedidosContext";
 import useGet from "../../../hooks/useGet";
 import CardMarcos from "../../Card-menu/Card-menu";
 import "./categorias.css";
@@ -17,7 +17,7 @@ const Categorias = () => {
   // };
   // const menuGroup = groupBy(menus, "category");
   // console.log(menuGroup);
-  const { pedido, setPedido } = useContext(AgregarContext);
+  const { pedido, setSinglePedido, singlePedido } = useContext(PedidosContext);
   const entradas = menus.filter((menu) => menu.category == "entrada");
   const pizzas = menus.filter((menu) => menu.category == "pizza");
   const pastas = menus.filter((menu) => menu.category == "pasta");
@@ -26,7 +26,6 @@ const Categorias = () => {
   const bebidas = menus.filter((menu) => menu.category == "bebida");
   const postres = menus.filter((menu) => menu.category == "postre");
   const otrosYEnsaladas = otros.concat(entradas);
-
   return (
     <>
       <section id="pizzas" className="contenedor-menu">
@@ -38,14 +37,7 @@ const Categorias = () => {
           <h2>PIZZAS</h2>
         </Col>
         {pizzas.map((pizza) => (
-          <Col
-            lg={6}
-            className="contenedor-menu"
-            key={pizza._id}
-            onClick={() => {
-              setPedido({ ...pedido, name: pizza.name });
-            }}
-          >
+          <Col lg={6} className="contenedor-menu" key={pizza._id}>
             <CardMarcos
               title={pizza.name}
               description={pizza.description}
@@ -64,14 +56,7 @@ const Categorias = () => {
           <h2>PASTAS</h2>
         </Col>
         {pastas.map((pasta) => (
-          <Col
-            lg={6}
-            className="contenedor-menu"
-            key={pasta._id}
-            onClick={() => {
-              setPedido({ ...pedido, name: pasta.name });
-            }}
-          >
+          <Col lg={6} className="contenedor-menu" key={pasta._id}>
             <CardMarcos
               title={pasta.name}
               description={pasta.description}
@@ -86,18 +71,10 @@ const Categorias = () => {
           xs={12}
           className="d-flex justify-content-center align-items-center border border-2 border-end-0 border-start-0 bg-titulo rounded"
         >
-          {" "}
           <h2>ENSALADAS</h2>
         </Col>
         {ensaladas.map((ensalada) => (
-          <Col
-            lg={6}
-            className="contenedor-menu"
-            key={ensalada._id}
-            onClick={() => {
-              setPedido({ ...pedido, name: ensalada.name });
-            }}
-          >
+          <Col lg={6} className="contenedor-menu" key={ensalada._id}>
             <CardMarcos
               title={ensalada.name}
               description={ensalada.description}
@@ -112,18 +89,10 @@ const Categorias = () => {
           xs={12}
           className="d-flex justify-content-center align-items-center border border-2 border-end-0 border-start-0 bg-titulo rounded"
         >
-          {" "}
           <h2>ENTRADAS Y OTROS</h2>
         </Col>
         {otrosYEnsaladas.map((otro) => (
-          <Col
-            lg={6}
-            className="contenedor-menu"
-            key={otro._id}
-            onClick={() => {
-              setPedido({ ...pedido, name: otro.name });
-            }}
-          >
+          <Col lg={6} className="contenedor-menu" key={otro._id}>
             <CardMarcos
               title={otro.name}
               description={otro.description}
@@ -138,18 +107,10 @@ const Categorias = () => {
           xs={12}
           className="d-flex justify-content-center align-items-center border border-2 border-end-0 border-start-0 bg-titulo rounded"
         >
-          {" "}
           <h2>BEBIDAS</h2>
         </Col>
         {bebidas.map((bebida) => (
-          <Col
-            lg={6}
-            className="contenedor-menu"
-            key={bebida._id}
-            onClick={() => {
-              setPedido({ ...pedido, name: bebida.name });
-            }}
-          >
+          <Col lg={6} className="contenedor-menu" key={bebida._id}>
             <CardMarcos
               title={bebida.name}
               description={bebida.description}
@@ -164,18 +125,10 @@ const Categorias = () => {
           xs={12}
           className="d-flex justify-content-center align-items-center border border-2 border-end-0 border-start-0 bg-titulo rounded"
         >
-          {" "}
           <h2>POSTRES</h2>
         </Col>
         {postres.map((postre) => (
-          <Col
-            lg={6}
-            className="contenedor-menu"
-            key={postre._id}
-            onClick={() => {
-              setPedido({ ...pedido, name: postre.name });
-            }}
-          >
+          <Col lg={6} className="contenedor-menu" key={postre._id}>
             <CardMarcos
               title={postre.name}
               description={postre.description}

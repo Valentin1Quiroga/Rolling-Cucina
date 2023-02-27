@@ -28,7 +28,19 @@ const FormLogin = () => {
       e.preventDefault();
       const { data } = await axios.post("/users/login", values);
       localStorage.setItem("token", data.token);
-      toast.success(`Benvenuto ${data.user.name}`);
+      if (data.user.admin) {
+        localStorage.setItem("admin", true);
+      }
+      toast.success(`Benvenuto ${data.user.name}`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       navigate("/home");
     } catch (error) {
       console.log(error.response.data.message);
