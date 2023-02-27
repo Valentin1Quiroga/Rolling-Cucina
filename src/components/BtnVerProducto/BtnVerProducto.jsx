@@ -1,31 +1,29 @@
 import { useContext, useState } from "react";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
 import { AgregarContext } from "../../context/AgregarContext";
-import "./BtnVerProducto.css"
+import "./BtnVerProducto.css";
 
+const BtnVerProducto = ({ title, description, image, price }) => {
+  const { cantidad, pedido, aumentarCantidad, restarCantidad } =
+    useContext(AgregarContext);
+  // const [cantidad, setCantidad] = useState(1);
 
+  // function aumentarCantidad() {
+  //     setCantidad(cantidad + 1);
+  //   }
 
+  // function restarCantidad() {
+  //     if(cantidad==1){
+  //         return
+  //     }else{
+  //         setCantidad(cantidad - 1);
 
-const BtnVerProducto = ({title, description, image, price}) => {
-const {cantidad,pedido,  aumentarCantidad, restarCantidad} = useContext(AgregarContext)
-// const [cantidad, setCantidad] = useState(1);
+  //     }
+  //   }
+  console.log(pedido);
 
-// function aumentarCantidad() {
-//     setCantidad(cantidad + 1);
-//   }
-  
-// function restarCantidad() {
-//     if(cantidad==1){
-//         return
-//     }else{
-//         setCantidad(cantidad - 1);
-
-//     }
-//   }
-console.log(pedido);
-
-    return (
-        <>
+  return (
+    <>
             <div className="container-fluid centered-object">
                 <img className='img-fluid img-modal rounded' src={image} />
             </div>
@@ -42,24 +40,43 @@ console.log(pedido);
                 <h6>{description}</h6>
             </div>
 
-            <div id="cantidad-producto">
-                <div>
-                    <h6>Cantidad: <span className="text-danger fs-3">{cantidad}</span></h6>
-                </div>
-                <div >
-                {cantidad>1 &&<Button variant="danger" onClick={restarCantidad}>-</Button>}
-                   <Button className="successes m-1 border-success" onClick={aumentarCantidad}>+</Button>
+      <div id="cantidad-producto">
+        <div>
+          <h6>
+            Cantidad: <span className="text-danger fs-3">{cantidad}</span>
+          </h6>
+        </div>
+        <div>
+          {cantidad > 1 && (
+            <Button variant="danger" onClick={restarCantidad}>
+              -
+            </Button>
+          )}
+          <Button
+            className="successes m-1 border-success"
+            onClick={aumentarCantidad}
+          >
+            +
+          </Button>
+        </div>
+      </div>
 
-                </div>
-            </div>
+      <div>
+        <FloatingLabel controlId="floatingTextarea2" label="Notas">
+          <Form.Control
+            as="textarea"
+            placeholder="Deja tus notas aquí"
+            // style={{ height: '100px' }}
+          />
+        </FloatingLabel>
+      </div>
+      <br />
+      <div className="container text-center">
+        <Button className="bg-dark text-white border-0">Agregar</Button>
+      </div>
+    </>
+  );
+};
 
-           
-            <br />
-            <div className="container text-center">
-            <Button className="bg-dark text-white border-0">Agregar</Button>
-            </div>
-        </>
-    );
-}
 
 export default BtnVerProducto;

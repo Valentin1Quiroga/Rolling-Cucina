@@ -6,6 +6,8 @@ import TestPage2 from "./pages/TestPage2"
 import Home from "./pages/Home"
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
+import Error404 from "./pages/Error404"
+
 import PrivateRoute from "./routes/PrivateRoute"
 import AgregarProvider from "./context/AgregarContext"
 import Pedidos from "./pages/Pedidos"
@@ -16,9 +18,11 @@ function App() {
   <Router>
     <AgregarProvider>
     <Routes>
-      <Route path='/*' element={<Pedidos/>} />
-      <Route path='/login' element={<TestValentin/>} />
-      <Route path='/home' element={<PrivateRoute><Home/></PrivateRoute>} />
+      <Route path='/*' element={<Error404/>} />
+      <Route path="/login" element={<TestValentin/>}/>
+      <Route path="/pedidos" element={<Pedidos/>}/>
+      
+    <Route path='/home' element={<PrivateRoute><Home/></PrivateRoute>} />
     </Routes>
     </AgregarProvider>
     <ToastContainer/>

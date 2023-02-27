@@ -20,7 +20,7 @@ function CategoriesMenu() {
         // scrollDuration="1"
       >
         <div className="food-categories-items w-100 h-100 ">
-          <ul className="list-unstyled d-flex">
+          <ul className="list-unstyled d-flex flex-wrap">
             <li>
               <a href="#pizzas">
                 <i className="fas fa-pizza-slice viejolobo"></i>Pizzas
