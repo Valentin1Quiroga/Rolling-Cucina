@@ -10,6 +10,7 @@ import Error404 from "./pages/Error404"
 
 import PrivateRoute from "./routes/PrivateRoute"
 import AgregarProvider from "./context/AgregarContext"
+import Pedidos from "./pages/Pedidos"
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
     <Routes>
       <Route path='/*' element={<Error404/>} />
       <Route path="/login" element={<TestValentin/>}/>
+      <Route path="/pedidos" element={<Pedidos/>}/>
       
     <Route path='/home' element={<PrivateRoute><Home/></PrivateRoute>} />
     </Routes>

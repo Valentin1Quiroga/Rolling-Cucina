@@ -24,21 +24,21 @@ const BtnVerProducto = ({ title, description, image, price }) => {
 
   return (
     <>
-      <div className="container-fluid centered-object">
-        <img className="img-fluid img-modal rounded" src={image} />
-      </div>
-      <div id="titulo-price">
-        <div>
-          <h4>{title}</h4>
-        </div>
-        <div>
-          <h5>${price * cantidad}</h5>
-        </div>
-      </div>
+            <div className="container-fluid centered-object">
+                <img className='img-fluid img-modal rounded' src={image} />
+            </div>
+            <div id="titulo-price">
+                <div>
+                    <h4>{title}</h4>
+                </div>
+                <div>
+                    <h5>${price*cantidad}</h5>
+                </div>
+            </div>
 
-      {/* <div>
+            <div>
                 <h6>{description}</h6>
-            </div> */}
+            </div>
 
       <div id="cantidad-producto">
         <div>
@@ -77,5 +77,6 @@ const BtnVerProducto = ({ title, description, image, price }) => {
     </>
   );
 };
+
 
 export default BtnVerProducto;
