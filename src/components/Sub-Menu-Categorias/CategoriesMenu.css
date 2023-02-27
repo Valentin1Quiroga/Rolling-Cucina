@@ -38,6 +38,7 @@
     .food-menu{
         overflow: auto;
         white-space: nowrap;
+        height: 15vh;
     }
     .food-categories-items a{
         margin: 5px;
