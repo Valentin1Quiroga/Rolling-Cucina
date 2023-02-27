@@ -24,7 +24,7 @@ const Header = () => {
 
     <Col xs={12} lg={7} className='d-flex align-items-center justify-content-center text-center'>
 
-<h1>Il gusto della bella Italia</h1>
+<h1 className="ilgusto">Il gusto della bella Italia</h1>
 
     </Col>
 
