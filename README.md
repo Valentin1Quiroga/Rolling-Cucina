@@ -1,19 +1,19 @@
 # ROLLING CUCINA
 
-¡Bienvenidos al proyecto del Restaurante Italiano! Este es un proyecto web desarrollado con el objetivo de ofrecer una experiencia gastronómica única y de calidad a través de una plataforma online.
+¡Bienvenidos a Rolling Cucina! Este es un proyecto web desarrollado con el objetivo de ofrecer una experiencia gastronómica única y de calidad a través de una plataforma online.
 
-El proyecto cuenta con diferentes funcionalidades, incluyendo autenticación de usuarios, visualización del menú, realización de pedidos y seguimiento en tiempo real de los mismos. Además, cuenta con una sección de administración para el manejo de usuarios, pedidos y menús por parte del personal del restaurante.
+La página cuenta con diferentes funcionalidades, incluyendo autenticación de usuarios, visualización del menú, realización de pedidos y seguimiento en tiempo real de los mismos. Además, cuenta con una sección de administración para el manejo de usuarios, pedidos y menús por parte del personal del restaurante.
 
-El proyecto está desarrollado utilizando tecnologías como HTML, CSS, JavaScript, Node.js, Express.js, MongoDB y Passport.js. También se han utilizado diferentes librerías y herramientas para lograr una experiencia de usuario intuitiva y atractiva.
+El proyecto está desarrollado utilizando tecnologías como HTML, CSS, JavaScript, Node.js, Express.js, MongoDB y React. También se han utilizado diferentes librerías y herramientas para lograr una experiencia de usuario intuitiva y atractiva.
 
 Estamos comprometidos en ofrecer una plataforma de calidad y fácil de usar para nuestros clientes, con el objetivo de mejorar la experiencia gastronómica en nuestro restaurante. Esperamos que disfrutes de nuestro proyecto y de nuestros deliciosos platos italianos. ¡Gracias por visitarnos!
 
 ## Características
-Autenticación de usuarios con un formulario de login
-Visualización del menú con fotos y descripciones
-Selección de productos y cantidades para hacer pedidos
-Seguimiento de los pedidos en tiempo real
-Sección de administración con opciones para agregar, editar y eliminar usuarios, pedidos y menús
+Autenticación de usuarios con un formulario de login y sus respectivos registros.
+Visualización del menú con fotos y descripciones.
+Selección de productos y cantidades para hacer pedidos.
+Seguimiento de los pedidos en tiempo real.
+Sección de administración con opciones para agregar, editar y eliminar usuarios, pedidos y menús.
 
 ## Tecnologías utilizadas
 * HTML
