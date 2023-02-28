@@ -1,34 +1,75 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import TestLuis from "./pages/TestLuis";
+import TestPage from "./pages/TestPage";
+import TestValentin from "./pages/TestValentin";
+import TestPage2 from "./pages/TestPage2";
+import Home from "./pages/Home";
+import Admin from "./pages/Admin";
+import AdminRoute from "./routes/AdminRoute";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import TestJavier from "./pages/TestJavier";
+import Menus from "./pages/menus";
+import Error404 from "./pages/Error404";
+import PrivateRoute from "./routes/PrivateRoute";
+import CrudPedidos from "./pages/CrudPedidos";
+import PedidosProvider from "./context/PedidosContext";
+import Pedidos from "./pages/Pedidos";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <Router>
+      <PedidosProvider>
+        <Routes>
+          <Route path="/*" element={<Error404 />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<TestValentin />} />
+          <Route
+            path="/pedidos"
+            element={
+              <PrivateRoute>
+                <Pedidos />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/admin"
+            element={
+              <PrivateRoute>
+                <TestJavier />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/pedidos"
+            element={
+              <PrivateRoute>
+                <CrudPedidos />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/usuarios"
+            element={
+              <PrivateRoute>
+                <Admin />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/menus"
+            element={
+              <PrivateRoute>
+                <Menus />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </PedidosProvider>
+      <ToastContainer />
+    </Router>
+  );
 }
 
-export default App
+export default App;

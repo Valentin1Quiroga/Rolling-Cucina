@@ -1,0 +1,23 @@
+#header-section {
+  background-image: url(../../assets/img/pared.jpg);
+  background-size: cover;
+}
+
+.ilgusto {
+  font-family: "Handlee", sans-serif;
+  align-items: center;
+}
+
+.info-restaurante {
+  font-size: 20px;
+}
+
+@media screen and (max-width: 992px) {
+  .info-restaurante {
+    display: none;
+  }
+}
+
+.otra-letra {
+  font-family: "Lato", sans-serif;
+}
