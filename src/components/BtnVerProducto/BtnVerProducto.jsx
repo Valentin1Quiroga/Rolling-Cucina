@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { PedidosContext } from "../../context/PedidosContext";
@@ -16,6 +16,7 @@ const BtnVerProducto = ({ title, description, image, price }) => {
     setCantidad,
   } = useContext(PedidosContext);
 
+  const [isBuying, setIsBuying] = useState(false);
   const agregadoSimple = (title, price, cantidad) => {
     setSinglePedido({
       name: title,
@@ -23,9 +24,9 @@ const BtnVerProducto = ({ title, description, image, price }) => {
       price: price,
       totalPrice: price * cantidad,
     });
-    if (Object.keys(singlePedido).length !== 0)
-      setPedidos([...pedidos, singlePedido]);
-    setCantidad(1);
+    setIsBuying(true);
+
+    // setCantidad(1);
     toast.success("Menu agregado al pedido", {
       position: "bottom-center",
       autoClose: 2000,
@@ -37,7 +38,13 @@ const BtnVerProducto = ({ title, description, image, price }) => {
       theme: "light",
     });
   };
-  console.log(singlePedido);
+  useEffect(() => {
+    if (isBuying) {
+      if (Object.keys(singlePedido).length !== 0)
+        setPedidos([...pedidos, singlePedido]);
+    }
+  }, [singlePedido]);
+
   return (
     <>
       <div className="container-fluid centered-object">
