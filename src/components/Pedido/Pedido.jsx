@@ -75,7 +75,7 @@ const Pedidos = () => {
             <Col>{pedido.name}</Col>
             <Col lg={2}>
               {pedido.units}
-              {cantidad > 1 ? (
+              {/* {pedido.units > 1 ? (
                 <>
                   <Button className="mx-1" variant="success">
                     +
@@ -86,7 +86,7 @@ const Pedidos = () => {
                 <Button className="mx-3" variant="success">
                   +
                 </Button>
-              )}
+              )} */}
             </Col>
             <Col>{pedido.totalPrice}</Col>
             <Col>
