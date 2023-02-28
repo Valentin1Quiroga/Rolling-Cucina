@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "../../config/axios";
 
-const AddForm = (getUsers, handleClose) => {
+const AddForm = ({getUsers, handleClose}) => {
 
     const [values, setValues] = useState({
         name: "",
@@ -24,6 +24,7 @@ const AddForm = (getUsers, handleClose) => {
       const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+          console.log(values);
           await axios.post("/users", values);
           getUsers();
           toast.success("Usuario creado");
