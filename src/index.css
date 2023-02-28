@@ -1,5 +1,11 @@
+
+@font-face {
+  font-family: 'Italia';
+  src: local('Italia'), url(../src/assets/font/Italia.ttf) format('truetype');
+}
+
 *{
- font-family: italia,'Lato', sans-serif;;
+ font-family: Italia,'Lato', sans-serif;;
 }
 body{
   box-sizing: border-box;

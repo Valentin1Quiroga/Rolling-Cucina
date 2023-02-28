@@ -5,7 +5,7 @@ import { Col, Container, Row } from "react-bootstrap";
 const Footer = () => {
   return (
     <>
-      <Container fluid className="footerbeta p-3 bg-dark text-light">
+      <Container fluid className="footerbeta  p-3 bg-dark text-light">
         <Row>
           <Col lg={4} xs={6} className="text-center centered-object">
             <img className="img-fluid" src={logo} />
@@ -22,31 +22,32 @@ const Footer = () => {
             </ul>
           </Col>
           <Col className="d-flex justify-content-center">
-            <ul className= "list-unstyled">
+            <ul className="list-unstyled">
               <h4>Nuestras Redes</h4>
 
               <a
                 href="https://www.instagram.com/rolling.cucina/"
-                target="_blank" className= "text-white"
-                >
+                target="_blank"
+                className="text-white"
+              >
                 <i className="bi bi-instagram px-3" />
               </a>
 
-              
-            
-                
               <a
                 href="https://www.facebook.com/profile.php?id=100090240022071"
-                target="_blank"  className= "text-white"
-                >
+                target="_blank"
+                className="text-white"
+              >
                 <i className="bi bi-facebook px-3" />
               </a>
-                  
-            
-                <a href="https://twitter.com/CucinaRolling" target="_blank"  className= "text-white">
+
+              <a
+                href="https://twitter.com/CucinaRolling"
+                target="_blank"
+                className="text-white"
+              >
                 <i className="bi bi-twitter px-3" />
               </a>
-                
             </ul>
           </Col>
         </Row>
