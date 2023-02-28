@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, Col, Container, FloatingLabel, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "../../config/axios";
+import { PedidosContext } from "../../context/PedidosContext";
 import "./Pedido.css"
 
 
@@ -10,6 +11,14 @@ import "./Pedido.css"
 const Pedidos = () => {
 const navigate = useNavigate()
 const [superTotal, setSupertotal] = useState(0);
+const {
+    singlePedido,
+    setSinglePedido,
+    pedidos,
+    setPedidos,
+    aumentarCantidad,
+    restarCantidad,
+  } = useContext(PedidosContext);
 
 let total=10;
 
@@ -30,30 +39,38 @@ function sumaTotal(){
 //     }
 // }
 
-// const handleCancel = () => {
-//     setPedido([]);
-//     navigate("/home")
-// }
+const handleCancel = () => {
+    setPedidos([]);
+    navigate("/home")
+}
 let cantidad = 2;
     return ( 
         <>
             <h1>Pedidos</h1>
             <Container>
-            {/* mapeo de las object key del array que viene como estado */}
+                <Row>
+                <Col>IMAGEN</Col>
+                <Col>NOMBRE</Col>
+                <Col>CANTIDAD</Col>
+                <Col>TOTAL</Col>
+                <Col>CANCELAR MENU</Col>
+                </Row>
+            {pedidos.map((pedido)=>(
+            
             <Row className="fila-pedido">
                 <Col>Imagen</Col>
-                <Col>Menu Seleccionado</Col>
-                <Col lg={2}>Cantidad {cantidad > 1 ?
+                <Col>{pedido.name}</Col>
+                <Col lg={2}>{pedido.units} {cantidad > 1 ?
                 <> 
                     <Button className="mx-1" variant="success">+</Button>
                     <Button variant="danger">-</Button>
                     </> :
                     <Button className="mx-3" variant="success">+</Button>}
                 </Col>
-                <Col>Total</Col>
+                <Col>{pedido.totalPrice}</Col>
                 <Col><Button className="mx-3" variant="danger">❌</Button></Col>
             </Row>
-           
+           ))}
             <Row className="d-flex align-items-center">
                 <Col> 
                 <div>
@@ -76,7 +93,7 @@ let cantidad = 2;
             <Button className="mx-3" onClick={handleCancel} variant="danger">Cancelar Pedido</Button> */}
             <div className="my-5 text-center">
             <Button variant="success">Confirmar Pedido</Button>
-            <Button className="mx-3" variant="danger">Cancelar Pedido</Button>
+            <Button className="mx-3" variant="danger" onClick={handleCancel}>Cancelar Pedido</Button>
             </div>
 
             </Container>

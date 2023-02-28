@@ -12,6 +12,8 @@ import { ERROR_MESSAGE } from "../constants";
 import useGet from "../hooks/useGet";
 import FormLogin from "../components/FormLogin/FormLogin";
 import AddForm from "../components/AddForm/AddForm";
+import Footer from "../components/Footer/Footer";
+import Navbar from "../components/Navbar/Nabvar";
 
 const Admin = () => {
   const [users, loading, getUsers] = useGet('/users',"users");
@@ -25,8 +27,9 @@ const Admin = () => {
     }}) 
   const deleteUser = async()=>{
     try {
-      await axios.delete('/users',selected);
+      await axios.delete('/users',{data:{id:selected}});
       getUsers();
+      toast.info("Usuario borrado con exito")
     } catch (error) {
       if(!selected){
         toast.error('Usuario no seleccionado')
@@ -37,8 +40,10 @@ const Admin = () => {
   }
   return ( 
     <>
-    <Container>
-      <h1>Página de administración</h1>
+    <Navbar/>
+    <Container  className="mt-5 pt-1">
+      <h1 className="mt-5">Administracion de usuarios</h1>
+      <p>Selecciona al usuario que quieras modificar/eliminar.</p>
       <Row className="m-3">
         <Col className="d-flex justify-content-end">
           <GeneralModal
@@ -78,7 +83,7 @@ const Admin = () => {
         </Col>
       </Row>
     </Container>
-    <ToastContainer/>
+    <Footer/>
     </>
    );
 }

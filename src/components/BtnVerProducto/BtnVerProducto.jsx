@@ -14,16 +14,17 @@ const BtnVerProducto = ({ title, description, image, price }) => {
     restarCantidad,
   } = useContext(PedidosContext);
 
-  // const agregadoSimple = (title, price) => {
-  //   setSinglePedido({
-  //     name: title,
-  //     units: 1,
-  //     price: price,
-  //     totalPrice: price * 1,
-  //   });
-  //   // setPedidos([...pedidos, singlePedido]);
-  // };
-  // console.log(singlePedido);
+  const agregadoSimple = (title, price,cantidad) => {
+    setSinglePedido({
+      name: title,
+      units: cantidad,
+      price: price,
+      totalPrice: price * cantidad,
+    });
+    if(Object.keys(singlePedido).length !== 0){setPedidos([...pedidos,singlePedido])}
+    
+  };
+  console.log(singlePedido);
   return (
     <>
       <div className="container-fluid centered-object">
@@ -67,7 +68,7 @@ const BtnVerProducto = ({ title, description, image, price }) => {
       <div className="container text-center">
         <Button
           className="bg-dark text-white border-0"
-          // onClick={agregadoSimple(title, price)}
+          onClick={()=>agregadoSimple(title, price,cantidad)}
         >
           Agregar
         </Button>

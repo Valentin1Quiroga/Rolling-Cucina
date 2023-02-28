@@ -14,6 +14,7 @@ import Error404 from "./pages/Error404";
 import PrivateRoute from "./routes/PrivateRoute";
 import CrudPedidos from "./pages/CrudPedidos";
 import PedidosProvider from "./context/PedidosContext";
+import Pedidos from "./pages/Pedidos"
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
       <Route path='/*' element={<Error404/>} />
       <Route path='/home' element={<Home/>} />
       <Route path='/login' element={<TestValentin/>} />
-      {/* <Route path='/pedidos' element={<Pedidos/>} /> */}
+      <Route path='/pedidos' element={<Pedidos/>} />
      
       <Route path='/admin' element={<PrivateRoute><TestJavier/></PrivateRoute> }/>
       <Route path='/admin/pedidos' element={<PrivateRoute><CrudPedidos/></PrivateRoute> }/>

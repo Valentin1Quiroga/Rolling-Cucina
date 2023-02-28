@@ -6,12 +6,7 @@ export const PedidosContext = createContext();
 const PedidosProvider = ({ children }) => {
   const [menus] = useGet("/menu", "menus");
   const [cantidad, setCantidad] = useState(1);
-  const [singlePedido, setSinglePedido] = useState({
-    name: "",
-    units: "",
-    price: 0,
-    totalPrice: 0,
-  });
+  const [singlePedido, setSinglePedido] = useState({})
   const [pedidos, setPedidos] = useState([]);
   // const soloids = menus.map((menu) => {
   //   return { _id: menu._id, cantidad: 0 };
