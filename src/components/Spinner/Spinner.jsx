@@ -1,8 +1,10 @@
-import "./Spinner.css"
+import "./Spinner.css";
 const Spinner = () => {
-    return (  
-        <span className="loader"></span>
-    );
-}
- 
+  return (
+    <div className="d-flex justify-content-center">
+      <span className="loader"></span>
+    </div>
+  );
+};
+
 export default Spinner;

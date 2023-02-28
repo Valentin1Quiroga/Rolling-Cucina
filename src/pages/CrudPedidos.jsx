@@ -23,7 +23,7 @@ const CrudPedidos = () => {
     return {
       _id: pedido._id,
       user: pedido.user,
-      menu: pedido.menu,
+      // menu: pedido.menu,
       status: pedido.status,
     };
   });
