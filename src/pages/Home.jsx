@@ -5,7 +5,7 @@ import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import Navbar from "../components/Navbar/Nabvar"
 import SearchBar from "../components/SearchBar/SearchBar";
-import CategoriesMenu from "../components/Sub-Menu-Categorias/Categoriesmenu";
+import CategoriesMenu from "../components/Sub-Menu-Categorias/CategoriesMenu";
 import { PedidosContext } from "../context/PedidosContext";
 const Home = () => {
     const [results, setResults] = useState([]);
