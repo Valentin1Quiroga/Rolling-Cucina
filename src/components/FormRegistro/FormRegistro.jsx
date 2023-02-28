@@ -76,8 +76,7 @@ const FormRegistro = ({ handleClose, getUsers }) => {
           onChange={handleChange}
           value={values.name}
           name="name"
-          minLength={2}
-          maxLength={50}
+          pattern="[A-Za-z]{2,50}"
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="userPhone">
@@ -119,7 +118,7 @@ const FormRegistro = ({ handleClose, getUsers }) => {
           maxLength={20}
         />
       </Form.Group>
-      <Button variant="success" type="submit">
+      <Button variant="success" type="submit" >
         Crear Cuenta
       </Button>
     </Form>
