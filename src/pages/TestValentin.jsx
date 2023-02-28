@@ -1,11 +1,7 @@
 import Login from "../components/login/Login";
 
 const TestValentin = () => {
-    return ( 
+  return <Login />;
+};
 
-        <Login/>
-     );
-
-}
- 
 export default TestValentin;
