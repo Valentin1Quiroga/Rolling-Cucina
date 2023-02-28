@@ -25,7 +25,7 @@ Sección de administración con opciones para agregar, editar y eliminar usuario
 * MongoDB
 
 ## Uso
-* Ve a www.google.com
+* Ve a https://rolling-cucina.netlify.app/
 * Inicia sesión con un usuario registrado o crea una cuenta nueva.
 * Un ejemplo de usuario es: USUARIO: rollingcucina@rollingcucina.com CONTRASEÑA: 123456Rc
 * Navega por el menú para ver las opciones disponibles.
