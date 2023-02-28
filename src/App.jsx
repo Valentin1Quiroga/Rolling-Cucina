@@ -1,25 +1,34 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import TestValentin from "./pages/TestValentin";
-import Home from "./pages/Home";
-import Admin from "./pages/Admin";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import PedidosProvider from "./context/PedidosContext";
+import PrivateRoute from "./routes/PrivateRoute";
+import Home from "./pages/Home";
+import Admin from "./pages/Admin";
 import TestJavier from "./pages/TestJavier";
 import Menus from "./pages/Menus";
 import Error404 from "./pages/Error404";
-import PrivateRoute from "./routes/PrivateRoute";
 import CrudPedidos from "./pages/CrudPedidos";
-import PedidosProvider from "./context/PedidosContext";
 import Pedidos from "./pages/Pedidos";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
     <Router>
       <PedidosProvider>
         <Routes>
+          <Route path="/" element={<LoginPage />} />
           <Route path="/*" element={<Error404 />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<TestValentin />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/home"
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="/pedidos"
             element={
