@@ -25,8 +25,6 @@ const BtnVerProducto = ({ title, description, image, price }) => {
       totalPrice: price * cantidad,
     });
     setIsBuying(true);
-
-    // setCantidad(1);
     toast.success("Menu agregado al pedido", {
       position: "bottom-center",
       autoClose: 2000,
@@ -39,10 +37,12 @@ const BtnVerProducto = ({ title, description, image, price }) => {
     });
   };
   useEffect(() => {
+    console.log("cantidad", cantidad);
     if (isBuying) {
       if (Object.keys(singlePedido).length !== 0)
         setPedidos([...pedidos, singlePedido]);
     }
+    setCantidad(1);
   }, [singlePedido]);
 
   return (

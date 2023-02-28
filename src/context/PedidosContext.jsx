@@ -6,7 +6,7 @@ export const PedidosContext = createContext();
 const PedidosProvider = ({ children }) => {
   const [menus] = useGet("/menu", "menus");
   const [cantidad, setCantidad] = useState(1);
-  const [singlePedido, setSinglePedido] = useState({})
+  const [singlePedido, setSinglePedido] = useState({});
   const [pedidos, setPedidos] = useState([]);
   // const soloids = menus.map((menu) => {
   //   return { _id: menu._id, cantidad: 0 };
@@ -25,7 +25,6 @@ const PedidosProvider = ({ children }) => {
   function aumentarCantidad() {
     setCantidad(cantidad + 1);
   }
-
   function restarCantidad() {
     if (cantidad == 1) {
       return;
@@ -44,6 +43,7 @@ const PedidosProvider = ({ children }) => {
         setPedidos,
         aumentarCantidad,
         restarCantidad,
+        setCantidad,
       }}
     >
       {children}

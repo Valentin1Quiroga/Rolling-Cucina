@@ -26,6 +26,7 @@ const CardMarcos = ({ idboton, title, description, image, price }) => {
       modalTitle={title}
       modalBody={
         <BtnVerProducto
+          handleClose
           image={image}
           title={title}
           description={description}
