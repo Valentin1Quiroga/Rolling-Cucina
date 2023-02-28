@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
+import { toast } from "react-toastify";
 import { PedidosContext } from "../../context/PedidosContext";
 import "./BtnVerProducto.css";
 
@@ -12,17 +13,29 @@ const BtnVerProducto = ({ title, description, image, price }) => {
     setPedidos,
     aumentarCantidad,
     restarCantidad,
+    setCantidad,
   } = useContext(PedidosContext);
 
-  const agregadoSimple = (title, price,cantidad) => {
+  const agregadoSimple = (title, price, cantidad) => {
     setSinglePedido({
       name: title,
       units: cantidad,
       price: price,
       totalPrice: price * cantidad,
     });
-    if(Object.keys(singlePedido).length !== 0){setPedidos([...pedidos,singlePedido])}
-    
+    if (Object.keys(singlePedido).length !== 0)
+      setPedidos([...pedidos, singlePedido]);
+    setCantidad(1);
+    toast.success("Menu agregado al pedido", {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
   console.log(singlePedido);
   return (
@@ -68,7 +81,7 @@ const BtnVerProducto = ({ title, description, image, price }) => {
       <div className="container text-center">
         <Button
           className="bg-dark text-white border-0"
-          onClick={()=>agregadoSimple(title, price,cantidad)}
+          onClick={() => agregadoSimple(title, price, cantidad)}
         >
           Agregar
         </Button>

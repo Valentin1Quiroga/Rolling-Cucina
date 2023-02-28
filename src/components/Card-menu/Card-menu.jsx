@@ -20,7 +20,6 @@ const CardMarcos = ({ idboton, title, description, image, price }) => {
   };
   return (
     <GeneralModal
-      onClick={() => console.log(title)}
       bodyDiv={Children}
       buttonText="Ver"
       variant="primary"
