@@ -1,7 +1,7 @@
 import "./Spinner.css";
 const Spinner = () => {
   return (
-    <div className="d-flex justify-content-center align-items-center">
+    <div className="d-flex justify-content-center">
       <span className="loader"></span>
     </div>
   );
