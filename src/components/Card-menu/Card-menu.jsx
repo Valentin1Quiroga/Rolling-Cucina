@@ -20,13 +20,13 @@ const CardMarcos = ({ idboton, title, description, image, price }) => {
   };
   return (
     <GeneralModal
-      onClick={() => console.log(title)}
       bodyDiv={Children}
       buttonText="Ver"
       variant="primary"
       modalTitle={title}
       modalBody={
         <BtnVerProducto
+          handleClose
           image={image}
           title={title}
           description={description}
