@@ -9,7 +9,7 @@ import AdminRoute from "./routes/AdminRoute";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import TestJavier from "./pages/TestJavier";
-import Menus from "./pages/menus";
+import Menus from "./pages/Menus";
 import Error404 from "./pages/Error404";
 import PrivateRoute from "./routes/PrivateRoute";
 import CrudPedidos from "./pages/CrudPedidos";
