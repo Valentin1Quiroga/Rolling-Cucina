@@ -15,7 +15,6 @@ import "./Pedido.css";
 
 const Pedidos = () => {
   const navigate = useNavigate();
-  const [superTotal, setSupertotal] = useState(0);
   const {
     singlePedido,
     setSinglePedido,
@@ -24,27 +23,36 @@ const Pedidos = () => {
     aumentarCantidad,
     restarCantidad,
   } = useContext(PedidosContext);
+  const [listaPedidos, setListaPedidos] = useState(pedidos);
 
-  let total = 10;
+  const totalPrecios = listaPedidos.reduce((total, pedido) => {
+    return total + pedido.totalPrice;
+  }, 0);
 
-  function sumaTotal() {
-    if (total == 0) {
-      return;
-    } else {
-      setSupertotal(superTotal + total);
+  let enviarPedido;
+  let notas = "la quiero asi nomas";
+  const handleConfirm = async () => {
+    try {
+      enviarPedido = {
+        user: "63ecfd1e28e5149b24670ab1",
+        menu: [...listaPedidos, notas],
+        total: totalPrecios,
+      };
+      await axios.post("/pedidos", enviarPedido);
+      toast.success("Su pedido se realizó con éxito. Pronto estará listo.");
+      navigate("/home");
+      setPedidos([]);
+      setListaPedidos([]);
+    } catch (error) {
+      toast.error("Ocurrio un error al hacer el pedido, intente más tarde.");
     }
-  }
-  const borrarMenu = () => {};
-
-  // const handleConfirm = async () => {
-  //     try {
-  //         await axios.post("/pedidos",pedido)
-  //          toast.success("Su pedido se realizó con éxito. Pronto estará listo.")
-  //     } catch (error) {
-  // toast.error("Ocurrio un error al hacer el pedido, intente más tarde.")
-  //     }
-  // }
-
+  };
+  const borrarMenu = (e) => {
+    const nuevaLista = pedidos.filter((pedido) => pedido.name !== e.target.id);
+    console.log(nuevaLista);
+    setPedidos(nuevaLista);
+    setListaPedidos(nuevaLista);
+  };
   const handleCancel = () => {
     setPedidos([]);
     navigate("/home");
@@ -61,12 +69,12 @@ const Pedidos = () => {
           <Col>TOTAL</Col>
           <Col>CANCELAR MENU</Col>
         </Row>
-        {pedidos.map((pedido, index) => (
+        {listaPedidos.map((pedido, index) => (
           <Row className="fila-pedido" key={index}>
             <Col>Imagen</Col>
             <Col>{pedido.name}</Col>
             <Col lg={2}>
-              {pedido.units}{" "}
+              {pedido.units}
               {cantidad > 1 ? (
                 <>
                   <Button className="mx-1" variant="success">
@@ -82,14 +90,19 @@ const Pedidos = () => {
             </Col>
             <Col>{pedido.totalPrice}</Col>
             <Col>
-              <Button className="mx-3" variant="danger" onClick={borrarMenu}>
+              <Button
+                className="mx-3"
+                variant="danger"
+                id={pedido.name}
+                onClick={(e) => borrarMenu(e)}
+              >
                 ❌
               </Button>
             </Col>
           </Row>
         ))}
         <Row className="d-flex align-items-center">
-          <Col>
+          <Col lg={4}>
             <div>
               <FloatingLabel controlId="floatingTextarea2" label="Notas">
                 <Form.Control
@@ -103,7 +116,7 @@ const Pedidos = () => {
           <Col></Col>
           <Col></Col>
           <Col>
-            <h5>Subtotal:{superTotal}</h5>
+            <h5>Subtotal:{totalPrecios}</h5>
           </Col>
           <Col></Col>
         </Row>
@@ -111,7 +124,9 @@ const Pedidos = () => {
         {/* <Button variant="success" onClick={handleConfirm}>Confirmar Pedido</Button>
             <Button className="mx-3" onClick={handleCancel} variant="danger">Cancelar Pedido</Button> */}
         <div className="my-5 text-center">
-          <Button variant="success">Confirmar Pedido</Button>
+          <Button variant="success" onClick={handleConfirm}>
+            Confirmar Pedido
+          </Button>
           <Button className="mx-3" variant="danger" onClick={handleCancel}>
             Cancelar Pedido
           </Button>
