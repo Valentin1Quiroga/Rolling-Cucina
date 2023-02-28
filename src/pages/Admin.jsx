@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Col, Container, Row, Spinner } from "react-bootstrap";
 
 import { toast, ToastContainer } from "react-toastify";
@@ -12,10 +12,13 @@ import { ERROR_MESSAGE } from "../constants";
 import useGet from "../hooks/useGet";
 import FormLogin from "../components/FormLogin/FormLogin";
 import AddForm from "../components/AddForm/AddForm";
+import FormRegistro from "../components/FormRegistro/FormRegistro";
 
 const Admin = () => {
+
   const [users, loading, getUsers] = useGet('/users',"users");
   const [selected,setSelected] =useState(undefined);
+
   const testUsuario = users.map(users=>{return{
     _id:users._id,
      name:users.name,
@@ -23,6 +26,11 @@ const Admin = () => {
      email:users.email,
      admin:users.admin,
     }}) 
+
+   useEffect(()=>{
+    getUsers();
+   }, []);
+    
   const deleteUser = async()=>{
     try {
       await axios.delete('/users',selected);
@@ -35,6 +43,11 @@ const Admin = () => {
       }
     }
   }
+
+
+
+
+
   return ( 
     <>
     <Container>
@@ -42,11 +55,10 @@ const Admin = () => {
       <Row className="m-3">
         <Col className="d-flex justify-content-end">
           <GeneralModal
-           boton = {true}
+          boton = {true}
           buttonText='Añadir usuario'
           modalTitle={'Añadir usuario'}
-          // modalBody={<AddUserForm getUsers={getUsers}/>}
-          modalBody={<AddForm/>}
+          modalBody={<AddForm getUsers={getUsers}/>}
           variant="success"
           />
           <GeneralModal
