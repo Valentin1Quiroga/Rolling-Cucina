@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Col, Container, Row, Spinner } from "react-bootstrap";
 
 import { toast, ToastContainer } from "react-toastify";
@@ -29,6 +29,11 @@ const Admin = () => {
       admin: users.admin,
     };
   });
+
+// useEffect( ()=>{
+//   getUsers()
+// }, [users])
+
   const deleteUser = async () => {
     try {
       await axios.delete("/users", { data: { id: selected } });
@@ -59,7 +64,7 @@ const Admin = () => {
               buttonText="Añadir usuario"
               modalTitle={"Añadir usuario"}
               // modalBody={<AddUserForm getUsers={getUsers}/>}
-              modalBody={<AddForm />}
+              modalBody={<AddForm getUsers={getUsers}/>}
               variant="success"
             />
             <GeneralModal
