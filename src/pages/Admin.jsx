@@ -12,6 +12,7 @@ import { ERROR_MESSAGE } from "../constants";
 import useGet from "../hooks/useGet";
 import FormLogin from "../components/FormLogin/FormLogin";
 import AddForm from "../components/AddForm/AddForm";
+import EditForm from "../components/EditForm/EditForm"
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Nabvar";
 import { Link } from "react-router-dom";
@@ -72,8 +73,8 @@ const Admin = () => {
               boton={true}
               buttonText="Editar usuario"
               modalTitle={"Editar usuario"}
-              modalBody={FormLogin}
-              // modalBody={<EditUserForm selected={selected} getUsers={getUsers}/>}
+              // modalBody={FormLogin}
+              modalBody={<EditForm selected={selected} getUsers={getUsers}/>}
               variant="warning"
             />
           </Col>
