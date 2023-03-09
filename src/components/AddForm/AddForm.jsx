@@ -10,7 +10,7 @@ const AddForm = ({getUsers, handleClose}) => {
         phone: "",
         email: "",
         password: "",
-        admin: false,
+        admin: false
       });
 
 
@@ -48,6 +48,7 @@ const AddForm = ({getUsers, handleClose}) => {
           pattern="[A-Za-z]{2,50}"
         />
       </Form.Group>
+      
       <Form.Group className="mb-3" controlId="userPhone">
         <Form.Label>Numero de Telefono</Form.Label>
         <Form.Control
