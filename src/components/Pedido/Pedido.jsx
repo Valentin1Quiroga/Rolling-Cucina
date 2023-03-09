@@ -7,6 +7,7 @@ import {
   Form,
   Row,
 } from "react-bootstrap";
+import { SlLogin } from "react-icons/sl";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "../../config/axios";
@@ -17,17 +18,10 @@ import "./Pedido.css";
 
 const Pedidos = () => {
   const navigate = useNavigate();
-  const {
-    singlePedido,
-    setSinglePedido,
-    pedidos,
-    setPedidos,
-    aumentarCantidad,
-    restarCantidad,
-  } = useContext(PedidosContext);
+  const { pedidos, setPedidos } = useContext(PedidosContext);
   const [listaPedidos, setListaPedidos] = useState(pedidos);
   const [userPedido, loading, getUserPedido] = useGet(
-    "/pedidos/userPedido",
+    `/pedidos/userPedido`,
     "pedidos"
   );
   console.log(userPedido);
@@ -63,34 +57,12 @@ const Pedidos = () => {
     setPedidos([]);
     navigate("/home");
   };
-  let cantidad = 2;
+
   return (
     <>
       <h1>Pedidos</h1>
       {loading ? (
         <Spinner />
-      ) : userPedido.length !== 0 ? (
-        <Container>
-          <Row>
-            <Col>NOMBRE</Col>
-            <Col>CANTIDAD</Col>
-            <Col>TOTAL</Col>
-          </Row>
-          {userPedido.menu.map((pedido) => (
-            <>
-              <Row>
-                <Col>{pedido.name}</Col>
-                <Col>{pedido.units}</Col>
-                <Col>{pedido.price}</Col>
-              </Row>
-              <Row>
-                <Col>TOTAL:</Col>
-                <Col></Col>
-                <Col>${pedido.totalPrice}</Col>
-              </Row>
-            </>
-          ))}
-        </Container>
       ) : listaPedidos.length !== 0 ? (
         <Container>
           <Row>
@@ -102,7 +74,9 @@ const Pedidos = () => {
           </Row>
           {listaPedidos.map((pedido, index) => (
             <Row className="fila-pedido" key={index}>
-              <Col>Imagen</Col>
+              <Col>
+                <img src={pedido.image} className="img-pedidos" alt="" />
+              </Col>
               <Col>{pedido.name}</Col>
               <Col lg={2}>
                 {pedido.units}
@@ -151,9 +125,6 @@ const Pedidos = () => {
             </Col>
             <Col></Col>
           </Row>
-
-          {/* <Button variant="success" onClick={handleConfirm}>Confirmar Pedido</Button>
-            <Button className="mx-3" onClick={handleCancel} variant="danger">Cancelar Pedido</Button> */}
           <div className="my-5 text-center">
             <Button variant="success" onClick={handleConfirm}>
               Confirmar Pedido
@@ -166,13 +137,18 @@ const Pedidos = () => {
       ) : (
         <Container
           fluid
-          className="d-flex  justify-content-center align-items-center text-center"
+          className="d-flex  justify-content-center align-items-center text-center text-bg-danger my-5"
         >
           <h2>
             NO TIENES NINGUN PEDIDO GUARDADO! POR FAVOR VUELVE AL INICIO Y ELIGE
-            ALGO
+            UN MENU DE NUESTRA CARTA.
           </h2>
-          <Link to="/home">Volver</Link>
+          <Link
+            to="/home"
+            className="text-decoration-none text-black border border-dark border-1"
+          >
+            Volver <SlLogin />
+          </Link>
         </Container>
       )}
     </>

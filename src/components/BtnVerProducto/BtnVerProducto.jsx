@@ -17,9 +17,10 @@ const BtnVerProducto = ({ title, description, image, price }) => {
   } = useContext(PedidosContext);
 
   const [isBuying, setIsBuying] = useState(false);
-  const agregadoSimple = (title, price, cantidad) => {
+  const agregadoSimple = (title, price, cantidad, image) => {
     setSinglePedido({
       name: title,
+      image: image,
       units: cantidad,
       price: price,
       totalPrice: price * cantidad,
@@ -88,7 +89,7 @@ const BtnVerProducto = ({ title, description, image, price }) => {
       <div className="container text-center">
         <Button
           className="bg-dark text-white border-0"
-          onClick={() => agregadoSimple(title, price, cantidad)}
+          onClick={() => agregadoSimple(title, price, cantidad, image)}
         >
           Agregar
         </Button>

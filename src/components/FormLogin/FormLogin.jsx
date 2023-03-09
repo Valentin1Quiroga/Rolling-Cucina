@@ -28,6 +28,7 @@ const FormLogin = () => {
       e.preventDefault();
       const { data } = await axios.post("/users/login", values);
       localStorage.setItem("token", data.token);
+      localStorage.setItem("id", data.id);
       if (data.user.admin) {
         localStorage.setItem("admin", true);
       }
