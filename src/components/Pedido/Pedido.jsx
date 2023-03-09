@@ -30,6 +30,7 @@ const Pedidos = () => {
     "/pedidos/userPedido",
     "pedidos"
   );
+  console.log(userPedido);
   const totalPrecios = listaPedidos.reduce((total, pedido) => {
     return total + pedido.totalPrice;
   }, 0);
@@ -66,7 +67,6 @@ const Pedidos = () => {
   return (
     <>
       <h1>Pedidos</h1>
-<<<<<<< HEAD
       {loading ? (
         <Spinner />
       ) : userPedido.length !== 0 ? (
@@ -115,25 +115,6 @@ const Pedidos = () => {
                   </>
                 ) : (
                   <Button className="mx-3" variant="success">
-=======
-      <Container>
-        <Row>
-          <Col>IMAGEN</Col>
-          <Col>NOMBRE</Col>
-          <Col>CANTIDAD</Col>
-          <Col>TOTAL</Col>
-          <Col>CANCELAR MENU</Col>
-        </Row>
-        {listaPedidos.map((pedido, index) => (
-          <Row className="fila-pedido" key={index}>
-            <Col>Imagen</Col>
-            <Col>{pedido.name}</Col>
-            <Col lg={2}>
-              {pedido.units}
-              {/* {pedido.units > 1 ? (
-                <>
-                  <Button className="mx-1" variant="success">
->>>>>>> a44cb6255413d8ea0802f55be3e6ca89c82aab5b
                     +
                   </Button>
                 )}
@@ -148,7 +129,6 @@ const Pedidos = () => {
                 >
                   ❌
                 </Button>
-<<<<<<< HEAD
               </Col>
             </Row>
           ))}
@@ -163,9 +143,6 @@ const Pedidos = () => {
                   />
                 </FloatingLabel>
               </div>
-=======
-              )} */}
->>>>>>> a44cb6255413d8ea0802f55be3e6ca89c82aab5b
             </Col>
             <Col></Col>
             <Col></Col>

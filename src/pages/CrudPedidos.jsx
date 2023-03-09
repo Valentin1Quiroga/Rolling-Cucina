@@ -29,7 +29,7 @@ const CrudPedidos = () => {
   });
   const deletePedido = async () => {
     try {
-      await axios.delete("/menu" + selected);
+      await axios.delete("/pedidos", selected);
       getPedidos();
     } catch (error) {
       if (!selected) {
