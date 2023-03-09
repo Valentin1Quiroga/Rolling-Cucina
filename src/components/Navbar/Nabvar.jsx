@@ -8,6 +8,7 @@ function CollapsibleExample() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("admin");
+    localStorage.removeItem("id");
     navigate("/login");
   };
   const admin = localStorage.getItem("admin");

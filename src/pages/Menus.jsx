@@ -28,7 +28,7 @@ const Menus = () => {
   });
   const deleteMenu = async () => {
     try {
-      await axios.delete("/menu" + selected);
+      await axios.delete("/menu", { data: { id: selected } });
       getMenus();
     } catch (error) {
       if (!selected) {

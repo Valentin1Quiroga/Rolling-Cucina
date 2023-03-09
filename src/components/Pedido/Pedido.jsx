@@ -7,24 +7,24 @@ import {
   Form,
   Row,
 } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { SlLogin } from "react-icons/sl";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "../../config/axios";
 import { PedidosContext } from "../../context/PedidosContext";
+import useGet from "../../hooks/useGet";
+import Spinner from "../Spinner/Spinner";
 import "./Pedido.css";
 
 const Pedidos = () => {
   const navigate = useNavigate();
-  const {
-    singlePedido,
-    setSinglePedido,
-    pedidos,
-    setPedidos,
-    aumentarCantidad,
-    restarCantidad,
-  } = useContext(PedidosContext);
+  const { pedidos, setPedidos } = useContext(PedidosContext);
   const [listaPedidos, setListaPedidos] = useState(pedidos);
-
+  const [userPedido, loading, getUserPedido] = useGet(
+    `/pedidos/userPedido`,
+    "pedidos"
+  );
+  console.log(userPedido);
   const totalPrecios = listaPedidos.reduce((total, pedido) => {
     return total + pedido.totalPrice;
   }, 0);
@@ -57,81 +57,100 @@ const Pedidos = () => {
     setPedidos([]);
     navigate("/home");
   };
-  let cantidad = 2;
+
   return (
     <>
       <h1>Pedidos</h1>
-      <Container>
-        <Row>
-          <Col>IMAGEN</Col>
-          <Col>NOMBRE</Col>
-          <Col>CANTIDAD</Col>
-          <Col>TOTAL</Col>
-          <Col>CANCELAR MENU</Col>
-        </Row>
-        {listaPedidos.map((pedido, index) => (
-          <Row className="fila-pedido" key={index}>
-            <Col>Imagen</Col>
-            <Col>{pedido.name}</Col>
-            <Col lg={2}>
-              {pedido.units}
-              {/* {pedido.units > 1 ? (
-                <>
-                  <Button className="mx-1" variant="success">
+      {loading ? (
+        <Spinner />
+      ) : listaPedidos.length !== 0 ? (
+        <Container>
+          <Row>
+            <Col>IMAGEN</Col>
+            <Col>NOMBRE</Col>
+            <Col>CANTIDAD</Col>
+            <Col>TOTAL</Col>
+            <Col>CANCELAR MENU</Col>
+          </Row>
+          {listaPedidos.map((pedido, index) => (
+            <Row className="fila-pedido" key={index}>
+              <Col>
+                <img src={pedido.image} className="img-pedidos" alt="" />
+              </Col>
+              <Col>{pedido.name}</Col>
+              <Col lg={2}>
+                {pedido.units}
+                {pedido.units > 1 ? (
+                  <>
+                    <Button className="mx-1" variant="success">
+                      +
+                    </Button>
+                    <Button variant="danger">-</Button>
+                  </>
+                ) : (
+                  <Button className="mx-3" variant="success">
                     +
                   </Button>
-                  <Button variant="danger">-</Button>
-                </>
-              ) : (
-                <Button className="mx-3" variant="success">
-                  +
+                )}
+              </Col>
+              <Col>{pedido.totalPrice}</Col>
+              <Col>
+                <Button
+                  className="mx-3"
+                  variant="danger"
+                  id={pedido.name}
+                  onClick={(e) => borrarMenu(e)}
+                >
+                  ❌
                 </Button>
-              )} */}
+              </Col>
+            </Row>
+          ))}
+          <Row className="d-flex align-items-center">
+            <Col lg={4}>
+              <div>
+                <FloatingLabel controlId="floatingTextarea2" label="Notas">
+                  <Form.Control
+                    as="textarea"
+                    placeholder="Deja tus notas aquí"
+                    // style={{ height: '100px' }}
+                  />
+                </FloatingLabel>
+              </div>
             </Col>
-            <Col>{pedido.totalPrice}</Col>
+            <Col></Col>
+            <Col></Col>
             <Col>
-              <Button
-                className="mx-3"
-                variant="danger"
-                id={pedido.name}
-                onClick={(e) => borrarMenu(e)}
-              >
-                ❌
-              </Button>
+              <h5>Subtotal:{totalPrecios}</h5>
             </Col>
+            <Col></Col>
           </Row>
-        ))}
-        <Row className="d-flex align-items-center">
-          <Col lg={4}>
-            <div>
-              <FloatingLabel controlId="floatingTextarea2" label="Notas">
-                <Form.Control
-                  as="textarea"
-                  placeholder="Deja tus notas aquí"
-                  // style={{ height: '100px' }}
-                />
-              </FloatingLabel>
-            </div>
-          </Col>
-          <Col></Col>
-          <Col></Col>
-          <Col>
-            <h5>Subtotal:{totalPrecios}</h5>
-          </Col>
-          <Col></Col>
-        </Row>
-
-        {/* <Button variant="success" onClick={handleConfirm}>Confirmar Pedido</Button>
-            <Button className="mx-3" onClick={handleCancel} variant="danger">Cancelar Pedido</Button> */}
-        <div className="my-5 text-center">
-          <Button variant="success" onClick={handleConfirm}>
-            Confirmar Pedido
-          </Button>
-          <Button className="mx-3" variant="danger" onClick={handleCancel}>
-            Cancelar Pedido
-          </Button>
-        </div>
-      </Container>
+          <div className="my-5 text-center">
+            <Button variant="success" onClick={handleConfirm}>
+              Confirmar Pedido
+            </Button>
+            <Button className="mx-3" variant="danger" onClick={handleCancel}>
+              Cancelar Pedido
+            </Button>
+          </div>
+        </Container>
+      ) : (
+        <Container
+          fluid
+          className="d-flex  justify-content-center align-items-center text-center text-bg-danger my-5"
+        >
+          <h2>
+            NO TIENES NINGUN PEDIDO GUARDADO! POR FAVOR VUELVE AL INICIO Y ELIGE
+            UN MENU DE NUESTRA CARTA.
+          </h2>
+          <Link
+            to="/home"
+            className="text-decoration-none text-black border border-dark border-1"
+          >
+            Volver <SlLogin />
+          </Link>
+        </Container>
+      )}
     </>
   );
 };

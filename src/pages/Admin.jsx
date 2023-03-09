@@ -22,18 +22,24 @@ const Admin = () => {
   const [users, loading, getUsers] = useGet("/users", "users");
   const [selected, setSelected] = useState(undefined);
   const testUsuario = users.map((users) => {
+    let administrador;
+    if (users.admin) {
+      administrador = "Es admin";
+    } else {
+      administrador = "No es admin";
+    }
     return {
       _id: users._id,
       name: users.name,
       phone: users.phone,
       email: users.email,
-      admin: users.admin,
+      admin: administrador,
     };
   });
 
-// useEffect( ()=>{
-//   getUsers()
-// }, [users])
+  // useEffect( ()=>{
+  //   getUsers()
+  // }, [users])
 
   const deleteUser = async () => {
     try {
@@ -65,7 +71,7 @@ const Admin = () => {
               buttonText="Añadir usuario"
               modalTitle={"Añadir usuario"}
               // modalBody={<AddUserForm getUsers={getUsers}/>}
-              modalBody={<AddForm getUsers={getUsers}/>}
+              modalBody={<AddForm getUsers={getUsers} />}
               variant="success"
             />
             <GeneralModal

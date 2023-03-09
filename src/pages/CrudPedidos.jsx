@@ -22,14 +22,15 @@ const CrudPedidos = () => {
   const testPedidos = pedidos.map((pedido) => {
     return {
       _id: pedido._id,
-      user: pedido.user,
+      user: pedido.user.name,
       // menu: pedido.menu,
       status: pedido.status,
+      total: pedido.total,
     };
   });
   const deletePedido = async () => {
     try {
-      await axios.delete("/menu" + selected);
+      await axios.delete("/pedidos", { data: { id: selected } });
       getPedidos();
     } catch (error) {
       if (!selected) {
@@ -82,7 +83,13 @@ const CrudPedidos = () => {
               <Spinner />
             ) : (
               <GeneralTable
-                headings={["id", "nombre", "menu", "estado"]}
+                headings={[
+                  "id",
+                  "Usuario que realizó el pedido",
+                  "menu",
+                  "estado",
+                  "total $",
+                ]}
                 items={testPedidos}
                 setSelected={setSelected}
                 selected={selected}
