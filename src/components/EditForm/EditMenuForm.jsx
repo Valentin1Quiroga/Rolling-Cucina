@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "../../config/axios";
+import { ERROR_MESSAGE } from "../../constants";
 
 
-const AddMenuForm = ({getMenus, handleClose}) => {
+const EditMenuForm = ({getMenus, selected, handleClose}) => {
 
     const [values, setValues] = useState({
         name: "",
@@ -25,15 +26,31 @@ const AddMenuForm = ({getMenus, handleClose}) => {
       const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          console.log(values);
-          await axios.post("/menu", values);
-          getMenus();
-          toast.success("Menú creado");
-        } catch (error) {
-          console.log({ error });
-          toast.error("Error al enviar los datos. Intente nuevamente más tarde.");
-        }
+            console.log(values);
+            await axios.put("/menu",{id:selected, fields:values});
+            getMenus();
+            toast.success("Menú editado");
+            handleClose();
+          } catch (error) {
+            console.log({ error });
+            toast.error("Error al enviar los datos. Intente nuevamente más tarde.");
+          }
       };
+
+      const getInfo = async () =>{
+        try {
+            const {data} = await axios.get("/menu/"+selected);
+            console.log({data});
+            setValues(data.menu);
+        } catch (error) {
+            toast.error(ERROR_MESSAGE);
+        }
+      }
+
+      useEffect(() => {
+        getInfo()
+      }, [])
+     
 
     return ( 
         <Form onSubmit={handleSubmit}>
@@ -104,10 +121,10 @@ const AddMenuForm = ({getMenus, handleClose}) => {
         </Form.Group> 
 
         <Button type="submit" onClick={handleClose} variant="success">
-          Crear Menu
+          Editar Menu
         </Button>
       </Form>
      );
 }
  
-export default AddMenuForm;
+export default EditMenuForm;

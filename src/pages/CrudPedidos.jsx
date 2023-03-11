@@ -60,13 +60,16 @@ const CrudPedidos = () => {
               modalBody={FormLogin}
               variant="success"
             />
+            
+            {testPedidos.length>1 &&
             <GeneralModal
               boton={true}
               buttonText="Eliminar Pedido"
               modalTitle={"Eliminar Pedido"}
               modalBody={<DeleteConfirmation deleteFunction={deletePedido} />}
               variant="danger"
-            />
+            />}
+
             <GeneralModal
               boton={true}
               buttonText="Editar Pedido"

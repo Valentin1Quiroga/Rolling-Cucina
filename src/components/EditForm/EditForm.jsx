@@ -60,7 +60,7 @@ const EditForm = ({getUsers, handleClose,selected}) => {
             onChange={handleChange}
             value={values.name}
             name="name"
-            pattern="[A-Za-z]{2,50}"
+            pattern="[A-Za-z ]{2,50}"
           />
         </Form.Group>
         

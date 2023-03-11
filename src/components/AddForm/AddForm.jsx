@@ -88,9 +88,17 @@ const AddForm = ({getUsers, handleClose}) => {
           maxLength={20}
         />
       </Form.Group>
+      <Form.Label>Rol</Form.Label>
+      <Form.Select className="mb-3" aria-label="Rol del nuevo usuario" name="admin" onChange={handleChange}>
+      <option>Seleccione</option>
+        <option value={true}>Administrador</option>
+        <option value={false}>Usuario común</option>
+    </Form.Select>
+
       <Button type="submit" onClick={handleClose} variant="success">
         Crear Cuenta
       </Button>
+
     </Form>
 )}
 
