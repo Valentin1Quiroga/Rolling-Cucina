@@ -74,6 +74,9 @@ const Admin = () => {
               modalBody={<AddForm getUsers={getUsers} />}
               variant="success"
             />
+
+
+            {testUsuario.length > 1 && 
             <GeneralModal
               boton={true}
               buttonText="Eliminar usuario"
@@ -81,6 +84,8 @@ const Admin = () => {
               modalBody={<DeleteConfirmation deleteFunction={deleteUser} />}
               variant="danger"
             />
+            }
+
             <GeneralModal
               boton={true}
               buttonText="Editar usuario"
