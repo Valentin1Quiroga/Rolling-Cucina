@@ -12,6 +12,9 @@ import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Nabvar";
 import { Link } from "react-router-dom";
 import { IoMdArrowBack } from "react-icons/io";
+import AddMenuForm from "../components/AddMenuForm/AddMenuForm";
+import EditForm from "../components/EditForm/EditForm";
+import EditMenuForm from "../components/EditForm/EditMenuForm";
 
 const Menus = () => {
   const [menus, loading, getMenus] = useGet("/menu", "menus");
@@ -55,7 +58,7 @@ const Menus = () => {
               buttonText="Añadir menú"
               modalTitle={"Añadir menú"}
               // modalBody={<AddUserForm getUsers={getUsers}/>}
-              modalBody={FormLogin}
+              modalBody={<AddMenuForm getMenus={getMenus}/>}
               variant="success"
             />
             <GeneralModal
@@ -69,7 +72,7 @@ const Menus = () => {
               boton={true}
               buttonText="Editar menú"
               modalTitle={"Editar menú"}
-              modalBody={FormLogin}
+              modalBody={<EditMenuForm getMenus={getMenus} selected={selected}/>}
               // modalBody={<EditUserForm selected={selected} getUsers={getUsers}/>}
               variant="warning"
             />
