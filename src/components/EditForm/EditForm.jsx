@@ -1,73 +1,113 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
-import  axios  from "../../config/axios";
-import { ERROR_MESSAGE } from "../../constants";
+import axios from "../../config/axios";
 
-const EditForm = ({handleClose, getUsers,selected}) => {
+const EditForm = ({getUsers, handleClose,selected}) => {
     const [values, setValues] = useState({
         name: "",
         phone: "",
         email: "",
         password: "",
-        admin: false,
+        admin: false
       });
 
-  const handleChange = (e)=>{
-    setValues({
-      ...values,
-      [e.target.name] : e.target.value
-    })
-  }
 
-  const handleSubmit = async(e)=>{
-    e.preventDefault();
-    try {
-      await axios.put('/users/'+selected,values);
-      getUsers();
-      toast.success('Usuario editado');
-    } catch (error) {
-      toast.error('Error al enviar los datos. Intente nuevamente más tarde.')
-    }
-  }
+    const handleChange = (e) => {
+        setValues({
+          ...values,
+          [e.target.name]: e.target.value,
+        });
+      };
+    
+      const editSubmit = async (e) => {
+        e.preventDefault();
+        try {
+          console.log(values);
+          await axios.put("/users",{id:selected, fields:values});
+          getUsers();
+          toast.success("Usuario editado");
+          handleClose();
+        } catch (error) {
+          console.log({ error });
+          toast.error("Error al enviar los datos. Intente nuevamente más tarde.");
+        }
+      };
 
-  const getUserInfo = async ()=>{
-    try {
-      const {data} = await axios.get('/users/', selected);
-      setValues(data);
-    } catch (error) {
-      toast.error(ERROR_MESSAGE)
-    }
-  }
+      const getInfo = async () =>{
+        try {
+            const {data} = await axios.get("/users/"+selected);
+            console.log({data});
+            setValues(data.user);
+        } catch (error) {
+            toast.error(ERROR_MESSAGE);
+        }
+      }
 
-  useEffect(()=>{
-    getUserInfo()
-  },[])
+      useEffect(() => {
+        getInfo()
+      }, [])
+      
 
-  return ( 
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="userName">
-        <Form.Label>Nombre del usuario</Form.Label>
-        <Form.Control type="text" placeholder="Nombre" onChange={handleChange} value={values.name} name='name'/>
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="userEmail">
-        <Form.Label>Email</Form.Label>
-        <Form.Control type="email" placeholder="Correo" onChange={handleChange} value={values.email} name='email'/>
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="userPhone">
-        <Form.Label>Telefono</Form.Label>
-        <Form.Control type="text" placeholder="xxx-xxx-xxxx" onChange={handleChange} value={values.phone} name='phone'/>
-      </Form.Group>
-      {/* <Form.Group className="mb-3" controlId="userRole">
-        <Form.Label>Rol</Form.Label>
-        <Form.Control type="text" placeholder="admin, user, editor, etc... " onChange={handleChange} value={values.role} name='role'/>
-      </Form.Group> */}
-      <Button variant="success" type="submit" onClick={handleClose}>
-        Editar
-      </Button>
-    </Form>
-  );
+    return ( 
+        <Form onSubmit={editSubmit}>
+        <Form.Group className="mb-3" controlId="userName">
+          <Form.Label>Nombre</Form.Label>
+          <Form.Control
+            required
+            type="text"
+            placeholder="Ingrese su nombre completo"
+            onChange={handleChange}
+            value={values.name}
+            name="name"
+            pattern="[A-Za-z ]{2,50}"
+          />
+        </Form.Group>
+        
+        <Form.Group className="mb-3" controlId="userPhone">
+          <Form.Label>Numero de Telefono</Form.Label>
+          <Form.Control
+            required
+            type="text"
+            placeholder="Ingrese su numero de telefono sin el 0 y sin el 15"
+            onChange={handleChange}
+            value={values.phone}
+            name="phone"
+            minLength={10}
+            maxLength={10}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="userEmail">
+          <Form.Label>Correo Electronico</Form.Label>
+          <Form.Control
+            required
+            type="email"
+            placeholder="Pepe@gmail.com"
+            onChange={handleChange}
+            value={values.email}
+            name="email"
+            minLength={5}
+            maxLength={40}
+          />
+        </Form.Group>
+        {/* <Form.Group className="mb-3" controlId="userPassword">
+          <Form.Label>Contraseña</Form.Label>
+          <Form.Control
+            required
+            type="password"
+            placeholder="Contraseña"
+            onChange={handleChange}
+            value={values.password}
+            name="password"
+            minLength={6}
+            maxLength={20}
+          />
+        </Form.Group> */}
+        <Button type="submit" variant="success">
+          Editar Cuenta
+        </Button>
+      </Form>
+     );
 }
  
-export default EditForm
+export default EditForm;
