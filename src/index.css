@@ -12,3 +12,7 @@ body{
   padding: 0;
 }
 .container-admin{width: 100vw; height: 60vh;}
+
+.msg.psw{
+  font-size: xx-small;
+}
