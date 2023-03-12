@@ -9,6 +9,7 @@ import { useState } from "react";
 import axios from "../../config/axios";
 import { Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import ForgotPasswordModal from "../Forgot-password-modal/Forgot-password-modal";
 
 const FormLogin = () => {
   const navigate = useNavigate();
@@ -87,7 +88,7 @@ const FormLogin = () => {
           minLength={6}
           maxLength={20}
         />
-        <Form.Text className="text-muted">Olvidaste tu contraseña?</Form.Text>
+         <GeneralModal claseBoton="border-0 bg-transparent text-muted" buttonText="Olvidaste tu contraseña" modalTitle="Recuperar contraseña" boton={true} modalBody={<ForgotPasswordModal/>}/>
       </Form.Group>
       <div className="list-unstyled d-flex justify-content-sm-between justify-content-center flex-wrap">
         <div className="d-flex flex-column">
