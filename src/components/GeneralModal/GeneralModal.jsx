@@ -3,7 +3,7 @@ import { Button, Modal } from "react-bootstrap";
 import { PedidosContext } from "../../context/PedidosContext";
 
 const GeneralModal = ({
-  boton,
+  boton,claseBoton,
   buttonText,
   children,
   modalTitle,
@@ -21,11 +21,11 @@ const GeneralModal = ({
   return (
     <>
       {boton ? (
-        <Button variant={variant} onClick={handleShow} className="border">
+        <Button variant={variant} onClick={handleShow} className={claseBoton}>
           {buttonText}
         </Button>
       ) : (
-        <div onClick={handleShow}>{children}</div>
+        <p onClick={handleShow}>{buttonText}</p>
       )}
 
       <Modal
