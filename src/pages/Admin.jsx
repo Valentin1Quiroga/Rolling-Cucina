@@ -76,22 +76,26 @@ const Admin = () => {
               variant="success"
             />
 
-
-            {testUsuario.length > 1 && 
-            <GeneralModal
-              boton={true}
-              buttonText="Eliminar usuario"
-              modalTitle={"Eliminar usuario"}
-              modalBody={<DeleteConfirmation deleteFunction={deleteUser} />}
-              variant="danger"
-            />
-            }
+            {testUsuario.length > 1 && (
+              <GeneralModal
+                boton={true}
+                buttonText="Eliminar usuario"
+                modalTitle={"Eliminar usuario"}
+                modalBody={
+                  <DeleteConfirmation
+                    deleteFunction={deleteUser}
+                    elemento="usuario de nuestra base de datos?"
+                  />
+                }
+                variant="danger"
+              />
+            )}
 
             <GeneralModal
               boton={true}
               buttonText="Editar usuario"
               modalTitle={"Editar usuario"}
-              modalBody={<EditForm selected={selected} getUsers={getUsers}/>}
+              modalBody={<EditForm selected={selected} getUsers={getUsers} />}
               // modalBody={<EditUserForm selected={selected} getUsers={getUsers}/>}
               variant="warning"
             />

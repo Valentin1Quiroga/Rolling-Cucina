@@ -35,7 +35,7 @@ const Pedidos = () => {
     try {
       enviarPedido = {
         user: "63ecfd1e28e5149b24670ab1",
-        menu: [...listaPedidos, notas],
+        menu: [...listaPedidos, { notas: notas }],
         total: totalPrecios,
       };
       await axios.post("/pedidos", enviarPedido);
@@ -75,7 +75,11 @@ const Pedidos = () => {
           {listaPedidos.map((pedido, index) => (
             <Row className="fila-pedido" key={index}>
               <Col>
-                <img src={pedido.image} className="img-pedidos" alt="" />
+                <img
+                  src={pedido.image}
+                  className="img-pedidos img-thumbnail"
+                  alt=""
+                />
               </Col>
               <Col>{pedido.name}</Col>
               <Col lg={2}>
