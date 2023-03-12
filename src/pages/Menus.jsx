@@ -58,21 +58,28 @@ const Menus = () => {
               buttonText="Añadir menú"
               modalTitle={"Añadir menú"}
               // modalBody={<AddUserForm getUsers={getUsers}/>}
-              modalBody={<AddMenuForm getMenus={getMenus}/>}
+              modalBody={<AddMenuForm getMenus={getMenus} />}
               variant="success"
             />
             <GeneralModal
               boton={true}
               buttonText="Eliminar menú"
               modalTitle={"Eliminar menú"}
-              modalBody={<DeleteConfirmation deleteFunction={deleteMenu} />}
+              modalBody={
+                <DeleteConfirmation
+                  deleteFunction={deleteMenu}
+                  elemento="menú de la carta?"
+                />
+              }
               variant="danger"
             />
             <GeneralModal
               boton={true}
               buttonText="Editar menú"
               modalTitle={"Editar menú"}
-              modalBody={<EditMenuForm getMenus={getMenus} selected={selected}/>}
+              modalBody={
+                <EditMenuForm getMenus={getMenus} selected={selected} />
+              }
               // modalBody={<EditUserForm selected={selected} getUsers={getUsers}/>}
               variant="warning"
             />

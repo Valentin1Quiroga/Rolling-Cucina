@@ -46,16 +46,27 @@ const FormRegistro = ({ handleClose, getUsers }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    e.stopPropagation();
     try {
       const response = await axios.post("/users", values);
       toast.success("Usuario creado");
       console.log("user created");
-      if (!!response?.user) {
+      if (!!response?.data.user) {
         const { data } = await axios.post("/users/login", {
           email: values.email,
           password: values.password,
         });
         localStorage.setItem("token", data.token);
+        toast.success(`Benvenuto ${data.user.name}`, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
         navigate("/home");
         // await enviarMail()
       }
@@ -118,7 +129,7 @@ const FormRegistro = ({ handleClose, getUsers }) => {
           maxLength={20}
         />
       </Form.Group>
-      <Button variant="success" type="submit" >
+      <Button variant="success" type="submit">
         Crear Cuenta
       </Button>
     </Form>

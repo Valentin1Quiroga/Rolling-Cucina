@@ -1,13 +1,13 @@
 import { Button } from "react-bootstrap";
 
-const DeleteConfirmation = ({ handleClose, deleteFunction }) => {
+const DeleteConfirmation = ({ handleClose, deleteFunction, elemento }) => {
   const handleDelete = () => {
     deleteFunction();
     handleClose();
   };
   return (
     <>
-      <p> Estas seguro que deseas eliminar este elemento</p>
+      <p> Estas seguro que deseas eliminar este {elemento}</p>
       <Button variant="success" onClick={handleDelete} className="mx-2">
         {" "}
         Confirmar{" "}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Col, Container, Row, Spinner } from "react-bootstrap";
+import { Button, Col, Container, Row, Spinner, Table } from "react-bootstrap";
 
 import { toast, ToastContainer } from "react-toastify";
 
@@ -15,6 +15,7 @@ import FormLogin from "../components/FormLogin/FormLogin";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Nabvar";
 import { Link } from "react-router-dom";
+import PedidoDeUsuario from "../components/PedidoDeUsuario/PedidoDeUsuario";
 
 const CrudPedidos = () => {
   const [pedidos, loading, getPedidos] = useGet("/pedidos", "pedidos");
@@ -23,8 +24,8 @@ const CrudPedidos = () => {
     return {
       _id: pedido._id,
       user: pedido.user.name,
-      // menu: pedido.menu,
       status: pedido.status,
+      menu: pedido.menu,
       total: pedido.total,
     };
   });
@@ -40,6 +41,8 @@ const CrudPedidos = () => {
       }
     }
   };
+  console.log("aqui estan los test", testPedidos);
+  console.log("aqui estan los q vienen de DB", pedidos);
   return (
     <>
       <Navbar />
@@ -60,15 +63,21 @@ const CrudPedidos = () => {
               modalBody={FormLogin}
               variant="success"
             />
-            
-            {testPedidos.length>1 &&
-            <GeneralModal
-              boton={true}
-              buttonText="Eliminar Pedido"
-              modalTitle={"Eliminar Pedido"}
-              modalBody={<DeleteConfirmation deleteFunction={deletePedido} />}
-              variant="danger"
-            />}
+
+            {testPedidos.length > 1 && (
+              <GeneralModal
+                boton={true}
+                buttonText="Eliminar Pedido"
+                modalTitle={"Eliminar Pedido"}
+                modalBody={
+                  <DeleteConfirmation
+                    deleteFunction={deletePedido}
+                    elemento="pedido de la base de datos?"
+                  />
+                }
+                variant="danger"
+              />
+            )}
 
             <GeneralModal
               boton={true}
@@ -85,18 +94,59 @@ const CrudPedidos = () => {
             {loading ? (
               <Spinner />
             ) : (
-              <GeneralTable
-                headings={[
-                  "id",
-                  "Usuario que realizó el pedido",
-                  "menu",
-                  "estado",
-                  "total $",
-                ]}
-                items={testPedidos}
-                setSelected={setSelected}
-                selected={selected}
-              ></GeneralTable>
+              // <GeneralTable
+              //   headings={[
+              //     "id",
+              //     "Usuario que realizó el pedido",
+              //     "menu",
+              //     "estado",
+              //     "total $",
+              //   ]}
+              //   items={testPedidos}
+              //   setSelected={setSelected}
+              //   selected={selected}
+              // ></GeneralTable>
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Pedido</th>
+                    <th>Total</th>
+                    <th>Estado del pedido</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {testPedidos.length !== 0 &&
+                    testPedidos.map((pedido, index) => (
+                      <tr
+                        key={index}
+                        onClick={() => setSelected(pedido._id)}
+                        className={
+                          selected === pedido._id ? "row-selected" : ""
+                        }
+                      >
+                        <td>{pedido._id}</td>
+                        <td>{pedido.user}</td>
+                        <td>
+                          <GeneralModal
+                            boton={true}
+                            buttonText="Ver pedido"
+                            modalTitle={`Pedido de ${pedido.user}`}
+                            modalBody={<PedidoDeUsuario menu={pedido.menu} />}
+                            // modalBody={<EditUserForm selected={selected} getUsers={getUsers}/>}
+                          />
+                          {console.log("esto mandas", pedido.menu)}
+                        </td>
+                        <td>{pedido.total}</td>
+                        <td>{pedido.status}</td>
+                        {/* {Object.values(item).map((value, index) => (
+                <td key={index}>{value}</td>
+              ))} */}
+                      </tr>
+                    ))}
+                </tbody>
+              </Table>
             )}
           </Col>
         </Row>
