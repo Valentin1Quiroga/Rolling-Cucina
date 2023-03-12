@@ -11,6 +11,7 @@ const FormRegistro = ({ handleClose, getUsers }) => {
     phone: "",
     email: "",
     password: "",
+    repeat_password: "",
     admin: false,
   });
   let templateParams = {
@@ -46,25 +47,30 @@ const FormRegistro = ({ handleClose, getUsers }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post("/users", values);
-      toast.success("Usuario creado");
-      console.log("user created");
-      if (!!response?.user) {
-        const { data } = await axios.post("/users/login", {
-          email: values.email,
-          password: values.password,
-        });
-        localStorage.setItem("token", data.token);
-        navigate("/home");
-        // await enviarMail()
-      }
-    } catch (error) {
-      console.log({ error });
-      toast.error("Error al enviar los datos. Intente nuevamente más tarde.");
-    }
-  };
+    if (values.password==values.repeat_password){
 
+      try {
+        const response = await axios.post("/users", values);
+        toast.success("Usuario creado");
+        console.log("user created");
+        if (!!response?.user) {
+          const { data } = await axios.post("/users/login", {
+            email: values.email,
+            password: values.password,
+          });
+          localStorage.setItem("token", data.token);
+          navigate("/home");
+          // await enviarMail()
+        }
+      } catch (error) {
+        console.log({ error });
+        toast.error("Error al enviar los datos. Intente nuevamente más tarde.");
+      }
+    } else {
+      toast.error("Las contraseñas son distintas")
+    }
+    };
+    
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="userName">
@@ -114,6 +120,19 @@ const FormRegistro = ({ handleClose, getUsers }) => {
           onChange={handleChange}
           value={values.password}
           name="password"
+          minLength={6}
+          maxLength={20}
+        />
+        </Form.Group>
+      <Form.Group className="mb-3" controlId="userRepeatPassword">
+        <Form.Label>Repetir Contraseña</Form.Label>
+        <Form.Control
+          required
+          type="password"
+          placeholder="Contraseña"
+          onChange={handleChange}
+          value={values.repeat_password}
+          name="repeat_password"
           minLength={6}
           maxLength={20}
         />
