@@ -17,7 +17,7 @@ import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Nabvar";
 import { Link } from "react-router-dom";
 import FormRegistro from "../components/FormRegistro/FormRegistro";
-import EditForm from "../components/EditForm/EditForm";
+
 
 const Admin = () => {
   const [users, loading, getUsers] = useGet("/users", "users");
