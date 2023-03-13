@@ -3,39 +3,38 @@ import { Button, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import axios from "../../config/axios";
 
-const AddForm = ({getUsers, handleClose}) => {
+const AddForm = ({ getUsers, handleClose }) => {
+  const [values, setValues] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    password: "",
+    admin: false,
+  });
 
-    const [values, setValues] = useState({
-        name: "",
-        phone: "",
-        email: "",
-        password: "",
-        admin: false
-      });
+  const handleChange = (e) => {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value,
+    });
+  };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      console.log(values);
+      await axios.post("/users", values);
+      getUsers();
+      toast.success("Usuario creado");
+      handleClose();
+    } catch (error) {
+      console.log({ error });
+      toast.error("Error al enviar los datos. Intente nuevamente más tarde.");
+    }
+  };
 
-    const handleChange = (e) => {
-        setValues({
-          ...values,
-          [e.target.name]: e.target.value,
-        });
-      };
-    
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-          console.log(values);
-          await axios.post("/users", values);
-          getUsers();
-          toast.success("Usuario creado");
-        } catch (error) {
-          console.log({ error });
-          toast.error("Error al enviar los datos. Intente nuevamente más tarde.");
-        }
-      };
-
-    return (
-        <Form onSubmit={handleSubmit}>
+  return (
+    <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="userName">
         <Form.Label>Nombre</Form.Label>
         <Form.Control
@@ -45,10 +44,10 @@ const AddForm = ({getUsers, handleClose}) => {
           onChange={handleChange}
           value={values.name}
           name="name"
-          pattern="[A-Za-z]{2,50}"
+          pattern="[A-Za-z ]{2,50}"
         />
       </Form.Group>
-      
+
       <Form.Group className="mb-3" controlId="userPhone">
         <Form.Label>Numero de Telefono</Form.Label>
         <Form.Control
@@ -89,17 +88,22 @@ const AddForm = ({getUsers, handleClose}) => {
         />
       </Form.Group>
       <Form.Label>Rol</Form.Label>
-      <Form.Select className="mb-3" aria-label="Rol del nuevo usuario" name="admin" onChange={handleChange}>
-      <option>Seleccione</option>
+      <Form.Select
+        className="mb-3"
+        aria-label="Rol del nuevo usuario"
+        name="admin"
+        onChange={handleChange}
+      >
+        <option>Seleccione</option>
         <option value={true}>Administrador</option>
         <option value={false}>Usuario común</option>
-    </Form.Select>
+      </Form.Select>
 
-      <Button type="submit" onClick={handleClose} variant="success">
+      <Button type="submit" variant="success">
         Crear Cuenta
       </Button>
-
     </Form>
-)}
+  );
+};
 
 export default AddForm;

@@ -61,18 +61,20 @@ const Menus = () => {
               modalBody={<AddMenuForm getMenus={getMenus} />}
               variant="success"
             />
-            <GeneralModal
-              boton={true}
-              buttonText="Eliminar menú"
-              modalTitle={"Eliminar menú"}
-              modalBody={
-                <DeleteConfirmation
-                  deleteFunction={deleteMenu}
-                  elemento="menú de la carta?"
-                />
-              }
-              variant="danger"
-            />
+            {testMenu.length > 1 && (
+              <GeneralModal
+                boton={true}
+                buttonText="Eliminar menú"
+                modalTitle={"Eliminar menú"}
+                modalBody={
+                  <DeleteConfirmation
+                    deleteFunction={deleteMenu}
+                    elemento="menú de la carta?"
+                  />
+                }
+                variant="danger"
+              />
+            )}
             <GeneralModal
               boton={true}
               buttonText="Editar menú"
@@ -92,12 +94,12 @@ const Menus = () => {
             ) : (
               <GeneralTable
                 headings={[
-                  "id",
-                  "nombre",
-                  "descripción",
-                  "categoria",
-                  "precio",
-                  "imagen",
+                  "Id",
+                  "Nombre ",
+                  "Descripción",
+                  "Categoria",
+                  "Precio",
+                  "URL de la imagen",
                 ]}
                 items={testMenu}
                 setSelected={setSelected}
