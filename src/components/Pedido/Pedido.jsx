@@ -96,10 +96,15 @@ const Pedidos = () => {
                     <Button
                       className="mx-1 btn-sm botones-cantidad"
                       variant="success"
+                      onClick={() => handleAumentar}
                     >
                       +
                     </Button>
-                    <Button variant="danger " className="btn-sm">
+                    <Button
+                      variant="danger "
+                      className="btn-sm"
+                      onClick={() => handleRestar}
+                    >
                       -
                     </Button>
                   </>
@@ -107,6 +112,7 @@ const Pedidos = () => {
                   <Button
                     className="mx-3 btn-sm botones-cantidad"
                     variant="success"
+                    onClick={() => handleAumentar}
                   >
                     +
                   </Button>
