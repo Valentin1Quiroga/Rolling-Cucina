@@ -24,7 +24,7 @@ const Pedidos = () => {
     `/pedidos/userPedido`,
     "pedidos"
   );
-  console.log();
+  console.log(userPedido);
   const totalPrecios = listaPedidos.reduce((total, pedido) => {
     return total + pedido.totalPrice;
   }, 0);
