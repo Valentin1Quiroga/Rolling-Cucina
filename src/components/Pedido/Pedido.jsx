@@ -24,7 +24,7 @@ const Pedidos = () => {
     `/pedidos/userPedido`,
     "pedidos"
   );
-  console.log(userPedido);
+  console.log();
   const totalPrecios = listaPedidos.reduce((total, pedido) => {
     return total + pedido.totalPrice;
   }, 0);
@@ -63,46 +63,66 @@ const Pedidos = () => {
       <h1>Pedidos</h1>
       {loading ? (
         <Spinner />
+      ) : userPedido.length !== 0 ? (
+        <h3>Su pedido esta siendo preparado</h3>
       ) : listaPedidos.length !== 0 ? (
         <Container>
-          <Row>
-            <Col>IMAGEN</Col>
-            <Col>NOMBRE</Col>
-            <Col>CANTIDAD</Col>
-            <Col>TOTAL</Col>
-            <Col>CANCELAR MENU</Col>
+          <Row className="titulo">
+            <Col xs={2}>IMAGEN</Col>
+            <Col xs={2}>NOMBRE</Col>
+            <Col xs={4} className="text-center">
+              CANTIDAD
+            </Col>
+            <Col xs={2}>TOTAL</Col>
+            <Col xs={2}>CANCELAR MENU</Col>
           </Row>
           {listaPedidos.map((pedido, index) => (
-            <Row className="fila-pedido" key={index}>
-              <Col>
+            <Row className="fila-pedido border" key={index}>
+              <Col xs={6} sm={2}>
                 <img
                   src={pedido.image}
                   className="img-pedidos img-thumbnail"
                   alt=""
                 />
               </Col>
-              <Col>{pedido.name}</Col>
-              <Col lg={2}>
+              <Col xs={6} sm={2} className="text-start nombre-menu">
+                {pedido.name}
+              </Col>
+              <Col xs={6} sm={4} className="text-center nombre-menu">
+                <p className="texto-cel text-primary">Cantidad</p>
                 {pedido.units}
                 {pedido.units > 1 ? (
                   <>
-                    <Button className="mx-1" variant="success">
+                    <Button
+                      className="mx-1 btn-sm botones-cantidad"
+                      variant="success"
+                    >
                       +
                     </Button>
-                    <Button variant="danger">-</Button>
+                    <Button variant="danger " className="btn-sm">
+                      -
+                    </Button>
                   </>
                 ) : (
-                  <Button className="mx-3" variant="success">
+                  <Button
+                    className="mx-3 btn-sm botones-cantidad"
+                    variant="success"
+                  >
                     +
                   </Button>
                 )}
               </Col>
-              <Col>{pedido.totalPrice}</Col>
-              <Col>
+              <Col xs={3} sm={2}>
+                <p className="texto-cel text-primary">TOTAL</p>$
+                {pedido.totalPrice}
+              </Col>
+              <Col xs={3} sm={2}>
+                <p className="texto-cel text-primary">Cancelar</p>
                 <Button
-                  className="mx-3"
+                  // className="mx-3"
                   variant="danger"
                   id={pedido.name}
+                  className="btn-sm"
                   onClick={(e) => borrarMenu(e)}
                 >
                   ❌
@@ -110,8 +130,8 @@ const Pedidos = () => {
               </Col>
             </Row>
           ))}
-          <Row className="d-flex align-items-center">
-            <Col lg={4}>
+          <Row className="d-flex align-items-center justify-content-between">
+            <Col lg={6}>
               <div>
                 <FloatingLabel controlId="floatingTextarea2" label="Notas">
                   <Form.Control
@@ -122,12 +142,11 @@ const Pedidos = () => {
                 </FloatingLabel>
               </div>
             </Col>
-            <Col></Col>
-            <Col></Col>
-            <Col>
-              <h5>Subtotal:{totalPrecios}</h5>
+            {/* <Col></Col>
+            <Col></Col> */}
+            <Col lg={6}>
+              <h5 className=" mt-2 text-end">Subtotal:{totalPrecios}</h5>
             </Col>
-            <Col></Col>
           </Row>
           <div className="my-5 text-center">
             <Button variant="success" onClick={handleConfirm}>
