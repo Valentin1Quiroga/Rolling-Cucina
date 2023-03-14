@@ -10,6 +10,7 @@ const AddForm = ({getUsers, handleClose}) => {
         phone: "",
         email: "",
         password: "",
+        repeat_password: "",
         admin: false
       });
 
@@ -23,15 +24,21 @@ const AddForm = ({getUsers, handleClose}) => {
     
       const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-          console.log(values);
-          await axios.post("/users", values);
-          getUsers();
-          toast.success("Usuario creado");
-        } catch (error) {
-          console.log({ error });
-          toast.error("Error al enviar los datos. Intente nuevamente más tarde.");
-        }
+          if (values.password == values.repeat_password) {
+
+           try {
+                console.log(values);
+             await axios.post("/users", values);
+             getUsers();
+             toast.success("Usuario creado");
+           } catch (error) {
+             console.log({ error });
+             toast.error("Error al enviar los datos. Intente nuevamente más tarde.");
+           }
+          } else {
+            toast.error("Las contraseñas son distintas");
+          }
+
       };
 
     return (
@@ -51,19 +58,22 @@ const AddForm = ({getUsers, handleClose}) => {
       
       <Form.Group className="mb-3" controlId="userPhone">
         <Form.Label>Numero de Telefono</Form.Label>
+        <Form.Text className= "text-muted d-flex fst-italic msg-psw"> Ingrese su número de teléfono sin el 0 y sin el 15.</Form.Text>
         <Form.Control
           required
           type="text"
-          placeholder="Ingrese su numero de telefono sin el 0 y sin el 15"
+          placeholder="XXXX-XXXXXX"
           onChange={handleChange}
           value={values.phone}
           name="phone"
           minLength={10}
           maxLength={10}
+          pattern="[0-9]{10}"
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="userEmail">
         <Form.Label>Correo Electronico</Form.Label>
+        <Form.Text className= "text-muted d-flex fst-italic msg-psw"> Este correo será el usuario con el cual ingresará a la página </Form.Text>
         <Form.Control
           required
           type="email"
@@ -84,6 +94,19 @@ const AddForm = ({getUsers, handleClose}) => {
           onChange={handleChange}
           value={values.password}
           name="password"
+          minLength={6}
+          maxLength={20}
+        />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="userRepeatPassword">
+        <Form.Label>Repetir Contraseña</Form.Label>
+        <Form.Control
+          required
+          type="password"
+          placeholder="Repetí Contraseña"
+          onChange={handleChange}
+          value={values.repeat_password}
+          name="repeat_password"
           minLength={6}
           maxLength={20}
         />
