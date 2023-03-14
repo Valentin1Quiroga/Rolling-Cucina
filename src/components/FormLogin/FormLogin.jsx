@@ -29,7 +29,7 @@ const FormLogin = () => {
       e.preventDefault();
       const { data } = await axios.post("/users/login", values);
       localStorage.setItem("token", data.token);
-      localStorage.setItem("id", data.id);
+      localStorage.setItem("id", data.user._id);
       if (data.user.admin) {
         localStorage.setItem("admin", true);
       }
@@ -88,7 +88,13 @@ const FormLogin = () => {
           minLength={6}
           maxLength={20}
         />
-         <GeneralModal claseBoton="border-0 bg-transparent text-muted" buttonText="Olvidaste tu contraseña" modalTitle="Recuperar contraseña" boton={true} modalBody={<ForgotPasswordModal/>}/>
+        <GeneralModal
+          claseBoton="border-0 bg-transparent text-muted"
+          buttonText="Olvidaste tu contraseña"
+          modalTitle="Recuperar contraseña"
+          boton={true}
+          modalBody={<ForgotPasswordModal />}
+        />
       </Form.Group>
       <div className="list-unstyled d-flex justify-content-sm-between justify-content-center flex-wrap">
         <div className="d-flex flex-column">

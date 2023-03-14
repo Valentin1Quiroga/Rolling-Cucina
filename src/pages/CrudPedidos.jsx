@@ -16,6 +16,7 @@ import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Nabvar";
 import { Link } from "react-router-dom";
 import PedidoDeUsuario from "../components/PedidoDeUsuario/PedidoDeUsuario";
+import EditPedidoForm from "../components/EditForm/EditPedidoForm";
 
 const CrudPedidos = () => {
   const [pedidos, loading, getPedidos] = useGet("/pedidos", "pedidos");
@@ -83,7 +84,7 @@ const CrudPedidos = () => {
               boton={true}
               buttonText="Editar Pedido"
               modalTitle={"Editar Pedido"}
-              modalBody={FormLogin}
+              modalBody={<EditPedidoForm selected={selected} getPedidos={getPedidos}/>}
               // modalBody={<EditUserForm selected={selected} getUsers={getUsers}/>}
               variant="warning"
             />
