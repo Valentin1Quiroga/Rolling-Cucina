@@ -29,6 +29,7 @@ const AddMenuForm = ({getMenus, handleClose}) => {
           await axios.post("/menu", values);
           getMenus();
           toast.success("Menú creado");
+          handleClose();
         } catch (error) {
           console.log({ error });
           toast.error("Error al enviar los datos. Intente nuevamente más tarde.");
@@ -46,7 +47,9 @@ const AddMenuForm = ({getMenus, handleClose}) => {
             onChange={handleChange}
             value={values.name}
             name="name"
-            pattern="[A-Za-z]{2,50}"
+            pattern="[A-Za-z ]{3,35}"
+            minLength={3}
+            maxLength={35}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="description">
@@ -58,7 +61,9 @@ const AddMenuForm = ({getMenus, handleClose}) => {
             onChange={handleChange}
             value={values.description}
             name="description"
-            pattern="[A-Za-z\s]{2,300}"
+            pattern="[A-Za-z ]{5,120}"
+            minLength={5}
+            maxLength={120}
           />
         </Form.Group>
         
@@ -99,11 +104,11 @@ const AddMenuForm = ({getMenus, handleClose}) => {
             onChange={handleChange}
             value={values.image}
             name="image"
-            pattern="[A-Za-z]{2,100}"
+            
           />
         </Form.Group> 
 
-        <Button type="submit" onClick={handleClose} variant="success">
+        <Button type="submit" variant="success">
           Crear Menu
         </Button>
       </Form>

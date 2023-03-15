@@ -33,6 +33,7 @@ const Menus = () => {
     try {
       await axios.delete("/menu", { data: { id: selected } });
       getMenus();
+      toast.info("Menú eliminado")
     } catch (error) {
       if (!selected) {
         toast.error("Menu no seleccionado");
@@ -62,6 +63,7 @@ const Menus = () => {
               variant="success"
             />
             {testMenu.length > 1 && (
+              <div className="mx-1">
               <GeneralModal
                 boton={true}
                 buttonText="Eliminar menú"
@@ -74,6 +76,7 @@ const Menus = () => {
                 }
                 variant="danger"
               />
+              </div>
             )}
             <GeneralModal
               boton={true}
