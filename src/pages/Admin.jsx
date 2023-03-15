@@ -76,6 +76,7 @@ const Admin = () => {
             />
 
             {testUsuario.length > 1 && (
+              <div className="mx-1">
               <GeneralModal
                 boton={true}
                 buttonText="Eliminar usuario"
@@ -88,6 +89,7 @@ const Admin = () => {
                 }
                 variant="danger"
               />
+              </div>
             )}
 
             <GeneralModal
