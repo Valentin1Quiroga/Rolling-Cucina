@@ -79,22 +79,18 @@ const Pedidos = () => {
   };
   return (
     <>
-      <h1>Pedidos</h1>
+      <h1 className="text-center">Pedidos</h1>
+      <hr />
       {loading ? (
         <Spinner />
       ) : userPedido.length !== 0 ? (
-        <>
+        <div className="contenedor">
           <h3>Aqui podra ver en tiempo real el estado de su pedido:</h3>
           <p>
-            Su pedido esta: <strong> {estadoDelPedido}</strong>
+            Su pedido esta: <strong>... {estadoDelPedido}</strong>
           </p>
-        </>
-      ) : // <h3>
-      //   Aqui podra hacer el seguimiento de su pedido.
-      //   <p></p>
-      //   <strong> {estadoDelPedido}</strong>
-      // </h3>
-      listaPedidos.length !== 0 ? (
+        </div>
+      ) : listaPedidos.length !== 0 ? (
         <Container>
           <Row className="titulo">
             <Col xs={2}>IMAGEN</Col>
@@ -198,7 +194,7 @@ const Pedidos = () => {
       ) : (
         <Container
           fluid
-          className="d-flex  justify-content-center align-items-center text-center text-bg-danger my-5"
+          className="d-flex flex-column contenedor justify-content-center align-items-center text-center text-bg-danger my-5"
         >
           <h2>
             NO TIENES NINGUN PEDIDO GUARDADO! POR FAVOR VUELVE AL INICIO Y ELIGE
@@ -206,7 +202,7 @@ const Pedidos = () => {
           </h2>
           <Link
             to="/home"
-            className="text-decoration-none text-black border border-dark border-1"
+            className="text-decoration-none text-black  fw-bold fs-3 shadow-lg"
           >
             Volver <SlLogin />
           </Link>
