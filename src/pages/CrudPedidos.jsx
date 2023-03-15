@@ -42,8 +42,7 @@ const CrudPedidos = () => {
       }
     }
   };
-  console.log("aqui estan los test", testPedidos);
-  console.log("aqui estan los q vienen de DB", pedidos);
+
   return (
     <>
       <Navbar />
@@ -84,7 +83,9 @@ const CrudPedidos = () => {
               boton={true}
               buttonText="Editar Pedido"
               modalTitle={"Editar Pedido"}
-              modalBody={<EditPedidoForm selected={selected} getPedidos={getPedidos}/>}
+              modalBody={
+                <EditPedidoForm selected={selected} getPedidos={getPedidos} />
+              }
               // modalBody={<EditUserForm selected={selected} getUsers={getUsers}/>}
               variant="warning"
             />
@@ -137,7 +138,6 @@ const CrudPedidos = () => {
                             modalBody={<PedidoDeUsuario menu={pedido.menu} />}
                             // modalBody={<EditUserForm selected={selected} getUsers={getUsers}/>}
                           />
-                          {console.log("esto mandas", pedido.menu)}
                         </td>
                         <td>{pedido.total}</td>
                         <td>{pedido.status}</td>
