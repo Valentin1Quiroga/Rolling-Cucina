@@ -66,7 +66,8 @@ const CrudPedidos = () => {
             />
 
             {testPedidos.length > 1 && (
-              <GeneralModal
+              <GeneralModal 
+                gap={3}
                 boton={true}
                 buttonText="Eliminar Pedido"
                 modalTitle={"Eliminar Pedido"}
