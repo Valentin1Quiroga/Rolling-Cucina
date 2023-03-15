@@ -27,14 +27,12 @@ const Pedidos = () => {
   const [notas, setNotas] = useState("");
   const [usuario] = useGet("/users/auth", "user");
   const usuarioPedidor = usuario._id;
-  console.log("Pedido del usuario", userPedido);
   const ultimoPedido = userPedido[userPedido.length - 1];
   let estadoDelPedido;
   if (userPedido.length !== 0) {
     estadoDelPedido = ultimoPedido.status;
   }
 
-  console.log(ultimoPedido, "el ultimo pedido");
   const totalPrecios = listaPedidos.reduce((total, pedido) => {
     return total + pedido.totalPrice;
   }, 0);
@@ -52,7 +50,6 @@ const Pedidos = () => {
         menu: [...listaPedidos, { notas: notas }],
         total: totalPrecios,
       };
-      console.log("Esto manda como pedido", enviarPedido);
       await axios.post("/pedidos", enviarPedido);
       toast.success("Su pedido se realizó con éxito. Pronto estará listo.");
       navigate("/home");
@@ -75,6 +72,7 @@ const Pedidos = () => {
     const listaUpdated = [...listaPedidos];
     const objeto = listaUpdated[index];
     objeto.units += valor;
+    objeto.totalPrice = objeto.units * objeto.price;
     setListaPedidos(listaUpdated);
   };
   return (
