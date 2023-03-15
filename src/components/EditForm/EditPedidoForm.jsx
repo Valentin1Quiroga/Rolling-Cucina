@@ -4,55 +4,49 @@ import { toast } from "react-toastify";
 import axios from "../../config/axios";
 import { ERROR_MESSAGE } from "../../constants";
 
-const EditPedidoForm = ({getPedidos, selected, handleClose}) => {
+const EditPedidoForm = ({ getPedidos, selected, handleClose }) => {
+  const [values, setValues] = useState({
+    // user: "",
+    // menu: "",
+    // total: "",
+    status: "",
+  });
 
-    const [values, setValues] = useState({
-        // user: "",
-        // menu: "",
-        // total: "",
-        status: ""
-      });
+  const handleChange = (e) => {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value,
+    });
+  };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put("/pedidos", { id: selected, fields: values });
+      getPedidos();
+      toast.success("Pedido editado");
+      handleClose();
+    } catch (error) {
+      toast.error("Error al enviar los datos. Intente nuevamente más tarde.");
+    }
+  };
 
-    const handleChange = (e) => {
-        setValues({
-          ...values,
-          [e.target.name]: e.target.value,
-        });
-      };
-    
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            console.log(values);
-            await axios.put("/pedidos",{id:selected, fields:values});
-            getPedidos();
-            toast.success("Pedido editado");
-            handleClose();
-          } catch (error) {
-            console.log({ error });
-            toast.error("Error al enviar los datos. Intente nuevamente más tarde.");
-          }
-      };
+  const getInfo = async () => {
+    try {
+      const { data } = await axios.get("/pedidos/" + selected);
+      setValues(data.pedido);
+    } catch (error) {
+      toast.error(ERROR_MESSAGE);
+    }
+  };
 
-      const getInfo = async () =>{
-        try {
-            const {data} = await axios.get("/pedidos/"+selected);
-            console.log({data});
-            setValues(data.pedido);
-        } catch (error) {
-            toast.error(ERROR_MESSAGE);
-        }
-      }
+  useEffect(() => {
+    getInfo();
+  }, []);
 
-      useEffect(() => {
-        getInfo()
-      }, [])
-    
-
-    return ( 
-        <Form onSubmit={handleSubmit}>
-        {/* <Form.Group className="mb-3" controlId="user">
+  return (
+    <Form onSubmit={handleSubmit}>
+      {/* <Form.Group className="mb-3" controlId="user">
           <Form.Label>Usuario</Form.Label>
           <Form.Control
             required
@@ -91,23 +85,25 @@ const EditPedidoForm = ({getPedidos, selected, handleClose}) => {
           />
         </Form.Group> */}
 
-        <Form.Label>Estado del Pedido</Form.Label>
-         <Form.Select className="mb-3" aria-label="Categoria a la que pertenece el menú" name="status" onChange={handleChange}>
+      <Form.Label>Estado del Pedido</Form.Label>
+      <Form.Select
+        className="mb-3"
+        aria-label="Categoria a la que pertenece el menú"
+        name="status"
+        onChange={handleChange}
+      >
         <option>Seleccione</option>
         <option value="pendiente">Pendiente</option>
         <option value="preparando">Preparando</option>
         <option value="listo para entrega">Listo para entrega</option>
         <option value="entregado">Entregado</option>
-    </Form.Select>
+      </Form.Select>
 
-        
+      <Button type="submit" onClick={handleClose} variant="success">
+        Editar Pedido
+      </Button>
+    </Form>
+  );
+};
 
-
-        <Button type="submit" onClick={handleClose} variant="success">
-          Editar Pedido
-        </Button>
-      </Form>
-     );
-}
- 
 export default EditPedidoForm;
