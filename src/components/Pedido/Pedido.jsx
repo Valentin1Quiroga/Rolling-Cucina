@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import {
   Button,
   Col,
@@ -38,16 +38,13 @@ const Pedidos = () => {
   const totalPrecios = listaPedidos.reduce((total, pedido) => {
     return total + pedido.totalPrice;
   }, 0);
-  // // hacer use effect
-  // useEffect(() => {
-  //   getUserPedido();
-  // }, []);
+
   const handleNotas = (e) => {
     setNotas(e.target.value);
   };
 
   let enviarPedido;
-  // let notas = "la quiero asi nomas";
+
   const handleConfirm = async () => {
     try {
       enviarPedido = {
@@ -74,7 +71,12 @@ const Pedidos = () => {
     setPedidos([]);
     navigate("/home");
   };
-
+  const actualizarUnidades = (index, valor) => {
+    const listaUpdated = [...listaPedidos];
+    const objeto = listaUpdated[index];
+    objeto.units += valor;
+    setListaPedidos(listaUpdated);
+  };
   return (
     <>
       <h1>Pedidos</h1>
@@ -123,14 +125,14 @@ const Pedidos = () => {
                     <Button
                       className="mx-1 btn-sm botones-cantidad"
                       variant="success"
-                      onClick={() => handleAumentar}
+                      onClick={() => actualizarUnidades(index, 1)}
                     >
                       +
                     </Button>
                     <Button
                       variant="danger "
                       className="btn-sm"
-                      onClick={() => handleRestar}
+                      onClick={() => actualizarUnidades(index, -1)}
                     >
                       -
                     </Button>
@@ -139,7 +141,7 @@ const Pedidos = () => {
                   <Button
                     className="mx-3 btn-sm botones-cantidad"
                     variant="success"
-                    onClick={() => handleAumentar}
+                    onClick={() => actualizarUnidades(index, 1)}
                   >
                     +
                   </Button>
