@@ -24,20 +24,35 @@ const Pedidos = () => {
     `/pedidos/userPedido`,
     "pedidos"
   );
-  console.log(userPedido);
+  const [notas, setNotas] = useState("");
+  const [usuario] = useGet("/users/auth", "user");
+  const usuarioPedidor = usuario._id;
+  console.log("Pedido del usuario", userPedido);
+  const ultimoPedido = userPedido[userPedido.length - 1];
+  let estadoDelPedido;
+  if (userPedido.length !== 0) {
+    estadoDelPedido = ultimoPedido.status;
+  }
+
+  console.log(ultimoPedido, "el ultimo pedido");
   const totalPrecios = listaPedidos.reduce((total, pedido) => {
     return total + pedido.totalPrice;
   }, 0);
 
+  const handleNotas = (e) => {
+    setNotas(e.target.value);
+  };
+
   let enviarPedido;
-  let notas = "la quiero asi nomas";
+
   const handleConfirm = async () => {
     try {
       enviarPedido = {
-        user: "63ecfd1e28e5149b24670ab1",
+        user: usuarioPedidor,
         menu: [...listaPedidos, { notas: notas }],
         total: totalPrecios,
       };
+      console.log("Esto manda como pedido", enviarPedido);
       await axios.post("/pedidos", enviarPedido);
       toast.success("Su pedido se realizó con éxito. Pronto estará listo.");
       navigate("/home");
@@ -49,7 +64,6 @@ const Pedidos = () => {
   };
   const borrarMenu = (e) => {
     const nuevaLista = pedidos.filter((pedido) => pedido.name !== e.target.id);
-    console.log(nuevaLista);
     setPedidos(nuevaLista);
     setListaPedidos(nuevaLista);
   };
@@ -57,14 +71,25 @@ const Pedidos = () => {
     setPedidos([]);
     navigate("/home");
   };
-
+  const actualizarUnidades = (index, valor) => {
+    const listaUpdated = [...listaPedidos];
+    const objeto = listaUpdated[index];
+    objeto.units += valor;
+    setListaPedidos(listaUpdated);
+  };
   return (
     <>
-      <h1>Pedidos</h1>
+      <h1 className="text-center">Pedidos</h1>
+      <hr />
       {loading ? (
         <Spinner />
       ) : userPedido.length !== 0 ? (
-        <h3>Su pedido esta siendo preparado</h3>
+        <div className="contenedor">
+          <h3>Aqui podra ver en tiempo real el estado de su pedido:</h3>
+          <p>
+            Su pedido esta: <strong>... {estadoDelPedido}</strong>
+          </p>
+        </div>
       ) : listaPedidos.length !== 0 ? (
         <Container>
           <Row className="titulo">
@@ -96,14 +121,14 @@ const Pedidos = () => {
                     <Button
                       className="mx-1 btn-sm botones-cantidad"
                       variant="success"
-                      onClick={() => handleAumentar}
+                      onClick={() => actualizarUnidades(index, 1)}
                     >
                       +
                     </Button>
                     <Button
                       variant="danger "
                       className="btn-sm"
-                      onClick={() => handleRestar}
+                      onClick={() => actualizarUnidades(index, -1)}
                     >
                       -
                     </Button>
@@ -112,7 +137,7 @@ const Pedidos = () => {
                   <Button
                     className="mx-3 btn-sm botones-cantidad"
                     variant="success"
-                    onClick={() => handleAumentar}
+                    onClick={() => actualizarUnidades(index, 1)}
                   >
                     +
                   </Button>
@@ -143,6 +168,9 @@ const Pedidos = () => {
                   <Form.Control
                     as="textarea"
                     placeholder="Deja tus notas aquí"
+                    name="notas"
+                    maxLength={120}
+                    onChange={handleNotas}
                     // style={{ height: '100px' }}
                   />
                 </FloatingLabel>
@@ -166,7 +194,7 @@ const Pedidos = () => {
       ) : (
         <Container
           fluid
-          className="d-flex  justify-content-center align-items-center text-center text-bg-danger my-5"
+          className="d-flex flex-column contenedor justify-content-center align-items-center text-center text-bg-danger my-5"
         >
           <h2>
             NO TIENES NINGUN PEDIDO GUARDADO! POR FAVOR VUELVE AL INICIO Y ELIGE
@@ -174,7 +202,7 @@ const Pedidos = () => {
           </h2>
           <Link
             to="/home"
-            className="text-decoration-none text-black border border-dark border-1"
+            className="text-decoration-none text-black  fw-bold fs-3 shadow-lg"
           >
             Volver <SlLogin />
           </Link>

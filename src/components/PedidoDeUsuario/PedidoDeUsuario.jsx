@@ -1,8 +1,7 @@
 const PedidoDeUsuario = ({ menu }) => {
-  console.log("esto recibe", menu);
   const pedidos = menu.filter((menu) => Object.keys(menu).length > 1);
   const notas = menu.filter((menu) => Object.keys(menu).length <= 1);
-  console.log("esto recibe COMO NOTAS", notas);
+
   return (
     <>
       {pedidos.map((pedido, index) => (

@@ -34,3 +34,6 @@ body::-webkit-scrollbar-thumb {
   height: 50px;
   border-radius: 5px;
 }
+.contenedor {
+  height: 75vh;
+}
