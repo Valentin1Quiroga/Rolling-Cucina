@@ -12,26 +12,34 @@ import { ERROR_MESSAGE } from "../constants";
 import useGet from "../hooks/useGet";
 import FormLogin from "../components/FormLogin/FormLogin";
 import AddForm from "../components/AddForm/AddForm";
+import EditForm from "../components/EditForm/EditForm";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Nabvar";
 import { Link } from "react-router-dom";
+import FormRegistro from "../components/FormRegistro/FormRegistro";
 
 const Admin = () => {
   const [users, loading, getUsers] = useGet("/users", "users");
   const [selected, setSelected] = useState(undefined);
   const testUsuario = users.map((users) => {
+    let administrador;
+    if (users.admin) {
+      administrador = "Es admin";
+    } else {
+      administrador = "No es admin";
+    }
     return {
       _id: users._id,
       name: users.name,
       phone: users.phone,
       email: users.email,
-      admin: users.admin,
+      admin: administrador,
     };
   });
 
-// useEffect( ()=>{
-//   getUsers()
-// }, [users])
+  // useEffect( ()=>{
+  //   getUsers()
+  // }, [users])
 
   const deleteUser = async () => {
     try {
@@ -63,21 +71,32 @@ const Admin = () => {
               buttonText="Añadir usuario"
               modalTitle={"Añadir usuario"}
               // modalBody={<AddUserForm getUsers={getUsers}/>}
-              modalBody={<AddForm getUsers={getUsers}/>}
+              modalBody={<AddForm getUsers={getUsers} />}
               variant="success"
             />
-            <GeneralModal
-              boton={true}
-              buttonText="Eliminar usuario"
-              modalTitle={"Eliminar usuario"}
-              modalBody={<DeleteConfirmation deleteFunction={deleteUser} />}
-              variant="danger"
-            />
+
+            {testUsuario.length > 1 && (
+              <div className="mx-1">
+              <GeneralModal
+                boton={true}
+                buttonText="Eliminar usuario"
+                modalTitle={"Eliminar usuario"}
+                modalBody={
+                  <DeleteConfirmation
+                    deleteFunction={deleteUser}
+                    elemento="usuario de nuestra base de datos?"
+                  />
+                }
+                variant="danger"
+              />
+              </div>
+            )}
+
             <GeneralModal
               boton={true}
               buttonText="Editar usuario"
               modalTitle={"Editar usuario"}
-              modalBody={FormLogin}
+              modalBody={<EditForm selected={selected} getUsers={getUsers} />}
               // modalBody={<EditUserForm selected={selected} getUsers={getUsers}/>}
               variant="warning"
             />
@@ -89,7 +108,7 @@ const Admin = () => {
               <Spinner />
             ) : (
               <GeneralTable
-                headings={["id", "Nombre", "Teléfono", "email", "Admin"]}
+                headings={["Id", "Nombre", "Teléfono", "Correo", "Admin"]}
                 items={testUsuario}
                 setSelected={setSelected}
                 selected={selected}

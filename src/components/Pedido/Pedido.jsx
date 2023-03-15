@@ -7,35 +7,47 @@ import {
   Form,
   Row,
 } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { SlLogin } from "react-icons/sl";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "../../config/axios";
 import { PedidosContext } from "../../context/PedidosContext";
+import useGet from "../../hooks/useGet";
+import Spinner from "../Spinner/Spinner";
 import "./Pedido.css";
 
 const Pedidos = () => {
   const navigate = useNavigate();
-  const {
-    singlePedido,
-    setSinglePedido,
-    pedidos,
-    setPedidos,
-    aumentarCantidad,
-    restarCantidad,
-  } = useContext(PedidosContext);
+  const { pedidos, setPedidos } = useContext(PedidosContext);
   const [listaPedidos, setListaPedidos] = useState(pedidos);
+  const [userPedido, loading, getUserPedido] = useGet(
+    `/pedidos/userPedido`,
+    "pedidos"
+  );
+  const [notas, setNotas] = useState("");
+  const [usuario] = useGet("/users/auth", "user");
+  const usuarioPedidor = usuario._id;
+  const ultimoPedido = userPedido[userPedido.length - 1];
+  let estadoDelPedido;
+  if (userPedido.length !== 0) {
+    estadoDelPedido = ultimoPedido.status;
+  }
 
   const totalPrecios = listaPedidos.reduce((total, pedido) => {
     return total + pedido.totalPrice;
   }, 0);
 
+  const handleNotas = (e) => {
+    setNotas(e.target.value);
+  };
+
   let enviarPedido;
-  let notas = "la quiero asi nomas";
+
   const handleConfirm = async () => {
     try {
       enviarPedido = {
-        user: "63ecfd1e28e5149b24670ab1",
-        menu: [...listaPedidos, notas],
+        user: usuarioPedidor,
+        menu: [...listaPedidos, { notas: notas }],
         total: totalPrecios,
       };
       await axios.post("/pedidos", enviarPedido);
@@ -49,7 +61,6 @@ const Pedidos = () => {
   };
   const borrarMenu = (e) => {
     const nuevaLista = pedidos.filter((pedido) => pedido.name !== e.target.id);
-    console.log(nuevaLista);
     setPedidos(nuevaLista);
     setListaPedidos(nuevaLista);
   };
@@ -57,81 +68,144 @@ const Pedidos = () => {
     setPedidos([]);
     navigate("/home");
   };
-  let cantidad = 2;
+  const actualizarUnidades = (index, valor) => {
+    const listaUpdated = [...listaPedidos];
+    const objeto = listaUpdated[index];
+    objeto.units += valor;
+    objeto.totalPrice = objeto.units * objeto.price;
+    setListaPedidos(listaUpdated);
+  };
   return (
     <>
-      <h1>Pedidos</h1>
-      <Container>
-        <Row>
-          <Col>IMAGEN</Col>
-          <Col>NOMBRE</Col>
-          <Col>CANTIDAD</Col>
-          <Col>TOTAL</Col>
-          <Col>CANCELAR MENU</Col>
-        </Row>
-        {listaPedidos.map((pedido, index) => (
-          <Row className="fila-pedido" key={index}>
-            <Col>Imagen</Col>
-            <Col>{pedido.name}</Col>
-            <Col lg={2}>
-              {pedido.units}
-              {/* {pedido.units > 1 ? (
-                <>
-                  <Button className="mx-1" variant="success">
+      <h1 className="text-center">Pedidos</h1>
+      <hr />
+      {loading ? (
+        <Spinner />
+      ) : userPedido.length !== 0 ? (
+        <div className="contenedor">
+          <h3>Aqui podra ver en tiempo real el estado de su pedido:</h3>
+          <p>
+            Su pedido esta: <strong>... {estadoDelPedido}</strong>
+          </p>
+        </div>
+      ) : listaPedidos.length !== 0 ? (
+        <Container>
+          <Row className="titulo">
+            <Col xs={2}>IMAGEN</Col>
+            <Col xs={2}>NOMBRE</Col>
+            <Col xs={4} className="text-center">
+              CANTIDAD
+            </Col>
+            <Col xs={2}>TOTAL</Col>
+            <Col xs={2}>CANCELAR MENU</Col>
+          </Row>
+          {listaPedidos.map((pedido, index) => (
+            <Row className="fila-pedido border" key={index}>
+              <Col xs={6} sm={2}>
+                <img
+                  src={pedido.image}
+                  className="img-pedidos img-thumbnail"
+                  alt=""
+                />
+              </Col>
+              <Col xs={6} sm={2} className="text-start nombre-menu">
+                {pedido.name}
+              </Col>
+              <Col xs={6} sm={4} className="text-center nombre-menu">
+                <p className="texto-cel text-primary">Cantidad</p>
+                {pedido.units}
+                {pedido.units > 1 ? (
+                  <>
+                    <Button
+                      className="mx-1 btn-sm botones-cantidad"
+                      variant="success"
+                      onClick={() => actualizarUnidades(index, 1)}
+                    >
+                      +
+                    </Button>
+                    <Button
+                      variant="danger "
+                      className="btn-sm"
+                      onClick={() => actualizarUnidades(index, -1)}
+                    >
+                      -
+                    </Button>
+                  </>
+                ) : (
+                  <Button
+                    className="mx-3 btn-sm botones-cantidad"
+                    variant="success"
+                    onClick={() => actualizarUnidades(index, 1)}
+                  >
                     +
                   </Button>
-                  <Button variant="danger">-</Button>
-                </>
-              ) : (
-                <Button className="mx-3" variant="success">
-                  +
+                )}
+              </Col>
+              <Col xs={3} sm={2}>
+                <p className="texto-cel text-primary">TOTAL</p>$
+                {pedido.totalPrice}
+              </Col>
+              <Col xs={3} sm={2}>
+                <p className="texto-cel text-primary">Cancelar</p>
+                <Button
+                  // className="mx-3"
+                  variant="danger"
+                  id={pedido.name}
+                  className="btn-sm"
+                  onClick={(e) => borrarMenu(e)}
+                >
+                  ❌
                 </Button>
-              )} */}
+              </Col>
+            </Row>
+          ))}
+          <Row className="d-flex align-items-center justify-content-between">
+            <Col lg={6}>
+              <div>
+                <FloatingLabel controlId="floatingTextarea2" label="Notas">
+                  <Form.Control
+                    as="textarea"
+                    placeholder="Deja tus notas aquí"
+                    name="notas"
+                    maxLength={120}
+                    onChange={handleNotas}
+                    // style={{ height: '100px' }}
+                  />
+                </FloatingLabel>
+              </div>
             </Col>
-            <Col>{pedido.totalPrice}</Col>
-            <Col>
-              <Button
-                className="mx-3"
-                variant="danger"
-                id={pedido.name}
-                onClick={(e) => borrarMenu(e)}
-              >
-                ❌
-              </Button>
+            {/* <Col></Col>
+            <Col></Col> */}
+            <Col lg={6}>
+              <h5 className=" mt-2 text-end">Subtotal:{totalPrecios}</h5>
             </Col>
           </Row>
-        ))}
-        <Row className="d-flex align-items-center">
-          <Col lg={4}>
-            <div>
-              <FloatingLabel controlId="floatingTextarea2" label="Notas">
-                <Form.Control
-                  as="textarea"
-                  placeholder="Deja tus notas aquí"
-                  // style={{ height: '100px' }}
-                />
-              </FloatingLabel>
-            </div>
-          </Col>
-          <Col></Col>
-          <Col></Col>
-          <Col>
-            <h5>Subtotal:{totalPrecios}</h5>
-          </Col>
-          <Col></Col>
-        </Row>
-
-        {/* <Button variant="success" onClick={handleConfirm}>Confirmar Pedido</Button>
-            <Button className="mx-3" onClick={handleCancel} variant="danger">Cancelar Pedido</Button> */}
-        <div className="my-5 text-center">
-          <Button variant="success" onClick={handleConfirm}>
-            Confirmar Pedido
-          </Button>
-          <Button className="mx-3" variant="danger" onClick={handleCancel}>
-            Cancelar Pedido
-          </Button>
-        </div>
-      </Container>
+          <div className="my-5 text-center">
+            <Button variant="success" onClick={handleConfirm}>
+              Confirmar Pedido
+            </Button>
+            <Button className="mx-3" variant="danger" onClick={handleCancel}>
+              Cancelar Pedido
+            </Button>
+          </div>
+        </Container>
+      ) : (
+        <Container
+          fluid
+          className="d-flex flex-column contenedor justify-content-center align-items-center text-center text-bg-danger my-5"
+        >
+          <h2>
+            NO TIENES NINGUN PEDIDO GUARDADO! POR FAVOR VUELVE AL INICIO Y ELIGE
+            UN MENU DE NUESTRA CARTA.
+          </h2>
+          <Link
+            to="/home"
+            className="text-decoration-none text-black  fw-bold fs-3 shadow-lg"
+          >
+            Volver <SlLogin />
+          </Link>
+        </Container>
+      )}
     </>
   );
 };

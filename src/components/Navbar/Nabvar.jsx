@@ -8,13 +8,14 @@ function CollapsibleExample() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("admin");
+    localStorage.removeItem("id");
     navigate("/login");
   };
   const admin = localStorage.getItem("admin");
   return (
     <Navbar fixed="top" collapseOnSelect expand="md" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="/home">Rolling Cucina</Navbar.Brand>
+        <Link className = "brand-name" to="/home">Rolling Cucina</Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav">
           <Boton />
         </Navbar.Toggle>

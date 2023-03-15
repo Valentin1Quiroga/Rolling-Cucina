@@ -12,6 +12,9 @@ import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Nabvar";
 import { Link } from "react-router-dom";
 import { IoMdArrowBack } from "react-icons/io";
+import AddMenuForm from "../components/AddMenuForm/AddMenuForm";
+import EditForm from "../components/EditForm/EditForm";
+import EditMenuForm from "../components/EditForm/EditMenuForm";
 
 const Menus = () => {
   const [menus, loading, getMenus] = useGet("/menu", "menus");
@@ -28,8 +31,9 @@ const Menus = () => {
   });
   const deleteMenu = async () => {
     try {
-      await axios.delete("/menu" + selected);
+      await axios.delete("/menu", { data: { id: selected } });
       getMenus();
+      toast.info("Menú eliminado")
     } catch (error) {
       if (!selected) {
         toast.error("Menu no seleccionado");
@@ -55,21 +59,32 @@ const Menus = () => {
               buttonText="Añadir menú"
               modalTitle={"Añadir menú"}
               // modalBody={<AddUserForm getUsers={getUsers}/>}
-              modalBody={FormLogin}
+              modalBody={<AddMenuForm getMenus={getMenus} />}
               variant="success"
             />
-            <GeneralModal
-              boton={true}
-              buttonText="Eliminar menú"
-              modalTitle={"Eliminar menú"}
-              modalBody={<DeleteConfirmation deleteFunction={deleteMenu} />}
-              variant="danger"
-            />
+            {testMenu.length > 1 && (
+              <div className="mx-1">
+              <GeneralModal
+                boton={true}
+                buttonText="Eliminar menú"
+                modalTitle={"Eliminar menú"}
+                modalBody={
+                  <DeleteConfirmation
+                    deleteFunction={deleteMenu}
+                    elemento="menú de la carta?"
+                  />
+                }
+                variant="danger"
+              />
+              </div>
+            )}
             <GeneralModal
               boton={true}
               buttonText="Editar menú"
               modalTitle={"Editar menú"}
-              modalBody={FormLogin}
+              modalBody={
+                <EditMenuForm getMenus={getMenus} selected={selected} />
+              }
               // modalBody={<EditUserForm selected={selected} getUsers={getUsers}/>}
               variant="warning"
             />
@@ -82,12 +97,12 @@ const Menus = () => {
             ) : (
               <GeneralTable
                 headings={[
-                  "id",
-                  "nombre",
-                  "descripción",
-                  "categoria",
-                  "precio",
-                  "imagen",
+                  "Id",
+                  "Nombre ",
+                  "Descripción",
+                  "Categoria",
+                  "Precio",
+                  "URL de la imagen",
                 ]}
                 items={testMenu}
                 setSelected={setSelected}

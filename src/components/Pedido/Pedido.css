@@ -1,5 +1,26 @@
-.fila-pedido{
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
+.fila-pedido {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+.img-pedidos {
+  width: 70px;
+  height: 70px;
+}
+
+@media screen and (max-width: 630px) {
+  .titulo {
+    display: none !important;
+  }
+  /* .fila-pedido {
+      justify-content: space-between !important;
+    } */
+}
+@media screen and (min-width: 450px) {
+  .texto-cel {
+    display: none;
+  }
+}
+.contenedor {
+  height: 75vh;
 }
