@@ -34,17 +34,6 @@ body::-webkit-scrollbar-thumb {
   height: 50px;
   border-radius: 5px;
 }
-/* const transformando = async () => {
-  try {
-    const usuarioPedidor = await usuario._id;
-    console.log("Pedido del usuario", userPedido);
-    console.log("usuario pedidor", usuarioPedidor);
-    const ultimoPedido = await userPedido[userPedido.length - 1];
-    const estadoDelPedido = await ultimoPedido.status;
-    console.log(ultimoPedido, "el ultimo pedido");
-    console.log(estadoDelPedido, "el estado del pedido");
-  } catch (error) {
-    toast.error("Error en la conexión. Intente nuevamente mas tarde.");
-  }
-};
-transformando(); */
+.contenedor {
+  height: 75vh;
+}
