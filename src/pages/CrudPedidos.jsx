@@ -48,24 +48,18 @@ const CrudPedidos = () => {
       <Navbar />
       <Container className="mt-5 pt-1">
         <h1 className="mt-5">Administración de Pedidos</h1>
-        <p>Selecciona al pedido que quieras modificar/eliminar.</p>
+        <p>Selecciona al pedido que desees modificar su estado o eliminarlo.</p>
         <Link to="/admin">
           <IoMdArrowBack />
           Volver
         </Link>
         <Row className="m-3">
           <Col className="d-flex justify-content-end">
-            <GeneralModal
-              boton={true}
-              buttonText="Añadir Pedido"
-              modalTitle={"Añadir Pedido"}
-              // modalBody={<AddUserForm getUsers={getUsers}/>}
-              modalBody={FormLogin}
-              variant="success"
-            />
+            
 
             {testPedidos.length > 1 && (
-              <GeneralModal
+              <div className="mx-1">
+              <GeneralModal 
                 boton={true}
                 buttonText="Eliminar Pedido"
                 modalTitle={"Eliminar Pedido"}
@@ -77,12 +71,13 @@ const CrudPedidos = () => {
                 }
                 variant="danger"
               />
+              </div>
             )}
 
             <GeneralModal
               boton={true}
-              buttonText="Editar Pedido"
-              modalTitle={"Editar Pedido"}
+              buttonText="Modificar estado"
+              modalTitle={"Estado del Pedido"}
               modalBody={
                 <EditPedidoForm selected={selected} getPedidos={getPedidos} />
               }
