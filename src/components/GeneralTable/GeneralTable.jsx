@@ -4,7 +4,7 @@ import "./GeneralTable.css";
 const GeneralTable = ({ headings, items, setSelected, selected }) => {
   console.log(selected);
   return (
-    <Table striped bordered hover>
+    <Table striped bordered hover responsive>
       <thead>
         <tr>
           {headings.map((heading, index) => (

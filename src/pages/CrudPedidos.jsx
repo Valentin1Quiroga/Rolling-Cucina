@@ -55,22 +55,20 @@ const CrudPedidos = () => {
         </Link>
         <Row className="m-3">
           <Col className="d-flex justify-content-end">
-            
-
             {testPedidos.length > 1 && (
               <div className="mx-1">
-              <GeneralModal 
-                boton={true}
-                buttonText="Eliminar Pedido"
-                modalTitle={"Eliminar Pedido"}
-                modalBody={
-                  <DeleteConfirmation
-                    deleteFunction={deletePedido}
-                    elemento="pedido de la base de datos?"
-                  />
-                }
-                variant="danger"
-              />
+                <GeneralModal
+                  boton={true}
+                  buttonText="Eliminar Pedido"
+                  modalTitle={"Eliminar Pedido"}
+                  modalBody={
+                    <DeleteConfirmation
+                      deleteFunction={deletePedido}
+                      elemento="pedido de la base de datos?"
+                    />
+                  }
+                  variant="danger"
+                />
               </div>
             )}
 
@@ -103,7 +101,7 @@ const CrudPedidos = () => {
               //   setSelected={setSelected}
               //   selected={selected}
               // ></GeneralTable>
-              <Table striped bordered hover>
+              <Table striped bordered hover responsive>
                 <thead>
                   <tr>
                     <th>ID</th>
