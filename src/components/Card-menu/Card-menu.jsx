@@ -18,7 +18,10 @@ const CardMarcos = ({ idboton, title, description, image, price }) => {
   return (
     <Card id="tarjeta-menu" className="text-white ">
       <div id="contenedor-img">
-        <Card.Img className="img-fluid w-100" src={image} />
+        <Card.Img
+          className="img-fluid w-100"
+          src="https://animalgourmet.com/wp-content/uploads/2019/05/spaghetti-3547078_1920-e1578933714229.jpg"
+        />
       </div>
       <div id="cuerpo-menu">
         <Card.Body>

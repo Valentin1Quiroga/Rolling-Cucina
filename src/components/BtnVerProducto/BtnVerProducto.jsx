@@ -49,7 +49,10 @@ const BtnVerProducto = ({ title, description, image, price }) => {
   return (
     <>
       <div className="container-fluid centered-object">
-        <img className="img-fluid img-modal rounded" src={image} />
+        <img
+          className="img-fluid img-modal rounded"
+          src="https://animalgourmet.com/wp-content/uploads/2019/05/spaghetti-3547078_1920-e1578933714229.jpg"
+        />
       </div>
       <div id="titulo-price">
         <div>
